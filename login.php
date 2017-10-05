@@ -3,8 +3,6 @@
 	include('header.php');
 ?>
 
-<h3>Log in</h3>
-
 <?php
 
 @ $db = new mysqli('localhost', 'root', '', 'juarvis');
