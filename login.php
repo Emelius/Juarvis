@@ -6,6 +6,7 @@
 <?php
 
 @ $db = new mysqli('localhost', 'root', '', 'juarvis');
+session_start();
 
 if ($db->connect_error) {
     echo "could not connect: " . $db->connect_error;
