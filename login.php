@@ -1,8 +1,3 @@
-
-<? php 
-	include('header.php');
-?>
-
 <?php
 
 @ $db = new mysqli('localhost', 'root', '', 'juarvis');
