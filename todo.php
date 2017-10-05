@@ -9,26 +9,26 @@
 	$connection = mysqli_connect($dbserver,$dbuser,$dbpass,$dbname);
 
 	if ( !$connection ) {
-		die("Database connection failed: " . mysql_error());
+		die("Database connection failed: " . mysqli_error());
 	}
 
 	// 2. Select a database to use
-	$db_select = mysql_select_db(DB_NAME, $connection);
+	$db_select = mysqli_select_db(DB_NAME, $connection);
 	if ( !$db_select ) {
-		die("Database selection failed: " . mysql_error());
+		die("Database selection failed: " . mysqli_error());
 	}
 
 	function setTask( $task ) {
 		global $connection;
 		//$query = "INSERT INTO task (taskname, completed, visible) VALUES (\"{$task}\", 0, 1)";
 		$query = "INSERT INTO task (taskname, taskdesc, sdate, edate, rdate, status) VALUES (\"{$task}\", \"{$taskdesc}\", \"{$sdate}\", \"{$edate}\", \"{$rdate}\", 0)";
-		$result = mysql_query( $query, $connection );
+		$result = mysqli_query( $query, $connection );
 		#echo mysql_error();
 	}
 
 	function confirm_query( $result_set ) {
 		if ( !$result_set ) {
-			die("Database query failed: " . mysql_error() );
+			die("Database query failed: " . mysqli_error() );
 		}
 	}
 
