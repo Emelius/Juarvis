@@ -23,21 +23,11 @@ if (isset($_POST['username'], $_POST['userpass'])) {
     $uname = htmlentities($_POST['username']);
     $uname = mysqli_real_escape_string($db, $_POST['username']);
     
-    #without function, so here you can try to implement the SQL injection
-    #various types to do it, either add ' -- to the end of a username, which will comment out
-    #or simply use 
-    #' OR '1'='1' #
-    #$uname = $_POST['username'];
-    
     #here we hash the password, and we want to have it hashed in the database as well
     #optimally when you create a user (through code) you simply send a hash
     #hasing can be done using different methods, MD5, SHA1 etc.
     
     $upass = sha1($_POST['userpass']);
-    
-    #just to see what we are selecting, and we can use it to test in phpmyadmin/heidisql
-    
-    //echo "SELECT * FROM users WHERE username = '{$uname}' AND hash = '{$upass}'";
     
     $query = ("SELECT * FROM users WHERE username = '{$uname}' "." AND hash = '{$upass}'");
        
