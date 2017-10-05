@@ -23,7 +23,8 @@
 
 	function setTask( $task ) {
 		global $connection;
-		$query = "INSERT INTO todo (task, completed, visible) VALUES (\"{$task}\", 0, 1)";
+		//$query = "INSERT INTO task (taskname, completed, visible) VALUES (\"{$task}\", 0, 1)";
+		$query = "INSERT INTO task (taskname, taskdesc, sdate, edate, rdate, status) VALUES (\"{$task}\", \"{$taskdesc}\", \"{$sdate}\", \"{$edate}\", \"{$rdate}\", 0)";
 		$result = mysql_query( $query, $connection );
 		#echo mysql_error();
 	}
@@ -37,13 +38,13 @@
 	# Delete All Rows from table
 	function deleteRows () {
 		global $connection;
-		$query = "DELETE FROM todo";
+		$query = "DELETE FROM task";
 		$result = mysql_query( $query, $connection );
 		$query = "ALTER TABLE todo AUTO_INCREMENT = 1";
 		$result = mysql_query( $query, $connection );
 	}
 
-	# Set task completion flag to 1 using Task Number
+	/*/ # Set task completion flag to 1 using Task Number
 	function completedTask ( $taskNum ) {
 		global $connection;
 		$query = "UPDATE todo SET completed = 1 WHERE id={$taskNum}";
@@ -98,6 +99,8 @@
 		$taskNum = $_POST['num'];
 		hideTask( $taskNum );
 	}
+	/*/
+	
 	echo "<form name=\"input\" action=\"todo.php\" method=\"post\" >";
 	echo "<input type=\"text\" name=\"taskName\" placeholder=\"enter task here\"/>";
 	echo "<br/>";
