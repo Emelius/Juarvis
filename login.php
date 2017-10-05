@@ -1,18 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Square login form Responsive Widget  Website Template | Home:: w3layouts</title>
-<!-- Custom Theme files -->
-<link href="main.css" rel="stylesheet" type="text/css" media="all"/>
-<!-- Custom Theme files -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<!--Google Fonts-->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-<!--Google Fonts-->
-</head>
-<body>
+
 <!--header start here-->
 <div class="login-form">
 			<div class="top-login">
