@@ -6,7 +6,8 @@
 	include 'config.php';
 	
   // 1. Create a database connection
-	$connection = mysql_connect(DB_SERVER, DB_USER, DB_PASS);
+	$connection = mysqli_connect($dbserver,$dbuser,$dbpass,$dbname);
+
 	if ( !$connection ) {
 		die("Database connection failed: " . mysql_error());
 	}
