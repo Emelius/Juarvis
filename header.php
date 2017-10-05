@@ -11,8 +11,8 @@
             
             <nav>
                 <ul>
-                    <li><a>Settings</a></li>
-                    <li><a>Home</a></li>
+                    <li><a href="settings.php">Settings</a></li>
+                    <li><a href="main.php">Home</a></li>
                 </ul>
             </nav>
             <a href="logout.php">Log out</a>
