@@ -9,7 +9,7 @@
 
 if ($db->connect_error) {
     echo "could not connect: " . $db->connect_error;
-    printf("<br><a href=index.php>Return to home page </a>");
+    printf("<br>login failed");
     exit();
 }
 
