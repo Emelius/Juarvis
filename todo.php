@@ -35,7 +35,7 @@
 		}
 	}
 
-	# Delete All Rows from table
+	/*/ # Delete All Rows from table
 	function deleteRows () {
 		global $connection;
 		$query = "DELETE FROM task";
@@ -44,7 +44,7 @@
 		$result = mysql_query( $query, $connection );
 	}
 
-	/*/ # Set task completion flag to 1 using Task Number
+	 # Set task completion flag to 1 using Task Number
 	function completedTask ( $taskNum ) {
 		global $connection;
 		$query = "UPDATE todo SET completed = 1 WHERE id={$taskNum}";
