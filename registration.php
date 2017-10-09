@@ -1,33 +1,13 @@
 <?php include 'head.php'; ?>
 	<body>
-		<div class="login-form">
-				<div class="top-login">
-					<span><img src="img/group.png" alt=""/></span>
-				</div>
-				<h1>Welcome to Juarvis!</h1>
-				<div class="login-top">
-				<form>
-					<div class="login-ic">
-						<i ></i>
-						<input type="text"  value="User name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}"/>
-						<div class="clear"> </div>
-					</div>
-					<div class="email-ic">
-						<i ></i>
-						<input type="text"  value="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'email';}"/>
-						<div class="clear"> </div>
-					</div>
-					<div class="login-ic">
-						<i class="icon"></i>
-						<input type="password"  value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"/>
-						<div class="clear"> </div>
-					</div>
-
-					<div class="log-bwn">
-						<input type="submit"  value="Login" >
-					</div>
-					</form>
-				</div>
-		</div>		
+		<h1>Welcome to Juarvis!</h1>
+		<p> Fill in your information below to register. </p>
+		<form>
+			<input type="text"  value="username"/>
+			<input type="password" value="password"/>
+			<input type="text" value="name"/>
+			<input type="text"  value="email"/>
+			<input type="submit"  value="Register">
+		</form>	
 	</body>
 </html>
