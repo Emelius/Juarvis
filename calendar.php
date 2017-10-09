@@ -1,6 +1,6 @@
 // insert calendar here, show dates that have tasks //
 
-<? php
+<?php
   include ('header.php');
 ?>
 
