@@ -5,19 +5,26 @@
 	
 }
 
-.week {
+th {
 	height: 30px;
 	text-align:center;
 	font-weight:300px;
-	
 }
 
-.week td {
+td {
 	height: 100px;
 }
 
 .today {
 	background-color: orange;
+}
+
+th:nth-of-type(7),td:nth-of-type(7){
+	color:blue;
+}
+
+th:nth-of-type(1),td:nth-of-type(1){
+	color:red;
 }
 
 
