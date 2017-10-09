@@ -1,32 +1,31 @@
 <?php include 'header.php'; ?>
 
 <?php
+        session_start();
 
-session_start();
+        if (isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+        }
+        else {
+                header("index.php")
+        }
 
-$username = $_SESSION["(active user?)"];
+        echo '<h2>'$username'</h2>
 
-echo (current/active username);
+        <form method="POST" action="registration.php">
+        <input type="text" value="newusername"/>
+        <h2>Password</h2>
+        <input type="password" value="newpassword"/>'
 
-echo '<form method="POST" action="registration.php">
+        (current/active name)
 
-<input type="text" value="newusername"/>';
+        '<input type="text" value="newname"/>'
 
-echo (current/active password);
+        (current/active email)
 
-echo 'input type="password" value="newpassword"/>';
-
-echo (current/active name);
-
-echo '<input type="text" value="newname"/>';
-
-echo (current/active email);
-
-echo  '<input type="email" value="newemail"/>
-
-<input type="submit"  value="Save Changesr">';
-
-echo '</form>';
+        '<input type="email" value="newemail"/>
+        <input type="submit"  value="Save Changes">
+        </form>';
 ?>
 
 /*/list following:username, pw, name, email, colorscheme?
