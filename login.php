@@ -1,64 +1,73 @@
-
-
-//@ $db = new mysqli('localhost', 'root', '', 'juarvis');
-//session_start();
- 
-
-
 <?php
-   include("config.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-	   $myusername = htmlentities($myusername);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']);
-	   $mypassword = htmlentities($mypassword);
-      
-      $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: main.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
-?>
+    include("config.php");
+    session_start();
+    if (isset($_SESSION['username'])) {
+        header("welcome.php");
+    }
+    if (isset($_POST["login"])) {
 
-<div class="login-form">
-			<div class="top-login">
-				<span><img src="img/group.png" alt=""/></span>
-			</div>
-			<h1>Welcome to Juarvis!</h1>
-			<div class="login-top">
-			<form>
-				<div class="login-ic">
-					<i ></i>
-					<input type="text"  value="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}"/>
-					<div class="clear"> </div>
-				</div>
-				<div class="login-ic">
-					<i class="icon"></i>
-					<input type="password"  value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"/>
-					<div class="clear"> </div>
-				</div>
-			
-				<div class="log-bwn">
-					<input type="submit"  value="Login" >
-				</div>
-				</form>
-			</div>
-</div>		
-</body>
+      if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $db = mysqli_connect($dbserver,$dbuser,$dbpass,$dbname);
+        $myusername = mysqli_real_escape_string($db,$_POST['username']);
+	      $myusername = htmlentities($myusername);
+        $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+	      $mypassword = htmlentities($mypassword);
+        // username and password sent from form, This php script was modified and based on a script from:
+        //https://www.tutorialspoint.com/php/php_mysql_login.htm
+
+        $myusername = mysqli_real_escape_string($db,$_POST['username']);
+        $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+
+        $sql = "SELECT user_id FROM user WHERE username = '$myusername' and userpass = '$mypassword'";
+        $result = mysqli_query($db,$sql);
+        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+        //$active = $row['active'];
+
+        $count = mysqli_num_rows($result);
+
+        // If result matched $myusername and $mypassword, table row must be 1 row
+
+        if($count == 1) {
+           //session_register("myusername");
+           $_SESSION['login_user'] = $myusername;
+
+           header("location: welcome.php");
+        }else {
+           $error = "Your Login Name or Password is invalid, please try again.";
+           echo ("<p class="error_msg">$error</p>");
+        }
+     }
+   }
+
+?>
+<html>
+
+    <head>
+      <title>Login Page</title>
+    </head>
+
+   <body bgcolor = "#FFFFFF">
+
+      <div align = "center">
+         <div style = "width:300px; border: solid 1px #333333; " align = "left">
+            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+
+            <div style = "margin:30px">
+
+               <form action = "" method = "post">
+
+                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+                  <input type = "submit" name = "login" value = " Log In "/>
+                  <br />
+                  <a href="register.php">Register here...</a>
+               </form>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </body>
 </html>
