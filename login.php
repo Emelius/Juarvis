@@ -2,7 +2,7 @@
     include("config.php");
     session_start();
     if (isset($_SESSION['username'])) {
-        header("welcome.php");
+        header("main.php");
     }
     if (isset($_POST["login"])) {
 
