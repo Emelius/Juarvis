@@ -266,14 +266,15 @@ body {
 	
 }
 
-th {
+.week {
 	height: 30px;
 	text-align:center;
 	font-weight:300px;
 	
 }
 
-td {
+.week td {
 	height: 100px;
 }
 
+/* end calender */
