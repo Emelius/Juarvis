@@ -259,3 +259,21 @@ body {
 
 /*--media quiries end here--*/
 
+/* Calender */
+
+.container {
+	margin-top:80px;
+	
+}
+
+th {
+	height: 30px;
+	text-align:center;
+	font-weight:300px;
+	
+}
+
+td {
+	height: 100px;
+}
+
