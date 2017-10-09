@@ -1,5 +1,3 @@
-// insert calendar here, show dates that have tasks //
-
 <!doctype html>
 <html>
     <head>
