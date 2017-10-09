@@ -30,14 +30,14 @@ $today = date('Y-m-d', time());
 $html_title = date('Y/m', $timestamp);
 
 //Create prev & next month link mktime(hour, minute, second, month, day, year)
-$prev = date('Y-m', mktime(0,0,0 date('m',$timestamp)-1, 1, date('Y',$timestamp)));
-$next = date('Y-m', mktime(0,0,0 date('m',$timestamp)+1, 1, date('Y',$timestamp)));
+$prev = date('Y-m', mktime(0,0,0, date('m',$timestamp)-1, 1, date('Y',$timestamp)));
+$next = date('Y-m', mktime(0,0,0, date('m',$timestamp)+1, 1, date('Y',$timestamp)));
 
 //Number of days in the month
 $day_count = date('t', $timestamp);
 
 //0:sun, 1:mon, 2:tues ... 
-$str = date('w', mktime(0,0,0 date('m',$timestamp), 1, date('Y',$timestamp)));
+$str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
 
 //Create calendar
 $weeks = array();
