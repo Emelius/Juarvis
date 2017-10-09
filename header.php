@@ -9,7 +9,7 @@
     </head>
     <body>
     	<header>
-            
+            <!-- display logged in username-->
             <nav>
                 <ul>
                     <li><a href="settings.php">Settings</a></li>
