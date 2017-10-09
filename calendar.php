@@ -105,7 +105,7 @@ for ($day = 1; $day <= $day_count; $day++) {
           echo $week;
       } 
     
-   
+   ?>
     
  </table>
 </div> 
