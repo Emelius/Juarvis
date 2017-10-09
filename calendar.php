@@ -91,7 +91,7 @@ for ($day = 1; $day <= $day_count; $day++) {
   <h3>
   <br>
   <table class="table.table-bordered">
-    <tr class="week">
+    <tr>
       <th>S</th>
       <th>M</th>
       <th>T</th>
@@ -100,33 +100,10 @@ for ($day = 1; $day <= $day_count; $day++) {
       <th>F</th>
       <th>S</th>
     </tr>
-    <tr class="week">
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-    </tr>
-      <tr class="week">
-      <th>S</th>
-      <th>M</th>
-      <th>T</th>
-      <th>W</th>
-      <th>T</th>
-      <th>F</th>
-      <th>S</th>
-    </tr>
-       <tr class="week">
-      <th>S</th>
-      <th>M</th>
-      <th>T</th>
-      <th>W</th>
-      <th>T</th>
-      <th>F</th>
-      <th>S</th>
-    </tr>
+    <?php
+      foreach($weeks as $week){
+          echo $week;
+      } 
     
    
     
