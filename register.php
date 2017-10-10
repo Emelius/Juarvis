@@ -1,43 +1,42 @@
+<?php include('config.php') ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration system PHP and MySQL</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
-  <form action="insert.php" method="post">
-  Name : <input type="text" name="username">
-  <br/>
-  Email : <input type="text" name="email">
-  <br/>
-  <input type="submit" value="insert">
-</form>
+	<div class="header">
+		<h2>Register</h2>
+	</div>
+	
+	<form method="post" action="register.php">
 
+		<?php include('errors.php'); ?>
 
-
-<?php
-  $con = mysqli_connect('juarvis','root','');
-  if(!$con)
-  {
-   echo 'Not Connected To Server';
-  }
-  if (!mysqli_select_db ($con,'tutorial'))
-  {
-   echo 'Database Not Selected';
-  }
-
-  $Name = $_POST('username');
-  $Email = $_POST('email');
-
-
-  $sql = "insert into person (Name,Email) values ('$Name','$Email')";
-
-  if (!mysqli_query($con,$sql))
-  {
-   echo 'Not Inserted';
-  }
-
-  else
-  {
-   echo 'Inserted Successfully';
-  }
-
-  header("refresh:2; url=index.html");
-
-
-?>
+		<div class="input-group">
+			<label>Username</label>
+			<input type="text" name="username" value="<?php echo $username; ?>">
+		</div>
+		<div class="input-group">
+			<label>Email</label>
+			<input type="email" name="email" value="<?php echo $email; ?>">
+		</div>
+		<div class="input-group">
+			<label>Password</label>
+			<input type="password" name="password_1">
+		</div>
+		<div class="input-group">
+			<label>Confirm password</label>
+			<input type="password" name="password_2">
+		</div>
+		<div class="input-group">
+			<button type="submit" class="btn" name="reg_user">Register</button>
+		</div>
+		<p>
+			Already a member? <a href="login.php">Sign in</a>
+		</p>
+	</form>
+</body>
+</html>
