@@ -61,11 +61,11 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   $date = $ym.'-'.$day;
   
   if($today == $date) {
-      $week .='<td class="today"><a href="">'.$day'</a>'; 
+      $week .='<td class="today"><a href="">'.$day; 
   } else {
-    $week .= '<td><a href="">'.$day'</a>';
+    $week .= '<td><a href="">'.$day;
  }
-  $week .= '</td>';
+  $week .= '</a></td>';
   
   //End of the week OR End of the month 
   if($str % 7 == 6 || $day == $day_count) {
