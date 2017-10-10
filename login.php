@@ -60,7 +60,7 @@
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" name = "login" value = " Log In "/>
                   <br />
-                  <a href="register.php">Register here...</a>
+                  <a href="registration.php">Register here...</a>
                </form>
 
             </div>
