@@ -58,11 +58,11 @@ if (isset($_POST['newusername'])) {
             </tr>
             <tr>
                 <td>Password</td>
-                <td><INPUT type="text" value="password" name="password"></td>
+                <td><INPUT type="password" name="password"></td>
             </tr>
 		<tr>
                 <td>Confirm Password</td>
-                <td><INPUT type="text" value="password" name="password"></td>
+                <td><INPUT type="password" name="password"></td>
             </tr>
             <tr>
                 <td></td>
