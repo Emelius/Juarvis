@@ -12,7 +12,6 @@ th {
 }
 
 td {
-	height: 100px;
 	font-weight:200px;
 }
 
@@ -21,16 +20,7 @@ td a {
 }
 
 .today {
-	background-color: orange;
+	background-color: #80d4ff;
 }
-
-th:nth-of-type(7),td:nth-of-type(7){
-	color:red;
-}
-
-th:nth-of-type(1),td:nth-of-type(1){
-	color:red;
-}
-
 
 /* end calender */
