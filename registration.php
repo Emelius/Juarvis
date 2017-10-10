@@ -1,7 +1,7 @@
 <?php include 'head.php'; ?>
 	
 <?php
-if (isset($_POST['newbooktitle'])) {
+if (isset($_POST['newusername'])) {
     // This is the postback so add the book to the database
     # Get data from form
     $newusername = trim($_POST['newusername']);
