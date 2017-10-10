@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Registration system PHP and MySQL</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
@@ -11,7 +11,7 @@
 		<h2>Login</h2>
 	</div>
 	
-	<form method="post" action="login.php">
+	<form method="post" action="login1.php">
 
 		<?php include('errors.php'); ?>
 
