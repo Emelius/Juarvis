@@ -19,7 +19,7 @@ td {
 }
 
 .today {
-	background-color: orange;
+	color: orange;
 }
 
 th:nth-of-type(7),td:nth-of-type(7){
