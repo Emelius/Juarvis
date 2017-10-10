@@ -15,8 +15,8 @@ td {
 	height: 100px;
 }
 
-td.today {
-	background-color: #dddddd;
+.today {
+	background-color: orange;
 }
 
 th:nth-of-type(7),td:nth-of-type(7){
