@@ -17,9 +17,10 @@
 			printf("<br><a href=index.php>Return to home page </a>");
 			exit();
 	}
+
 	$sql = "SELECT * FROM user WHERE username = 'login_user'";
 	$result = mysqli_query($db,$sql);
-  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 	printf($row);
 
