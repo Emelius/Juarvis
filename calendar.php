@@ -54,7 +54,7 @@ $weeks = array();
 $week = '';
 
 //Add empty cell
-$week .=str_repeat('<td><a class="link"></a></td>',$str);
+$week .=str_repeat('<td></td>',$str);
 
 for ($day = 1; $day <= $day_count; $day++, $str++) {
  
@@ -63,7 +63,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   if($today == $date) {
       $week .='<td class="today">'.$day; 
   } else {
-    $week .= '<td>'.$day;
+    $week .= '<td><a href="">link</a>'.$day;
  }
   $week .= '</td>';
   
