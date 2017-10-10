@@ -91,7 +91,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     <a href="?ym=<?php echo $next; ?>"> &gt;</a>
   <h3>
   <br>
-  <table class="table-bordered">
+  <table class="table table-bordered">
     <tr>
       <th>S</th>
       <th>M</th>
