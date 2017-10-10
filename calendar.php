@@ -63,15 +63,15 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   if($today == $date) {
       $week .='<td class="today">'.$day; 
   } else {
-    $week .= '<td><a>'.$day;
+    $week .= '<td>'.$day;
  }
-  $week .= '</a></td>';
+  $week .= '</td>';
   
   //End of the week OR End of the month 
   if($str % 7 == 6 || $day == $day_count) {
     
     if($day == $day_count){
-      $week .= str_repeat('<td></td>',6-($str % 7));  
+      $week .= str_repeat('<td><a><a></td>',6-($str % 7));  
     }
     
     $weeks[] = '<tr>'.$week.'</tr>';
