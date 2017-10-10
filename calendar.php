@@ -54,7 +54,7 @@ $week = '';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 
-for ($day = 1; $day <= $day_count; $day++) {
+for ($day = 1; $day <= $day_count; $day++, $str++) {
  
   $date = $ym.'-'.$day;
   
