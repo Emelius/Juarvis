@@ -4,13 +4,13 @@
         <title>JUARVIS</title>
         <meta charset="utf-8"/>
         
-        <link rel="stylesheet" type="text/css" href="main.css"/>
+        
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         
-        
+        <link rel="stylesheet" type="text/css" href="main.css"/>
         
     </head>
 
@@ -54,7 +54,7 @@ $weeks = array();
 $week = '';
 
 //Add empty cell
-$week .=str_repeat('<td></td>',$str);
+$week .=str_repeat('<td><a></a></td>',$str);
 
 for ($day = 1; $day <= $day_count; $day++, $str++) {
  
