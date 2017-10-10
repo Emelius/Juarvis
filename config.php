@@ -2,7 +2,7 @@
 
 //$url = $_SERVER['REQUEST_URI'];
 
-$strings = explode('/', $url);
+//$strings = explode('/', $url);
 
 $dbname = 'juarvis';
 $dbuser = 'root';
