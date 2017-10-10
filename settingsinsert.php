@@ -15,7 +15,7 @@
         $newpassword = POST_$['password'];
         $newemail = POST_$['email'];
 
-	$sql = "INSERT into (specific user) (username,password,email) values ('$newusername','$newpassword','$newemail');
+	$sql = "INSERT into users where user_id '(userid)' (username,password,email) values ('$newusername','$newpassword','$newemail');
 	
 	if (!mysqli_query($con,$sql)) {
 		echo 'Something went wrong, not updated';
