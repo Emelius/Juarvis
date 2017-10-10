@@ -61,9 +61,9 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   $date = $ym.'-'.$day;
   
   if($today == $date) {
-      $week .='<td class="today">'.$day; 
+      $week .='<td class="today"><a href="">'.$day'</a>'; 
   } else {
-    $week .= '<td><a href="">link</a>'.$day;
+    $week .= '<td><a href="">'.$day'</a>';
  }
   $week .= '</td>';
   
