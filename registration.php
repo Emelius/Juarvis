@@ -32,7 +32,7 @@ if (isset($_POST['newusername'])) {
     }
 
     // Prepare an insert statement and execute it
-    $stmt = $db->prepare("insert into user values ('', ?, ?, ?, '')");
+    $stmt = $db->prepare("insert into users values ('', ?, ?, ?, '')");
     $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
     printf("<br>Account created!");
