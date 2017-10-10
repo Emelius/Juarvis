@@ -54,7 +54,7 @@ $weeks = array();
 $week = '';
 
 //Add empty cell
-$week .=str_repeat('<td><a></a></td>',$str);
+$week .=str_repeat('<td></td>',$str);
 
 for ($day = 1; $day <= $day_count; $day++, $str++) {
  
@@ -63,9 +63,9 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   if($today == $date) {
       $week .='<td class="today">'.$day; 
   } else {
-    $week .= '<td>'.$day;
+    $week .= '<td><a>'.$day;
  }
-  $week .= '</td>';
+  $week .= '</a></td>';
   
   //End of the week OR End of the month 
   if($str % 7 == 6 || $day == $day_count) {
