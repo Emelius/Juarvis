@@ -54,7 +54,7 @@ $weeks = array();
 $week = '';
 
 //Add empty cell
-$week .=str_repeat('<td></td>',$str);
+$week .=str_repeat('<td><a class="link"></a></td>',$str);
 
 for ($day = 1; $day <= $day_count; $day++, $str++) {
  
@@ -71,7 +71,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   if($str % 7 == 6 || $day == $day_count) {
     
     if($day == $day_count){
-      $week .= str_repeat('<td><a href="http://www.istockphoto.com/se/foto/orange-gm185284489-19875146?esource=SEO_GIS_CDN_Redirect"></a></td>',6-($str % 7));  
+      $week .= str_repeat('<td></td>',6-($str % 7));  
     }
     
     $weeks[] = '<tr>'.$week.'</tr>';
