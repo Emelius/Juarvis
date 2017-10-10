@@ -5,10 +5,10 @@ if (isset($_POST['newusername'])) {
     // This is the postback so add the book to the database
     # Get data from form
     $newusername = trim($_POST['newusername']);
-    $newemail = trim($_POST['newemail']);
     $newpassword = trim($_POST['newpassword']);
+    $newemail = trim($_POST['newemail']);
 
-    if (!$newusername || !$newemail || !$newpassword) {
+    if (!$newusername || !$newpassword || !$newemail) {
         printf("You must specify both username, email and a password");
         printf("<br><a href=registration.php>Try again</a>");
         exit();
@@ -33,7 +33,7 @@ if (isset($_POST['newusername'])) {
 
     // Prepare an insert statement and execute it
     $stmt = $db->prepare("insert into user values ('', ?, ?, ?, '')");
-    $stmt->bind_param('sss', $newusername, $newemail, $newpassword);
+    $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
@@ -58,11 +58,11 @@ if (isset($_POST['newusername'])) {
             </tr>
             <tr>
                 <td>Password</td>
-                <td><INPUT type="text" name="password"></td>
+                <td><INPUT type="text" value="password" name="password"></td>
             </tr>
 		<tr>
                 <td>Confirm Password</td>
-                <td><INPUT type="text" name="password"></td>
+                <td><INPUT type="text" value="password" name="password"></td>
             </tr>
             <tr>
                 <td></td>
