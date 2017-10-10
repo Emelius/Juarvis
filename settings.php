@@ -22,15 +22,17 @@
         $activeemail = //assign from databse email
                 
         // check so that new username or email is not already in db?
-        // post, insert new info into db
+		
+	//if (newusername != any other username in db) {"sorry, the username is taken!}
+	//check so that fields are not empty? don't send to db -> if !empty
+	//else post, insert new info into db
         
-
         echo
                 '<h2>Username</h2>'
                 ,
                 $activeusername
                 ,
-                '<form method="POST" action="registration.php">
+                '<form method="POST" action="settingsinsert.php">
 		<h3>Change Username</h3>
                 <input type="text" value="newusername"/>
                 <h2>Change Password</h2>
