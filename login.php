@@ -2,7 +2,7 @@
     include("config.php");
     session_start();
     if (isset($_SESSION['username'])) {
-        header("main.php");
+        header("welcome.php");
     }
     if (isset($_POST["login"])) {
 
@@ -18,7 +18,7 @@
         $myusername = mysqli_real_escape_string($db,$_POST['username']);
         $mypassword = mysqli_real_escape_string($db,$_POST['password']);
 
-        $sql = "SELECT user_id FROM user WHERE username = '$myusername' and userpass = '$mypassword'";
+        $sql = "SELECT user_id FROM user WHERE username = '$myusername' and password = '$mypassword'";
         $result = mysqli_query($db,$sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         //$active = $row['active'];
@@ -34,7 +34,7 @@
            header("location: welcome.php");
         }else {
            $error = "Your Login Name or Password is invalid, please try again.";
-           echo ("<p class="error_msg">$error</p>");
+           echo ("<p class=\"error_msg\">$error</p>");
         }
      }
    }
