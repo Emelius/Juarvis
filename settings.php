@@ -18,7 +18,6 @@
 			exit();
 	}
 
-        $activename = //assign from db name
         $activeemail = //assign from databse email
                 
         // check so that new username or email is not already in db?
@@ -37,12 +36,6 @@
                 <input type="text" name="newusername"/>
                 <h2>Change Password</h2>
                 <input type="password" name="newpassword"/>
-                <h2>Name</h2>'
-                ,
-                $activename
-                ,
-                '<h3>Change Name</h3>
-                <input type="text" name="newname"/>
                 <h2>Email<h2>'
                 ,
                 $activeemail
@@ -54,9 +47,5 @@
 
 	
 ?>
-
-/*/list following:username, pw, name, email, colorscheme?
-econfirm button - ability to change - send new info to db
-/*/
 
 <?php include 'footer.php'; ?>
