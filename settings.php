@@ -17,14 +17,21 @@
 			printf("<br><a href=index.php>Return to home page </a>");
 			exit();
 	}
+	$sql = "SELECT user_id FROM user WHERE username = '$myusername' and password = '$mypassword'";
+	$result = mysqli_query($db,$sql);
+        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
+	echo $row;
+	
         $activeemail = //assign from databse email
+	user_id?
                 
-        // check so that new username or email is not already in db?
-		
+        // check so that new username or email is not already in db?	
 	//if (newusername != any other username in db) {"sorry, the username is taken!}
+		
 	//check so that fields are not empty? don't send to db -> if !empty
-	//else post, insert new info into db
+	
+	//else post -> settingsinsert.php -> insert new info into db
         
         echo
                 '<h2>Username</h2>'
@@ -44,7 +51,6 @@
                 <input type="email" name="newemail"/>
                 <input type="submit"  value="Save Changes">
                 </form>';
-
 	
 ?>
 
