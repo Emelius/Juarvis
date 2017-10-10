@@ -8,9 +8,23 @@
 			printf("<br><a href=index.php>Return to home page </a>");
 			exit();
         }
+
+	//how to target specific user?
         
         $newusername = POST_$['username'];
         $newpassword = POST_$['password'];
-        $newname = POST_$['name'];
         $newemail = POST_$['email'];
+
+	$sql = "INSERT into (specific user) (username,password,email) values ('$newusername','$newpassword','$newemail');
+	
+	if (!mysqli_query($con,$sql)) {
+		echo 'Something went wrong, not updated';
+	}
+
+	else {
+		echo 'Update successfull';
+	} 
+
+	header("refresh:2; url=settings.html");
+
 ?>
