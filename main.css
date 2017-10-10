@@ -12,11 +12,12 @@ a {
 th {
 	height: 30px;
 	text-align:center;
-	font-weight:300px;
+	font-weight:200px;
 }
 
 td {
 	height: 100px;
+	font-weight:200px;
 }
 
 .today {
@@ -24,7 +25,7 @@ td {
 }
 
 th:nth-of-type(7),td:nth-of-type(7){
-	color:blue;
+	color:red;
 }
 
 th:nth-of-type(1),td:nth-of-type(1){
