@@ -30,8 +30,8 @@
                 ,
                 $activeusername
                 ,
-                '<h3>Change Username</h3>
-                <form method="POST" action="registration.php">
+                '<form method="POST" action="registration.php">
+		<h3>Change Username</h3>
                 <input type="text" value="newusername"/>
                 <h2>Change Password</h2>
                 <input type="password" value="newpassword"/>
