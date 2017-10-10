@@ -1,7 +1,7 @@
 /* Calendar */
 
 .container {
-	margin-top:80px;
+	margin-top:30px;
 	
 }
 
@@ -16,7 +16,7 @@ td {
 	font-weight:200px;
 }
 
-td a {
+th a {
 	text-decoration:none;
 }
 
