@@ -34,23 +34,25 @@
                 ,
                 '<form method="POST" action="settingsinsert.php">
 		<h3>Change Username</h3>
-                <input type="text" value="newusername"/>
+                <input type="text" name="newusername"/>
                 <h2>Change Password</h2>
-                <input type="password" value="newpassword"/>
+                <input type="password" name="newpassword"/>
                 <h2>Name</h2>'
                 ,
                 $activename
                 ,
                 '<h3>Change Name</h3>
-                <input type="text" value="newname"/>
+                <input type="text" name="newname"/>
                 <h2>Email<h2>'
                 ,
                 $activeemail
                 ,
                 '<h3>Change Email</h3>
-                <input type="email" value="newemail"/>
+                <input type="email" name="newemail"/>
                 <input type="submit"  value="Save Changes">
                 </form>';
+
+	
 ?>
 
 /*/list following:username, pw, name, email, colorscheme?
