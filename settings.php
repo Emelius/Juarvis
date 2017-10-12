@@ -20,7 +20,8 @@
 
 	$sql = "SELECT * FROM users WHERE username = 'login_user'";
 
-	//somehow assign data to forms so that if not edited, same info will be returned
+
+	//somehow assign current data to forms -> so that if not edited the same info will be returned to db -> edited will be updated
 
         //$activeemail =assign from databse email
 
@@ -30,6 +31,13 @@
 	//check so that fields are not empty? don't send to db -> if !empty
 
 	//else post -> settingsinsert.php -> insert new info into db
+
+	if (isset($_POST) && !empty($_POST)) {
+		# Get data from form
+			$newusername = trim($_POST['newusername']);
+			$newpassword = trim($_POST['newpassword']);
+			$newemail = trim($_POST['newemail']);
+		}
 
         echo
                 "<h2>Username</h2>",
