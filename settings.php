@@ -20,6 +20,8 @@
 
 	$sql = "SELECT * FROM users WHERE username = 'login_user'";
 
+	//somehow assign data to forms so that if not edited, same info will be returned
+
         //$activeemail =assign from databse email
 
         // check so that new username or email is not already in db
