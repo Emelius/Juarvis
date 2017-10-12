@@ -7,6 +7,10 @@ if (isset($_POST['newusername'])) {
     $newusername = trim($_POST['newusername']);
     $newpassword = trim($_POST['newpassword']);
     $newemail = trim($_POST['newemail']);
+	
+	echo $newusername;
+	echo $newpassword;
+	echo $newemail;
 
     if (!$newusername || !$newpassword || !$newemail) {
         printf("You must specify both username, email and a password");
