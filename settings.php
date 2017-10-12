@@ -22,8 +22,6 @@
 	$result = mysqli_query($db,$sql);
   	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
-	printf($row);
-
         //$activeemail =assign from databse email
 
         // check so that new username or email is not already in db?
