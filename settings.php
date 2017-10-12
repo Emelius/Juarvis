@@ -33,11 +33,24 @@
 	//else post -> settingsinsert.php -> insert new info into db
 
 	if (isset($_POST) && !empty($_POST)) {
-		# Get data from form
+	//Get data from form
 			$newusername = trim($_POST['newusername']);
 			$newpassword = trim($_POST['newpassword']);
 			$newemail = trim($_POST['newemail']);
 		}
+
+	//Safety yes
+	$newusername = addslashes($newusername);
+	$newpassword = addslashes($newpassword);
+	$newemail = addslashes($newemail);
+		
+	$newusername = htmlentities($newusername);
+	$newpassword = htmlentities($newpassword);
+	$newemail = htmlentities($newemail);
+		
+	$newusername = mysqli_real_escape_string($db, $newusername);
+	$newpassword = mysqli_real_escape_string($db, $newpassword);
+	$newemail = mysqli_real_escape_string($db, $newemail);
 
         echo
                 "<h2>Username</h2>",
