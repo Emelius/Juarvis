@@ -1,3 +1,6 @@
-<?php include 'head.php'; ?>
+<?php include 'head.php';
 // You have left jarviz all alone and logged out bye pls thnx
-// destroy session?
+    session_start();
+    session_destroy();
+    header("location: ../index.php");
+    ?>
