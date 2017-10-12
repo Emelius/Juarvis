@@ -22,8 +22,8 @@
 
         //$activeemail =assign from databse email
 
-        // check so that new username or email is not already in db?
-	//if (newusername != any other username in db) {"sorry, the username is taken!}
+        // check so that new username or email is not already in db
+	//if (newusername != any other username in db) else {"sorry, the username is taken!}
 
 	//check so that fields are not empty? don't send to db -> if !empty
 
