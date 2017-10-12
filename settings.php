@@ -18,9 +18,7 @@
 			exit();
 	}
 
-	$sql = "SELECT * FROM user WHERE username = 'login_user'";
-	$result = mysqli_query($db,$sql);
-  	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	$sql = "SELECT * FROM users WHERE username = 'login_user'";
 
         //$activeemail =assign from databse email
 
