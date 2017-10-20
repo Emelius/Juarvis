@@ -48,7 +48,7 @@
 			<input type = "password" name = "mypassword" placeholder="Password" class = "inputField" />
 			<br>
 			<input type = "submit" name = "login" value = "Log in" class="button"/>
-		<button class="button" onclick="redirect()">Register</button>
+		<button class="button" onclick="location.href='registration.php'">Register</button>>
 	</div>
 </body
 </html>
