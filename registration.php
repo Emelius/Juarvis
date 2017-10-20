@@ -41,7 +41,6 @@ if (isset($_POST['newusername'])) {
     $stmt->execute();
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
-    include("footer.php");
     exit;
 }
 
@@ -78,3 +77,7 @@ if (isset($_POST['newusername'])) {
 </form>
 
 </html>
+
+<?php
+	include("footer.php");
+?>
