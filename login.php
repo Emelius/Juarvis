@@ -1,6 +1,6 @@
 <?php
 	include("config.php");
-	include("session.php");
+	//include("session.php");
 	include "head.php";
 
 	// else {
