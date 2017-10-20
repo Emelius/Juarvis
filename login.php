@@ -39,8 +39,8 @@
 ?>
 	<div class="loginDiv">
                <form class="loginForm" action = "" method = "post">
-                  <label>Username </label><input type = "text" name = "myusername" class = "box"/><br /><br />
-                  <label>Password </label><input type = "password" name = "mypassword" class = "box" /><br/><br />
+                  <input type = "text" name = "myusername" placeholder="Username" class = "box"/><br /><br />
+                  <input type = "password" name = "mypassword" placeholder="Password" class = "box" /><br/><br />
                   <input type = "submit" name = "login" value = " Log in "/>
                </form>
 	</div>
