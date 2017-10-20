@@ -1,13 +1,12 @@
-<?php include 'header.php'; include 'config.php'; ?>
-
+<?php
+	include 'header.php';
+	include 'config.php';
+	include 'session.php';?>
 <?php
         session_start();
 
         if (isset($_SESSION['login_user'])) {
                 $activeusername = $_SESSION['login_user'];
-        }
-        else {
-                header("index.php");
         }
 
         @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
