@@ -47,5 +47,6 @@
                   <input type = "password" name = "mypassword" placeholder="Password" class = "box" /><br/><br />
                   <input type = "submit" name = "login" value = " Log in "/>
 		</form>
+		<a href="registration.php">Register</a>
 	</div>
 </body>
