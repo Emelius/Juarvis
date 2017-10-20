@@ -65,7 +65,10 @@ hr {
 	margin-top: 15%;
 }
 
-.loginDiv h1,h2 {
+.loginDiv h1 {
+	text-align:center;
+}
+.loginDiv h2 {
 	text-align:center;
 }
 
@@ -132,7 +135,10 @@ hr {
 	margin-top: 15%;
 }
 
-.registrationDiv h1,h2 {
+.registrationDiv h1 {
+	text-align:center;
+}
+.registrationDiv h2 {
 	text-align:center;
 }
 
