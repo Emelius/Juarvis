@@ -17,15 +17,27 @@ a:hover {
 
 /**** Login *****/
 
+.loginDiv {
+	margin:0 auto;
+}
+
+.loginForm {
+
+}
+
 /**** Registration *****/
 
-.registrationForm {
-	background-color:#eee;
+.registrationDiv {
 	margin:0 auto;
-	width: 300px;
+}
+
+.registrationForm {
+
 }
 
 /**** To do list *****/
+
+
 
 /****** Calendar ********/
 
