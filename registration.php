@@ -49,7 +49,7 @@ if (isset($_POST['newusername'])) {
 
 <h3>Welcome to Juarvis</h3>
 
-<form action="registration.php" method="POST">
+<form class="registrationForm" action="registration.php" method="POST">
     <table>
         <tbody>
             <tr>
