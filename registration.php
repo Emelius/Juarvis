@@ -47,10 +47,6 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt->execute();
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
-<<<<<<< HEAD
-   
-=======
->>>>>>> e8596b58fa69c6159f8a20c7ff1e4a6445435aa0
     exit;
 }
 
@@ -86,15 +82,6 @@ if (isset($_POST) && !empty($_POST)) {
     <br>
 </form>
 
-<<<<<<< HEAD
-</html>
-<<<<<<< HEAD
-<?php  include("footer.php"); ?>
-=======
 
-=======
->>>>>>> 5c487e0c3623adbc3fb9227e4a9ebb3bd6c5f70c
-<?php
-	include("footer.php");
-?>
->>>>>>> e8596b58fa69c6159f8a20c7ff1e4a6445435aa0
+<?php  include("footer.php"); ?>
+
