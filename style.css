@@ -6,6 +6,10 @@ body {
 	line-height: 20px;
 }
 
+h1, h2, h3, h4 {
+	font-weight: 300;
+}
+
 a { 
 	text-decoration: none;
 	color: black;
