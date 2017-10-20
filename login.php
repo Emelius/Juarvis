@@ -48,7 +48,7 @@
                   <br>
                   <input type = "submit" name = "login" value = "Log In" class="button"/>
 		</form>
-        <p>Not registered?</p><a href="registration.php">Sign Up</a>
+        <p>Not registered?</p></b><a href="registration.php">Sign Up</a>
 	</div>
 </body
 </html>
