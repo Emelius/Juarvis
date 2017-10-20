@@ -4,7 +4,7 @@
 	include "head.php";
 
 	if(isset($_SESSION['username'])){
-		header'location:main.php';
+		header ("location:main.php");
 	}
 
     if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
