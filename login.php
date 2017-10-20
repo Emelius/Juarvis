@@ -1,14 +1,14 @@
 <?php
-    include("config.php");
-    include("session.php");
+	include("config.php");
+	include("session.php");
 	include "head.php";
 
 	if(isset($_SESSION['username'])){
 		header ("location:main.php");
 	}
 
-    if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
-      $myusername =  stripslashes($_POST['myusername']);
+	if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
+	$myusername =  stripslashes($_POST['myusername']);
 	    $mypassword =  stripslashes($_POST['mypassword']);
 
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
