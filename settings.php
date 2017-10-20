@@ -51,15 +51,17 @@
 	$newemail = mysqli_real_escape_string($db, $newemail);
 ?>
 
-<h2>Change Settings<h2>
-<form method="POST" action="settingsinsert.php">
-	<h3>Change Username</h3>
-	<input type="text" name="newusername"/>
-	<h3>Change Password</h2>
-	<input type="password" name="newpassword"/>
-	<h3>Change Email</h3>
-	<input type="email" name="newemail"/>
-	<input type="submit" value="Save Changes" class="button">
-</form>
+<h2>Settings<h2>
+    <div class="settingsDiv">
+        <form method="POST" action="settingsinsert.php" class="settingsForm">
+            <h3>Change Username</h3>
+            <input type="text" name="newusername" placeholder="New Username" class="inputField"/>
+            <h3>Change Password</h2>
+            <input type="password" name="newpassword" placeholder="New" class="inputField"/>
+            <h3>Change Email</h3>
+            <input type="email" name="newemail" class="inputField"/>
+            <input type="submit" value="Save Changes" class="button">
+        </form>
+    </div>
 
 <?php include 'footer.php'; ?>
