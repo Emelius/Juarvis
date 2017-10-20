@@ -54,33 +54,20 @@ if (isset($_POST) && !empty($_POST)) {
 
 <h3>Welcome to Juarvis</h3>
 
-<form class="registrationForm" action="registration.php" method="POST">
-    <table>
-        <tbody>
-            <tr>
-                <td>Username</td>
-                <td><INPUT type="text" name="username"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><INPUT type="text" name="email"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><INPUT type="password" name="password"></td>
-            </tr>
-		<tr>
-                <td>Confirm Password</td>
-                <td><INPUT type="password" name="password"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><INPUT type="submit" name="submit" value="Register"></td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-</form>
+<div class="registrationDiv">
+	<form class="registrationForm" action="registration.php" method="POST">
+		<label>Username</label>
+		<input type="text" name="username">
+		<br>
+		<label>Email</label>
+		<input type="text" name="email">
+		<br>
+		<label>Password</label> 
+		<input type="password" name="password">
+		<br>
+		<input type="submit" name="submit" value="Register">
+	</form>
+<div>
 
 
 <?php  include("footer.php"); ?>
