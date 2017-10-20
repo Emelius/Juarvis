@@ -22,8 +22,12 @@ a:hover {
 	width:450px;
 }
 
-.loginForm {
+.loginDiv h1,h2 {
 	text-align:center;
+}
+
+.loginForm {
+
 }
 
 /**** Registration *****/
