@@ -12,12 +12,11 @@ h1, h2, h3, h4 {
 
 a { 
 	text-decoration: none;
-	color: black;
+	color: #000;
 }
 
 a:hover { 
-	text-decoration: underline;
-	color: orange;
+	color: #ccc;
 }
 
 
@@ -25,7 +24,7 @@ a:hover {
 
 .loginDiv {
 	margin:0 auto;
-	width:45%;
+	width:25%;
 }
 
 .loginDiv h1,h2 {
@@ -40,15 +39,17 @@ a:hover {
 	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
-	border: 1px solid;
+	border: 1px solid #000;
 	background-color: white;
 	width: 100%;
-    	padding: 7px;
-    	display: inline-block;
+	padding: 5px;
+	margin: 10px 0px;
+    display: inline-block;
 }
 
 .button:hover {
-	
+	border: 1px solid #ccc;
+	color: #ccc;
 }
 
 .inputField {
@@ -56,7 +57,9 @@ a:hover {
 	font-weight: 300;
 	border: 1px solid #000;
 	width: 100%;
-	padding: 7px;
+	padding: 5px;
+	margin: 10px 0px;
+	box-sizing: border-box;
 }
 
 /**** Registration *****/
