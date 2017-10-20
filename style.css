@@ -80,7 +80,8 @@ hr {
 	padding: 5px;
 	margin: 10px 0px;
     display: inline-block;
-	transition: all .5s ease;
+	/*/Learned at http://www.html5andcss3.org/css3transitions.php/*/
+	transition: all .4s ease;
 }
 
 .button:hover {
