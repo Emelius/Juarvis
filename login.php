@@ -43,7 +43,5 @@
                   <label>UserName  :</label><input type = "text" name = "myusername" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "mypassword" class = "box" /><br/><br />
                   <input type = "submit" name = "login" value = " Log In "/>
-                  <br />
-                  <a href="registration.php">Register here...</a>
                </form>
    </body>
