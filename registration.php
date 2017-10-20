@@ -76,8 +76,6 @@ if (isset($_POST['newusername'])) {
     <br>
 </form>
 
-</html>
-
 <?php
 	include("footer.php");
 ?>
