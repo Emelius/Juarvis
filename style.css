@@ -1,7 +1,8 @@
-/**** Login *****/
+/**** all pages *****/
 
-
-/**** Register *****/
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
 
 a { 
 	text-decoration: none;
@@ -13,6 +14,10 @@ a:hover {
 	color: orange;
 }
 
+
+/**** Login *****/
+
+/**** Registration *****/
 
 /**** To do list *****/
 
