@@ -20,7 +20,9 @@ a:hover {
 /**** Registration *****/
 
 .registrationForm {
-	background-color:blue;
+	background-color:#eee;
+	margin:0 auto;
+	width: 300px;
 }
 
 /**** To do list *****/
