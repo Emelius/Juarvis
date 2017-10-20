@@ -48,7 +48,9 @@
 			<input type = "password" name = "mypassword" placeholder="Password" class = "inputField" />
 			<br>
 			<input type = "submit" name = "login" value = "Log in" class="button"/>
-		<button class="button"><a href="register.php">Register</a></button>
+		<form method="get" action="registration.php">
+                	<input type="submit" value="Register" class="button"/>
+        	</form>
 	</div>
 </body
 </html>
