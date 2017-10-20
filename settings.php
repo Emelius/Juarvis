@@ -37,7 +37,7 @@
 			$newusername = trim($_POST['newusername']);
 			$newpassword = trim($_POST['newpassword']);
 			$newemail = trim($_POST['newemail']);
-		}
+	}
 
 	//Safety yes
 	$newusername = addslashes($newusername);
