@@ -1,4 +1,5 @@
 <?php include 'config.php'; ?>
+<html>
 <head>
       <title>JUARVIS</title>
       <meta charset="utf-8"/>
