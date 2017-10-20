@@ -45,7 +45,7 @@
 		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/><br /><br />
                   <input type = "password" name = "mypassword" placeholder="Password" class = "inputField" /><br/><br />
-                  <input type = "submit" name = "login" value = " Log in "/>
+                  <input type = "submit" name = "login" value = "Log in" class="button"/>
 		</form>
 		<a href="registration.php">Register</a>
 	</div>
