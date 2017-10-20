@@ -29,7 +29,7 @@
 		exit();
 	}
 	else {
-		$error = "Your Login Name or Password is invalid, please try again.";
+		$error = "Your Username or Password is invalid, please try again.";
 		echo ("<p class=\"error_msg\">$error</p>");
        }
     }
