@@ -1,6 +1,7 @@
 <?php
     include("config.php");
     include("session.php");
+	include "head.php";
     if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
       $myusername =  stripslashes($_POST['myusername']);
 	    $mypassword =  stripslashes($_POST['mypassword']);
@@ -32,11 +33,6 @@
 
 
 ?>
-<html>
-
-    <head>
-      <title>Login Page</title>
-    </head>
 
    <body bgcolor = "#FFFFFF">
 
