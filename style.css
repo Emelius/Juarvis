@@ -20,6 +20,7 @@ a:hover {
 .loginDiv {
 	margin:0 auto;
 	width:300px;
+	background-color:blue;
 }
 
 .loginForm {
