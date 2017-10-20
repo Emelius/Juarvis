@@ -3,7 +3,6 @@
 	include 'config.php';
 	include 'session.php';?>
 <?php
-        session_start();
 
         if (isset($_SESSION['login_user'])) {
                 $activeusername = $_SESSION['login_user'];
