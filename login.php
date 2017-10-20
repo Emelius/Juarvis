@@ -40,8 +40,8 @@
 
                <form class="loginForm" action = "" method = "post">
 
-                  <label>UserName  :</label><input type = "text" name = "myusername" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "mypassword" class = "box" /><br/><br />
-                  <input type = "submit" name = "login" value = " Log In "/>
+                  <label>Username</label><input type = "text" name = "myusername" class = "box"/><br /><br />
+                  <label>Password</label><input type = "password" name = "mypassword" class = "box" /><br/><br />
+                  <input type = "submit" name = "login" value = " Log in "/>
                </form>
    </body>
