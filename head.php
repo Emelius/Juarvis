@@ -1,4 +1,3 @@
-<?php include 'config.php'; ?>
 <html>
 <head>
       <title>JUARVIS</title>
