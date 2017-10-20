@@ -1,12 +1,18 @@
 <?php include 'head.php'; ?>
 	
 <?php
-if (isset($_POST['newusername'])) {
+if (isset($_POST) && !empty($_POST)) {
     // This is the postback so add the book to the database
     # Get data from form
-    $newusername = trim($_POST['newusername']);
-    $newpassword = trim($_POST['newpassword']);
-    $newemail = trim($_POST['newemail']);
+    $newusername = "";
+    $newpassword = "";
+    $newemail = "";
+    
+    $newusername = trim($_POST['username']);
+    $newpassword = trim($_POST['password']);
+    $newemail = trim($_POST['email']);
+    
+    $newpassword = sha1($newpassword);
 	
 	echo $newusername;
 	echo $newpassword;
@@ -41,7 +47,7 @@ if (isset($_POST['newusername'])) {
     $stmt->execute();
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
-    include("footer.php");
+   
     exit;
 }
 
@@ -78,3 +84,4 @@ if (isset($_POST['newusername'])) {
 </form>
 
 </html>
+<?php  include("footer.php"); ?>
