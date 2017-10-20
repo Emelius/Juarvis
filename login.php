@@ -2,6 +2,11 @@
     include("config.php");
     include("session.php");
 	include "head.php";
+
+	if(isset($_SESSION['username'])){
+		header'location:main.php';
+	}
+
     if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
       $myusername =  stripslashes($_POST['myusername']);
 	    $mypassword =  stripslashes($_POST['mypassword']);
@@ -21,7 +26,7 @@
     while ($stmt->fetch()) {
       if (sha1($mypassword) == $password){
 	$_SESSION['username'] = $myusername;
-	header("location:welcome.php");
+	header("location:main.php");
 	exit();
 	}
        else {
