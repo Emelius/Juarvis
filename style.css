@@ -1,26 +1,56 @@
-/**** all pages *****/
+/*/ all pages /*/
 
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
 	line-height: 20px;
+	color: #000;
+	background-color: #fff;
 }
 
-h1, h2, h3, h4 {
+h1 {
+	font-weight: 400;
+}
+h2, h3, h4 {
 	font-weight: 300;
 }
 
 a { 
 	text-decoration: none;
-	color: #000;
+	color: #DA0F5F;
 }
 
 a:hover { 
-	color: #ccc;
+	color: #000;
 }
 
+hr {
+	border: none;
+    height: 2px;
+    color: #DA0F5F; /* old IE */
+    background-color: #DA0F5F; /* Modern Browsers */
+}
 
-/**** Login *****/
+/*/ Placeholders /*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #000;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #000;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #000;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #000;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #000;
+}
+
+/*/ Login /*/
 
 .loginDiv {
 	margin:0 auto;
@@ -39,23 +69,30 @@ a:hover {
 	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
-	border: 1px solid #000;
-	background-color: white;
+	color: #fff;
+	border: 1px solid #DA0F5F;
+	border-radius: 18px;
+	background-color: #DA0F5F;
 	width: 100%;
 	padding: 5px;
 	margin: 10px 0px;
     display: inline-block;
+	transition: all .5s ease;
 }
 
 .button:hover {
-	border: 1px solid #ccc;
-	color: #ccc;
+	border: 1px solid #000;
+	background-color: #000;
+	color: #fff;
 }
 
 .inputField {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
-	border: 1px solid #000;
+	color: #000;
+	background-color: #fff;
+	border: none;
+	border-bottom: 1px solid #000;
 	width: 100%;
 	padding: 5px;
 	margin: 10px 0px;
@@ -64,9 +101,10 @@ a:hover {
 
 .inputField:focus { 
     outline: none !important;
-    border-color: #ccc;
+    border-color:#DA0F5F;
 }
-/**** Registration *****/
+
+/*/ Registration /*/
 
 .registrationDiv {
 	margin:0 auto;
