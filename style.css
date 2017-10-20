@@ -19,6 +19,7 @@ a:hover {
 
 .loginDiv {
 	margin:0 auto;
+	width:300px;
 }
 
 .loginForm {
@@ -29,6 +30,7 @@ a:hover {
 
 .registrationDiv {
 	margin:0 auto;
+	width: 300px;
 }
 
 .registrationForm {
