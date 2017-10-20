@@ -43,4 +43,3 @@
                   <a href="registration.php">Register here...</a>
                </form>
    </body>
-</html>
