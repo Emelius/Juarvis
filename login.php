@@ -34,7 +34,7 @@
 
 ?>
 
-               <form action = "" method = "post">
+               <form class="loginForm" action = "" method = "post">
 
                   <label>UserName  :</label><input type = "text" name = "myusername" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "mypassword" class = "box" /><br/><br />
