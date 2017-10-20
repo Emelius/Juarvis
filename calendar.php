@@ -96,6 +96,4 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
    ?>
     
  </table>
-</div> 
-
-</html>
+</div>
