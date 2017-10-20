@@ -47,7 +47,10 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt->execute();
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
+<<<<<<< HEAD
    
+=======
+>>>>>>> e8596b58fa69c6159f8a20c7ff1e4a6445435aa0
     exit;
 }
 
@@ -55,7 +58,7 @@ if (isset($_POST) && !empty($_POST)) {
 
 <h3>Welcome to Juarvis</h3>
 
-<form action="registration.php" method="POST">
+<form class="registrationForm" action="registration.php" method="POST">
     <table>
         <tbody>
             <tr>
@@ -84,4 +87,11 @@ if (isset($_POST) && !empty($_POST)) {
 </form>
 
 </html>
+<<<<<<< HEAD
 <?php  include("footer.php"); ?>
+=======
+
+<?php
+	include("footer.php");
+?>
+>>>>>>> e8596b58fa69c6159f8a20c7ff1e4a6445435aa0

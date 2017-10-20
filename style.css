@@ -19,6 +19,11 @@ a:hover {
 
 /**** Registration *****/
 
+.registrationForm {
+	text-align:center;
+	//margin: 0 auto;
+}
+
 /**** To do list *****/
 
 /****** Calendar ********/
