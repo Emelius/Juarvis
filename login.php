@@ -38,10 +38,14 @@
 
 ?>
 	<div class="loginDiv">
-               <form class="loginForm" action = "" method = "post">
+		<h1>¡Hola!</h1>
+		<h2>Welcome to Juárvis.</h2>
+		<p> Log in </p>
+		<hr>
+		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "box"/><br /><br />
                   <input type = "password" name = "mypassword" placeholder="Password" class = "box" /><br/><br />
                   <input type = "submit" name = "login" value = " Log in "/>
-               </form>
+		</form>
 	</div>
 </body>
