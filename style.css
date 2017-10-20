@@ -89,10 +89,10 @@ hr {
 	font-size: 12pt;
 	color: #fff;
 	border: 1px solid #DA0F5F;
-	border-radius: 18px;
+	border-radius: 20px;
 	background-color: #DA0F5F;
 	width: 100%;
-	padding: 5px;
+	padding: 10px;
 	margin: 10px 0px;
     display: inline-block;
 	/*/Learned at http://www.html5andcss3.org/css3transitions.php/*/
@@ -114,7 +114,7 @@ hr {
 	border: none;
 	border-bottom: 1px solid #000;
 	width: 100%;
-	padding: 5px;
+	padding: 10px 0px;
 	margin: 10px 0px;
 	box-sizing: border-box;
 }
