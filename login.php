@@ -37,18 +37,18 @@
 
 
 ?>
-	 <div class="loginDiv">
+    <div class="loginDiv">
 		<h1>¡Hola!</h1>
 		<h2>Welcome to Juárvis.</h2>
-		<p> Log in </p>
-		<hr>
+		<h3> Log in </h3>
 		<form class="loginForm" action = "" method = "post">
-			<input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
-			<br>
-			<input type = "password" name = "mypassword" placeholder="Password" class = "inputField" />
-			<br>
-			<input type = "submit" name = "login" value = "Log in" class="button"/>
-		<button class="button" onclick="location.href='registration.php'">Register</button>>
+                  <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
+                  <br>
+                  <input type = "password" name = "mypassword" placeholder="Password" class = "inputField" />
+                  <br>
+                  <input type = "submit" name = "login" value = "Log In" class="button"/>
+		</form>
+        <p>Not registered?</p><a href="registration.php">Sign Up</a>
 	</div>
 </body
 </html>
