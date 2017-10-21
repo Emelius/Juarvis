@@ -1,7 +1,7 @@
 <!doctype html>
 
 <?php
-
+// hereäs a comment to show git.
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 
@@ -32,7 +32,7 @@ $next = date('Y-m', mktime(0,0,0, date('m',$timestamp)+1, 1, date('Y',$timestamp
 //Number of days in the month
 $day_count = date('t', $timestamp);
 
-//0:sun, 1:mon, 2:tues ... 
+//0:sun, 1:mon, 2:tues ...
 $str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
 
 //Create calendar
@@ -43,30 +43,30 @@ $week = '';
 $week .=str_repeat('<td></td>',$str);
 
 for ($day = 1; $day <= $day_count; $day++, $str++) {
- 
+
   $date = $ym.'-'.$day;
-  
+
   if($today == $date) {
-      $week .='<td class="today"><a href="">'.$day; 
+      $week .='<td class="today"><a href="">'.$day;
   } else {
     $week .= '<td><a href="">'.$day;
  }
   $week .= '</a></td>';
-  
-  //End of the week OR End of the month 
+
+  //End of the week OR End of the month
   if($str % 7 == 6 || $day == $day_count) {
-    
+
     if($day == $day_count){
-      $week .= str_repeat('<td></td>',6-($str % 7));  
+      $week .= str_repeat('<td></td>',6-($str % 7));
     }
-    
+
     $weeks[] = '<tr>'.$week.'</tr>';
-    
+
     //Prepare for a new week
     $week = '';
-     
-  } 
-  
+
+  }
+
 }
 
 ?>
@@ -91,9 +91,9 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     <?php
       foreach($weeks as $week){
           echo $week;
-      } 
-    
+      }
+
    ?>
-    
+
  </table>
 </div>
