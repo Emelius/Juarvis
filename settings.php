@@ -51,13 +51,14 @@
 	$newemail = mysqli_real_escape_string($db, $newemail);
 ?>
 
-    <div class="settingsDiv">
+   <div class="settingsDiv">
         <h2>Settings<h2>
         <h3>Fill in the forms below to change your settings.</h3>
         <form method="POST" action="settingsinsert.php" class="settingsForm">
             <h4>Change Username</h4>
             <input type="text" name="newusername" placeholder="New Username" class="inputField"/>
             <h4>Change Password</h4>
+            <input type="password" name="currentpassword" placeholder="Current Password" class="inputField"/>
             <input type="password" name="newpassword" placeholder="New Password" class="inputField"/>
             <h4>Change Email</h4>
             <input type="email" name="newemail" placeholder="New Email"class="inputField"/>
