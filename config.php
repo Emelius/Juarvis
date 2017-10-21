@@ -1,7 +1,6 @@
 <?php
 
 //$url = $_SERVER['REQUEST_URI'];
-// another hellou
 //$strings = explode('/', $url);
 
 $dbname = 'juarvis';
