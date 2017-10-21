@@ -1,7 +1,6 @@
 <!doctype html>
 
 <?php
-// hereäs a comment to show git.
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 
