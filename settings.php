@@ -29,23 +29,51 @@
 	//check so that fields are not empty? don't send to db -> if !empty
 
 	//else post -> settingsinsert.php -> insert new info into db
+	$newusername = "";
+	$newpassword = "";
+	$newemail = "";
 
 	if (isset($_POST) && !empty($_POST)) {
 	//Get data from form
 			$newusername = trim($_POST['newusername']);
 			$newpassword = trim($_POST['newpassword']);
 			$newemail = trim($_POST['newemail']);
+	} else {
+		echo "Please fill something out in the form";
+		exit();
+	}
+
+	// check if email already exists in db
+	if ($newemail != "") {
+		$sqlEmailExists = "SELECT email FROM users WHERE email = '$newemail'";
+		$result = $db->query($sqlEmailExists);
+
+		if ($result->num_rows > 0){
+			echo "That email already exists";
+			exit();
+		}
+	}
+
+	// check if username already exists in db
+	if ($newusername != "") {
+		$sqlUsernameExists = "SELECT username FROM users WHERE username = '$newusername'";
+		$result = $db->query($sqlUsernameExists);
+
+		if ($result->num_rows > 0){
+			echo "That username already exists";
+			exit();
+		}
 	}
 
 	//Safety yes
 	$newusername = addslashes($newusername);
 	$newpassword = addslashes($newpassword);
 	$newemail = addslashes($newemail);
-		
+
 	$newusername = htmlentities($newusername);
 	$newpassword = htmlentities($newpassword);
 	$newemail = htmlentities($newemail);
-		
+
 	$newusername = mysqli_real_escape_string($db, $newusername);
 	$newpassword = mysqli_real_escape_string($db, $newpassword);
 	$newemail = mysqli_real_escape_string($db, $newemail);
