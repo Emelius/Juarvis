@@ -53,7 +53,7 @@ if (isset($_POST) && !empty($_POST)) {
 ?>
 
 <div class="registrationDiv">
-            
+            <img src="juarvis.png" alt="logo" id="logo"/>
             <h1>Juárvis</h1>
             <h2>Register now to get started!</h2>
             <h3>Fill in your details below to sign up.</h3>
