@@ -41,7 +41,6 @@
         <img src="img/juarvis.png" alt="logo" id="logo"/>
 		<h1>Juárvis</h1>
 		<h2>Your personal (tagline)</h2>
-		<h3> Log in </h3>
 		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
                   <br>
