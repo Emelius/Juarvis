@@ -37,9 +37,10 @@
 
 
 ?>
-    <div class="loginDiv">
-		<h1>¡Hola!</h1>
-		<h2>Welcome to Juárvis.</h2>
+   <div class="loginDiv">
+        <img src="juarvis.png" alt="logo" id="logo"/>
+		<h1>Juárvis</h1>
+		<h2>Your personal (tagline)</h2>
 		<h3> Log in </h3>
 		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
@@ -50,5 +51,4 @@
 		</form>
         <p>Not registered?</p></b><a href="registration.php">Sign Up</a>
 	</div>
-</body
 </html>
