@@ -1,4 +1,7 @@
-<?php include 'head.php'; ?>
+<?php 
+	include 'head.php';
+	include 'config.php';
+?>
 	
 <?php
 if (isset($_POST) && !empty($_POST)) {
