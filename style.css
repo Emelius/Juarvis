@@ -42,6 +42,14 @@ hr {
     background-color: #DA0F5F; /* Modern Browsers */
 }
 
+#logo {
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10%;
+	display: block;
+}
+
 /*/ Placeholders /*/
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #000;
@@ -66,7 +74,7 @@ hr {
 .loginDiv {
 	margin:0 auto;
 	width:25%;
-	margin-top: 15%;
+	margin-top: 10%;
 }
 
 .loginDiv h1 {
@@ -137,7 +145,7 @@ hr {
 .registrationDiv {
 	margin:0 auto;
 	width:25%;
-	margin-top: 15%;
+	margin-top: 10%;
 }
 
 .registrationDiv h1 {
