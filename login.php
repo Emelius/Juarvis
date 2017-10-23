@@ -38,7 +38,7 @@
 
 ?>
    <div class="loginDiv">
-        <img src="juarvis.png" alt="logo" id="logo"/>
+        <img src="img/juarvis.png" alt="logo" id="logo"/>
 		<h1>Juárvis</h1>
 		<h2>Your personal (tagline)</h2>
 		<h3> Log in </h3>
