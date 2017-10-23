@@ -3,10 +3,11 @@
 	include 'config.php';
 	include 'session.php';?>
 <?php
-
-        if (isset($_SESSION['login_user'])) {
-                $activeusername = $_SESSION['login_user'];
-        }
+	//if we want to show current email and username?
+        //if (isset($_SESSION['login_user'])) {
+        //        $currentusername = $_SESSION['login_user'];
+       // }
+	 //$currentemail = assign from databse email
 
         @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
@@ -16,19 +17,10 @@
 			exit();
 	}
 
-	$sql = "SELECT * FROM users WHERE username = 'login_user'";
-
-
 	//somehow assign current data to forms -> so that if not edited the same info will be returned to db -> edited will be updated
+	$query = "select * from users where username='login_user'";
 
-        //$activeemail =assign from databse email
 
-        // check so that new username or email is not already in db
-	//if (newusername != any other username in db) else {"sorry, the username is taken!}
-
-	//check so that fields are not empty? don't send to db -> if !empty
-
-	//else post -> settingsinsert.php -> insert new info into db
 	$newusername = "";
 	$newpassword = "";
 	$newemail = "";
@@ -64,6 +56,20 @@
 			exit();
 		}
 	}
+
+	//insert new info into db
+
+	else {
+
+	$sql = "INSERT into users where username='login_user' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail');
+	
+	if (!mysqli_query($con,$sql)) {
+		echo 'Something went wrong, not updated';
+	}
+	else {
+		echo 'Update successfull';
+	}
+
 
 	//Safety yes
 	$newusername = addslashes($newusername);
