@@ -67,7 +67,7 @@ if (isset($_POST) && !empty($_POST)) {
                 <input type="submit" name="submit" value="Register" class="button">
             </form>
             
-            <p>Alredy registered?</p></b><a href="index.php">Return to Login Page</a>
+            <p>Already registered?</p></b><a href="index.php">Return to Login Page</a>
         <div>
     </body
 </html>
