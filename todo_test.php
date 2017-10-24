@@ -48,18 +48,19 @@ else{
 if (isset($_POST) && !empty($_POST)) {
     # Get data from form
    	$newlist = "";
-	$newlist = trim($_POST['listname']);
+	$newlist = trim($_POST['newlist']);
 
-if (!$newlist) {
-        printf("You must add a listname, try again.");
-        exit();
-    }
+	if (!$newlist) {
+		printf("You must add a listname, try again.");
+		exit();
+	    }
 
-$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
-    $stmt->bind_param('is', $newlist);
-    $stmt->execute();
-    printf("<br>List Added!!");
-    exit;
+	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
+	    $stmt->bind_param('is', $newlist);
+	    $stmt->execute();
+	    printf("<br>List Added!!");
+	    exit;
+	}
 }
 
 /*/ $sql = "INSERT INTO list (list_id, listname) VALUES ('', ?)";
