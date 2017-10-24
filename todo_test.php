@@ -40,7 +40,6 @@ else{
     }
 
   //create new list
-if
 $sql = "INSERT INTO list (listname) VALUES (tomorrow)";
 
 if ($db->query($sql) === TRUE) {
