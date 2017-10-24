@@ -59,7 +59,7 @@ if (isset($_POST) && !empty($_POST)) {
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!");
-	header: "location:todo_test.php';
+	header: 'location:todo_test.php';
 }
 
 /*/ $sql = "INSERT INTO list (list_id, listname) VALUES ('', ?)";
