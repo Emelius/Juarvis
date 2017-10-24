@@ -72,7 +72,7 @@ if (isset($_POST) && !empty($_POST)) {
 
 ?>
 
-<form action="todo_test.php" method="POST">
+<form action="todo.php" method="POST">
 	<input type="text" name="newlist" placeholder="Listname" class="inputField">
   <br>
   <input type="submit" name="submit" value="Add" class="button">
