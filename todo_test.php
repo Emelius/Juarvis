@@ -11,6 +11,6 @@
 
   //insert this new lists and tasks to DB
 
-
+  //change task to completed and mark it as grey or other CSS
 
 ?>
