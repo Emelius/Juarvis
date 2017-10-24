@@ -40,7 +40,7 @@ else{
     }
 
   //create new list
-$sql = "INSERT INTO list (listname) VALUES (tomorrow)";
+$sql = "INSERT INTO list VALUES ('',tomorrow)";
 
 if ($db->query($sql) === TRUE) {
     echo "New list added";
