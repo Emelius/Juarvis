@@ -2,6 +2,12 @@
   include 'config.php';
 
   //establish db connection
+  @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+	if ($db->connect_error) {
+		echo "could not connect: " . $db->connect_error;
+		exit();
+	}
+
   //get all lists and their tasks from DB
   //display all lists and their tasks as a table?
 
