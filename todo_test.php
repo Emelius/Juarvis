@@ -56,7 +56,7 @@ if (isset($_POST) && !empty($_POST)) {
 	    }
 
 	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
-	    $stmt->bind_param('is', $newlist);
+	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!!");
 	    exit;
@@ -84,4 +84,6 @@ $db->close(); /*/
 
 <form action="todo_test.php" method="POST">
 	<input type="text" name="newlist" placeholder="Listname" class="inputField">
+  <br>
+  <input type="submit" name="submit" value="Add" class="button">
 </form>
