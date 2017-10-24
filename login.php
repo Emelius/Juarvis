@@ -1,5 +1,5 @@
 <?php
-	include("config.php");
+	include "config.php";
 	include "head.php";
 
 	if(isset($_SESSION['username'])){
