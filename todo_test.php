@@ -40,6 +40,17 @@ else{
     }
 
   //create new list
+if
+$sql = "INSERT INTO list (listname) VALUES (tomorrow)";
+
+if ($db->query($sql) === TRUE) {
+    echo "New list added";
+}
+else {
+    echo "Error: " . $sql . "<br>" . $db->error;
+}
+
+$db->close();
 
   //in this list create new tasks
   //tasks should hold information such as taskname, taskdesc, sdate, edate, rdate, status(meaning if it is completed or not)
