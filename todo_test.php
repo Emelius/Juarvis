@@ -30,4 +30,3 @@ if (mysqli_num_rows($result) > 0) {
   //change task to completed and mark it as grey or other CSS
 
 ?>
-
