@@ -64,11 +64,10 @@ if (isset($_POST) && !empty($_POST)) {
 	header("Refresh:0");
 }
 
-  //in this list create new tasks: taskname, taskdesc, sdate, edate, rdate, status(1)
+  //create new task in specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
-  //insert this new lists and tasks to DB
 
-  //change task to completed and mark it as grey or other CSS
+  //change task status to completed and mark it as grey or other CSS
 
 ?>
 
