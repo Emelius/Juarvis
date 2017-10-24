@@ -58,8 +58,7 @@ if (isset($_POST) && !empty($_POST)) {
 	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
-	    printf("<br>List Added!!");
-	    exit;
+	    printf("<br>List Added!");
 }
 
 /*/ $sql = "INSERT INTO list (list_id, listname) VALUES ('', ?)";
