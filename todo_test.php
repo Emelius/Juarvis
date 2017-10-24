@@ -12,10 +12,12 @@
 	$sql = "SELECT listname FROM list"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
+  $listname = "";
+
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
-        echo "list: " . $row["listname"]. "";
+        echo "list: " . $row["listname"]. "<br>";
     }
 }
 
@@ -25,13 +27,15 @@ else{
 
   //display all lists and their tasks as a table?
 
-$sql = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
-	$result = mysqli_query($db, $sql);
+$sql2 = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
+	$result = mysqli_query($db, $sql2);
+
+$listname = "";
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
-        echo "list: " . $row["listname"]. "";
+        echo "task: " . $row["taskname"]. "<br>";
     }
 }
 
@@ -45,7 +49,7 @@ if (isset($_POST) && !empty($_POST)) {
     # Get data from form
    	$newlist = "";
 	$newlist = trim($_POST['listname']);
-	
+
 if (!$newlist) {
         printf("You must add a listname, try again.");
         exit();
@@ -81,4 +85,3 @@ $db->close(); /*/
 <form action="todo_test.php" method="POST">
 	<input type="text" name="newlist" placeholder="Listname" class="inputField">
 </form>
-
