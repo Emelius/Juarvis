@@ -9,14 +9,17 @@
 	}
 
   //get all lists and their tasks from DB
-	$sql = "SELECT * FROM lists";
+	$sql = "SELECT listname FROM lists";
 	$result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
-        echo "id: " . $row["listname"]. "";
-    }else{
+        echo "list: " . $row["listname"]. "";
+    }
+}
+
+else{
       echo "0 results";
     }
 
