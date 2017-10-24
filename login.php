@@ -17,7 +17,7 @@
 		exit();
 	}
 
-	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = ?");
+	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = '$myusername'");
 	$stmt->bind_param('s', $myusername);
 	$stmt->execute();
 
