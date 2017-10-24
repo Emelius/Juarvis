@@ -10,7 +10,7 @@
 		exit();
 	}
 
-  //get all lists and their tasks from DB
+  //get and display all lists from DB
 	$sql = "SELECT listname FROM list"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
@@ -27,7 +27,7 @@ else{
       echo "0 results";
     }
 
-  //display all lists and their tasks as a table?
+  //get and display all tasks
 
 $sql2 = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
 	$result2 = mysqli_query($db, $sql2);
@@ -64,7 +64,7 @@ if (isset($_POST) && !empty($_POST)) {
 	header("Refresh:0");
 }
 
-  //create new task in specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
+  //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
 
   //change task status to completed and mark it as grey or other CSS
