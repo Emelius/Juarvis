@@ -60,7 +60,6 @@ if (isset($_POST) && !empty($_POST)) {
 	    $stmt->execute();
 	    printf("<br>List Added!!");
 	    exit;
-	}
 }
 
 /*/ $sql = "INSERT INTO list (list_id, listname) VALUES ('', ?)";
