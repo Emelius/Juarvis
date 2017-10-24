@@ -9,7 +9,7 @@
 	}
 
   //get all lists and their tasks from DB
-	$sql = "SELECT listname FROM lists";
+	$sql = "SELECT listname FROM list";
 	$result = mysqli_query($db, $sql);
 
 if (mysqli_num_rows($result) > 0) {
