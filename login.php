@@ -1,5 +1,5 @@
 <?php
-	include("config.php");
+	include "config.php";
 	include "head.php";
 
 	if(isset($_SESSION['username'])){
@@ -17,11 +17,11 @@
 		exit();
 	}
 
-	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = ?");
+	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = '$myusername'");
 	$stmt->bind_param('s', $myusername);
 	$stmt->execute();
-
 	$stmt->bind_result($username, $password);
+		
 	while ($stmt->fetch()) {
 	if (sha1($mypassword) == $password){
 		$_SESSION['username'] = $myusername;

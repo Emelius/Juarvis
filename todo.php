@@ -1,114 +1,78 @@
-// to do list list? tasks? edit? add?
 // reference: https://gist.github.com/hcmn/3773595
 
 <?php
+  include 'config.php';
 
-	include 'config.php';
-	
-  // 1. Create a database connection
-	$connection = mysqli_connect($dbserver,$dbuser,$dbpass,$dbname);
-
-	if ( !$connection ) {
-		die("Database connection failed: " . mysqli_error());
+  //establish db connection
+  @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+	if ($db->connect_error) {
+		echo "could not connect: " . $db->connect_error;
+		exit();
 	}
 
-	// 2. Select a database to use
-	$db_select = mysqli_select_db($dbname, $connection);
-	if ( !$db_select ) {
-		die("Database selection failed: " . mysqli_error());
-	}
+  //get and display all lists from DB
+	$sql = "SELECT listname FROM list"; //where user_id = 'login_user'";
+	$result = mysqli_query($db, $sql);
 
-	function setTask( $task ) {
-		global $connection;
-		//$query = "INSERT INTO task (taskname, completed, visible) VALUES (\"{$task}\", 0, 1)";
-		$query = "INSERT INTO task (taskname, taskdesc, sdate, edate, rdate, status) VALUES (\"{$task}\", \"{$taskdesc}\", \"{$sdate}\", \"{$edate}\", \"{$rdate}\", 0)";
-		$result = mysqli_query( $query, $connection );
-		#echo mysql_error();
-	}
+  $listname = "";
 
-	function confirm_query( $result_set ) {
-		if ( !$result_set ) {
-			die("Database query failed: " . mysqli_error() );
-		}
-	}
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "". $row["listname"]. "<br>";
+    }
+}
 
-	/*/ # Delete All Rows from table
-	function deleteRows () {
-		global $connection;
-		$query = "DELETE FROM task";
-		$result = mysql_query( $query, $connection );
-		$query = "ALTER TABLE todo AUTO_INCREMENT = 1";
-		$result = mysql_query( $query, $connection );
-	}
+else{
+      echo "0 results";
+    }
 
-	 # Set task completion flag to 1 using Task Number
-	function completedTask ( $taskNum ) {
-		global $connection;
-		$query = "UPDATE todo SET completed = 1 WHERE id={$taskNum}";
-		$result = mysql_query($query, $connection);
-		#if ( ) {
-		#	echo "Change Success, " . mysql_affected_rows() . " rows affected.";
-		#} else {
-		#	echo mysql_error();
-		#}
-	}
+  //get and display all tasks
 
-	# Set task visibility to 0 using Task Number
-	function hideTask( $taskNum ) {
-		global $connection;
-		$newText = "Something";
-		$query = "UPDATE todo SET visible=0 WHERE id={$taskNum}";
-		$result = mysql_query($query, $connection);
-	}
+$sql2 = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
+	$result2 = mysqli_query($db, $sql2);
 
-	# Displays All Visible Tasks
-	function getAllTask() {
-		global $connection;
-		$query = "SELECT * FROM todo WHERE visible=1";
-		$result = mysql_query($query, $connection);
-		
-		while ( $list = mysql_fetch_array($result) ) {
-			#echo print_r($list) . "<br/>";
-			echo "Task #" . $list[0] . ": " . $list[1] . "<br />";
-		}
-	}
+$listname = "";
 
-	# Displays All Visible Tasks
-	function getHiddenTask() {
-		global $connection;
-		$query = "SELECT * FROM todo WHERE visible=0";
-		$result = mysql_query($query, $connection);
-		
-		while ( $list = mysql_fetch_array($result) ) {
-			echo "Task #" . $list[0] . ": " . $list[1] . "<br />";
-		}
-	}
+if (mysqli_num_rows($result2) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result2)) {
+        echo "". $row["taskname"]. "<br>";
+    }
+}
 
-	# Check for task
-	if ( isset( $_POST['taskName'] ) && $_POST['taskName'] !== "" ) {		
-		$taskName = $_POST['taskName'];
-		#echo $taskName;
-		setTask( $taskName );
-	}
+else{
+      echo "0 results";
+    }
 
-	# Check for hide task number
-	if ( isset( $_POST['num'] ) ) {
-		$taskNum = $_POST['num'];
-		hideTask( $taskNum );
-	}
-	/*/
-	
-	echo "<form name=\"input\" action=\"todo.php\" method=\"post\" >";
-	echo "<input type=\"text\" name=\"taskName\" placeholder=\"enter task here\"/>";
-	echo "<br/>";
-	#echo "<label>Enter Task Number to Hide: ";
-	echo "<input type=\"text\" name=\"num\" placeholder=\"enter task number to hide here\"/>";	
-	echo "<input type=\"submit\" name=\"submit\" />";
-	echo "</form>";
-	echo "<br/><br/>";
-	echo "To-Do List: " . "<br/>";
-	echo getAllTask();
-	echo "<br/>";
-	echo "Hidden List: " . "<br/>";
-	echo getHiddenTask();
+  //create new list
+
+if (isset($_POST) && !empty($_POST)) {
+    # Get data from form
+   	$newlist = "";
+	$newlist = trim($_POST['newlist']);
+
+	if (!$newlist) {
+		printf("You must add a listname, try again.");
+		exit();
+	    }
+
+	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
+	    $stmt->bind_param('s', $newlist);
+	    $stmt->execute();
+	    printf("<br>List Added!");
+	header("Refresh:0");
+}
+
+  //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
+
+
+  //change task status to completed and mark it as grey or other CSS
+
 ?>
+
+<form action="todo.php" method="POST">
+	<input type="text" name="newlist" placeholder="Listname" class="inputField">
+  <br>
+  <input type="submit" name="submit" value="Add" class="button">
+</form>
