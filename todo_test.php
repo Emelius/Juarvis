@@ -59,3 +59,8 @@ $db->close();
   //change task to completed and mark it as grey or other CSS
 
 ?>
+
+<form action="todo_test.php" method="POST">
+	<input type="text" name="listname" placeholder="Listname" class="inputField">
+</form>
+
