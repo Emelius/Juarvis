@@ -41,6 +41,7 @@
         <img src="img/juarvis.png" alt="logo" id="logo"/>
 		<h1>Juárvis</h1>
 		<h2>Not your average list making</h2>
+	   	<h3>Log in below to get started!</h3>
 		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
                   <br>
