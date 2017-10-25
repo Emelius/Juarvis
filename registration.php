@@ -59,6 +59,7 @@ if (isset($_POST) && !empty($_POST)) {
             <img src="img/juarvis.png" alt="logo" id="logo"/>
             <h1>Juárvis</h1>
             <h2>Register now to get started!</h2>
+			<h3>Fill in your details below to sign up.</h3>
             
             <form class="registrationForm" action="registration.php" method="POST">
                 <input type="text" name="username" placeholder="Username" class="inputField">
