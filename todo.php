@@ -109,5 +109,10 @@ $query = " select ISBN, Author, Title, Reserved from Book";
 <form action="todo.php" method="POST">
 	<input type="text" name="newtask" placeholder="Add Task" class="inputField">
 	<br>
+	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
+	<br>
+	<select name="List">
+		<option value="hej">Hejsan</option>	
+	</select>
 	<input type="submit" name="submit" value="Add" class="button">
 </form>
