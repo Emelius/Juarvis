@@ -1,4 +1,4 @@
-// reference: https://gist.github.com/hcmn/3773595
+<!--- reference: https://gist.github.com/hcmn/3773595 !--->
 
 <?php
   include 'config.php';
@@ -11,7 +11,7 @@
 	}
 
   //get and display all lists from DB
-	$sql = "SELECT listname FROM list"; //where user_id = 'login_user'";
+	$sql = "SELECT listname FROM lists"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
   $listname = "";
@@ -29,15 +29,15 @@ else{
 
   //get and display all tasks
 
-$sql2 = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
+$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
 	$result2 = mysqli_query($db, $sql2);
 
 $listname = "";
 
 if (mysqli_num_rows($result2) > 0) {
     // output data of each row
-    while($row = mysqli_fetch_assoc($result2)) {
-        echo "". $row["taskname"]. "<br>";
+    while($row2 = mysqli_fetch_assoc($result2)) {
+        echo "". $row2["taskname"]. "<br>";
     }
 }
 
@@ -57,7 +57,7 @@ if (isset($_POST) && !empty($_POST)) {
 		exit();
 	    }
 
-	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
+	$stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!");
@@ -66,13 +66,64 @@ if (isset($_POST) && !empty($_POST)) {
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
+if (isset($_POST) && !empty($_POST)) {
+    # Get data from form
+   	$newtask = "";
+	$newtask = trim($_POST['newtask']);
+
+	if (!$newtask) {
+		printf("You must add a task, try again.");
+		exit();
+	    }
+
+	$stmt = $db->prepare("insert tasks (task_id, taskname) VALUES ('', ?)");
+	    $stmt->bind_param('s', $newlist);
+	    $stmt->execute();
+	    printf("<br>Task Added!");
+	header("Refresh:0");
+}
+
+
+/*/$query = " select ISBN, Author, Title, Reserved from Book";
+                if ($searchtitle && !$searchauthor) { // Title search only
+                    $query = $query . " where Title like '%" . $searchtitle . "%'";
+                }
+                if (!$searchtitle && $searchauthor) { // Author search only
+                    $query = $query . " where Author like '%" . $searchauthor . "%'";
+                }
+                if ($searchtitle && $searchauthor) { // Title and Author search
+                    $query = $query . " where Title like '%" . $searchtitle . "%' and Author like '%" . $searchauthor . "%'"; // unfinished
+                }
+/*/
+
 
   //change task status to completed and mark it as grey or other CSS
 
 ?>
 
 <form action="todo.php" method="POST">
-	<input type="text" name="newlist" placeholder="Listname" class="inputField">
+	<input type="text" name="newlist" placeholder="New List" class="inputField">
   <br>
   <input type="submit" name="submit" value="Add" class="button">
+</form>
+
+<form action="todo.php" method="POST">
+	<input type="text" name="newtask" placeholder="Add Task" class="inputField">
+	<br>
+	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
+	<br>
+
+  <?php
+
+  $sql3 = "SELECT listname FROM lists";
+  $result3 = mysqli_query($db, $sql3);
+
+  echo "<select name='listname'>";
+  while ($row3 = mysqli_fetch_assoc($result3)) {
+      echo "<option value='" . $row3['listname'] ."'>" . $row3['listname'] ."</option><br>";
+  }
+  echo "</select>";
+  ?>
+
+	<input type="submit" name="submit" value="Add" class="button">
 </form>
