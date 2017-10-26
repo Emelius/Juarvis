@@ -48,7 +48,7 @@ else{
 // Om någon försöker submitta en ny lista. Kommer INTE att köras första gången någon går in på sidan:
 if (isset($_POST['submitlist'])) {
 
-    // Om newlist inte är satt: skriv ut ett felmeddelande och exita
+    // if newlist is not set, write error message and exit
     if (empty($_POST['newlist'])) {
         printf("You must add a listname, try again.");
     		exit();
