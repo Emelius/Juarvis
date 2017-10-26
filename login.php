@@ -1,6 +1,6 @@
 <?php
-	include("config.php");
-	include("head.php");
+	include "config.php";
+	include "head.php";
 
 
 
@@ -8,8 +8,12 @@
 		header("location:main.php");
 	}
 
+<<<<<<< HEAD
 		if (isset($_POST['myusername'], $_POST['mypassword'])) {
 
+=======
+	if (isset($_POST['myusername'], $_POST['mypassword']) && !empty($_POST)) {
+>>>>>>> parent of 83f2c62... ads
 		$myusername =  stripslashes($_POST['myusername']);
 		$mypassword =  stripslashes($_POST['mypassword']);
 
@@ -21,11 +25,15 @@
 	}
 	echo "SELECT username, password FROM users WHERE username = '$myusername'";
 
+<<<<<<< HEAD
 	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = ?");
+=======
+	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = '$myusername'");
+>>>>>>> parent of 83f2c62... ads
 	$stmt->bind_param('s', $myusername);
 	$stmt->execute();
 	$stmt->bind_result($username, $password);
-
+		
 	while ($stmt->fetch()) {
 	if (sha1($mypassword) == $password){
 		$_SESSION['username'] = $myusername;
@@ -42,15 +50,17 @@
   }
 
 
-
-
 ?>
    <div class="loginDiv">
         <img src="img/juarvis.png" alt="logo" id="logo"/>
 		<h1>Juárvis</h1>
+<<<<<<< HEAD
 		<h2>Not your average list making</h2
 		<form class="loginForm" action = "" method = "POST">
 	   	<h3>Log in below to get started!</h3>
+=======
+		<h2>Not your average list making</h2>
+>>>>>>> parent of 83f2c62... ads
 		<form class="loginForm" action = "" method = "post">
                   <input type = "text" name = "myusername" placeholder="Username" class = "inputField"/>
                   <br>
