@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 26, 2017 at 12:53 PM
+-- Generation Time: Oct 26, 2017 at 03:03 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -34,6 +34,16 @@ CREATE TABLE `lists` (
   `task_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `lists`
+--
+
+INSERT INTO `lists` (`list_id`, `listname`, `task_id`) VALUES
+(7, 'kjgh', NULL),
+(8, 'gfgfg', NULL),
+(9, 'ghgh', NULL),
+(10, 'hej', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -43,11 +53,11 @@ CREATE TABLE `lists` (
 CREATE TABLE `tasks` (
   `task_id` int(11) NOT NULL,
   `taskname` varchar(255) NOT NULL,
-  `taskdesc` varchar(255) NOT NULL,
-  `sdate` date NOT NULL,
-  `edate` date NOT NULL,
-  `rdate` date NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `taskdesc` varchar(255) DEFAULT NULL,
+  `sdate` date DEFAULT NULL,
+  `edate` date DEFAULT NULL,
+  `rdate` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,7 +113,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lists`
 --
 ALTER TABLE `lists`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tasks`
 --
@@ -113,7 +123,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
