@@ -47,15 +47,12 @@ else{
 
   //create new list
 
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
     # Get data from form
    	$newlist = "";
 	$newlist = trim($_POST['newlist']);
 
-	if (!$newlist) {
-		printf("You must add a listname, try again.");
-		exit();
-	    }
+
 
 	$stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
@@ -63,10 +60,14 @@ if (isset($_POST) && !empty($_POST)) {
 	    printf("<br>List Added!");
 	header("Refresh:0");
 }
+else {
+  printf("You must add a listname, try again.");
+  //exit();
+    }
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST['submittask']) && !empty($_POST)) {
     # Get data from form
    	$newtask = "";
 	$newtask = trim($_POST['newtask']);
@@ -104,7 +105,7 @@ if (isset($_POST) && !empty($_POST)) {
 <form action="todo.php" method="POST">
 	<input type="text" name="newlist" placeholder="New List" class="inputField">
   <br>
-  <input type="submit" name="submit" value="Add" class="button">
+  <input type="submit" name="submitlist" value="Add" class="button">
 </form>
 
 <form action="todo.php" method="POST">
@@ -125,5 +126,5 @@ if (isset($_POST) && !empty($_POST)) {
   echo "</select>";
   ?>
 
-	<input type="submit" name="submit" value="Add" class="button">
+	<input type="submit" name="submittask" value="Add" class="button">
 </form>
