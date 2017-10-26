@@ -50,38 +50,39 @@ else{
 if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
     # Get data from form
    	$newlist = "";
-	$newlist = trim($_POST['newlist']);
+	  $newlist = trim($_POST['newlist']);
 
-
-
-	$stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
+    $stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!");
-	header("Refresh:0");
+      header("Refresh:0");
+
+//echo error
+      /*/ if (!$newlist) {
+    		printf("You must add a listname, try again.");
+    		exit();
+    	} /*/
 }
-else {
-  printf("You must add a listname, try again.");
-  //exit();
-    }
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
-if (isset($_POST['submittask']) && !empty($_POST)) {
+if (isset($_POST['submittask']) && !empty($_POST['newtask'])) {
     # Get data from form
    	$newtask = "";
-	$newtask = trim($_POST['newtask']);
+    $newtask = trim($_POST['newtask']);
 
-	if (!$newtask) {
+//echo error
+	/*/if (!$newtask) {
 		printf("You must add a task, try again.");
 		exit();
-	    }
+	}/*/
 
-	$stmt = $db->prepare("insert tasks (task_id, taskname) VALUES ('', ?)");
-	    $stmt->bind_param('s', $newlist);
+	 $stmt = $db->prepare("insert tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
+	    $stmt->bind_param('ss', $newtask, $newtaskdesc);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
-	header("Refresh:0");
+      header("Refresh:0");
 }
 
   //change task status to completed and mark it as grey or other CSS
