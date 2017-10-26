@@ -71,7 +71,7 @@ if (isset($_POST) && !empty($_POST)) {
    	$newtask = "";
 	$newtask = trim($_POST['newtask']);
 
-	if (!$newlist) {
+	if (!$newtask) {
 		printf("You must add a task, try again.");
 		exit();
 	    }
