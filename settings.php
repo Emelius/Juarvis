@@ -16,7 +16,7 @@ $userid = $_SESSION['user_id'];
 
 	//somehow assign current data to forms -> so that if not edited the same info will be returned to db -> edited will be updated
 	$query = "select * from users where username='login_user'";
-
+	//set result in $currentemail etc
 
 	$newusername = "";
 	$newpassword = "";
@@ -87,7 +87,7 @@ $userid = $_SESSION['user_id'];
         <h3>Fill in the forms below to change your settings.</h3>
         <form method="POST" action="settingsinsert.php" class="settingsForm">
             <h4>Change Username</h4>
-            <input type="text" name="newusername" placeholder="New Username" class="inputField"/>
+            <input type="text" name="newusername" value="$currentusername" placeholder="" class="inputField"/>
             <h4>Change Password</h4>
             <input type="password" name="currentpassword" placeholder="Current Password" class="inputField"/>
             <input type="password" name="newpassword" placeholder="New Password" class="inputField"/>

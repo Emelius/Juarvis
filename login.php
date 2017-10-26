@@ -30,7 +30,7 @@
 	while ($stmt->fetch()) {
 	if (sha1($mypassword) == $password){
 		$_SESSION['username'] = $myusername;
-
+		//set user id session
 
 				ob_start();
 				header("location:main.php");
