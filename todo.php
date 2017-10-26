@@ -84,7 +84,7 @@ if (isset($_POST) && !empty($_POST)) {
 }
 
 
-$query = " select ISBN, Author, Title, Reserved from Book";
+/*/$query = " select ISBN, Author, Title, Reserved from Book";
                 if ($searchtitle && !$searchauthor) { // Title search only
                     $query = $query . " where Title like '%" . $searchtitle . "%'";
                 }
@@ -94,6 +94,7 @@ $query = " select ISBN, Author, Title, Reserved from Book";
                 if ($searchtitle && $searchauthor) { // Title and Author search
                     $query = $query . " where Title like '%" . $searchtitle . "%' and Author like '%" . $searchauthor . "%'"; // unfinished
                 }
+/*/
 
 
   //change task status to completed and mark it as grey or other CSS
