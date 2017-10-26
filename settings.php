@@ -1,7 +1,7 @@
 <?php
 	include 'header.php';
 	include 'config.php';
-	include 'session.php';?>
+	//include 'session.php';?>
 <?php
 	//if we want to show current email and username?
         //if (isset($_SESSION['login_user'])) {
@@ -18,12 +18,10 @@
 	}
 
 	//somehow assign current data to forms -> so that if not edited the same info will be returned to db -> edited will be updated
-	$query = "select * from users where username='login_user'";
-
-
-	$newusername = "";
-	$newpassword = "";
-	$newemail = "";
+	$stmt = $db->prepare("SELECT * from users where username='username'");
+	$stmt->execute();
+	$stmt -> bind_result($curname,$curpass,$curmail);
+echo "$curname";
 
 	if (isset($_POST) && !empty($_POST)) {
 	//Get data from form
@@ -32,7 +30,6 @@
 			$newemail = trim($_POST['newemail']);
 	} else {
 		echo "Please fill something out in the form";
-		exit();
 	}
 
 	// check if email already exists in db
@@ -59,17 +56,17 @@
 
 	//insert new info into db
 
-	else {
+else {
 
-	$sql = "INSERT into users where username='login_user' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail');
-	
-	if (!mysqli_query($con,$sql)) {
+	$sql = "INSERT into users where username='username' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail')";
+
+	if (!mysqli_query($db,$sql)) {
 		echo 'Something went wrong, not updated';
 	}
 	else {
 		echo 'Update successfull';
 	}
-
+}
 
 	//Safety yes
 	$newusername = addslashes($newusername);
@@ -88,7 +85,7 @@
    <div class="settingsDiv">
         <h2>Settings<h2>
         <h3>Fill in the forms below to change your settings.</h3>
-        <form method="POST" action="settingsinsert.php" class="settingsForm">
+        <form method="POST" action="settings.php" class="settingsForm">
             <h4>Change Username</h4>
             <input type="text" name="newusername" placeholder="New Username" class="inputField"/>
             <h4>Change Password</h4>
