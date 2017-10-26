@@ -84,20 +84,6 @@ if (isset($_POST['submittask']) && !empty($_POST)) {
 	header("Refresh:0");
 }
 
-
-/*/$query = " select ISBN, Author, Title, Reserved from Book";
-                if ($searchtitle && !$searchauthor) { // Title search only
-                    $query = $query . " where Title like '%" . $searchtitle . "%'";
-                }
-                if (!$searchtitle && $searchauthor) { // Author search only
-                    $query = $query . " where Author like '%" . $searchauthor . "%'";
-                }
-                if ($searchtitle && $searchauthor) { // Title and Author search
-                    $query = $query . " where Title like '%" . $searchtitle . "%' and Author like '%" . $searchauthor . "%'"; // unfinished
-                }
-/*/
-
-
   //change task status to completed and mark it as grey or other CSS
 
 ?>
