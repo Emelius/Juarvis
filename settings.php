@@ -3,11 +3,8 @@
 	include 'config.php';
 	include 'session.php';?>
 <?php
-	//if we want to show current email and username?
-        //if (isset($_SESSION['login_user'])) {
-        //        $currentusername = $_SESSION['login_user'];
-       // }
-	 //$currentemail = assign from databse email
+
+$userid = $_SESSION['user_id'];
 
         @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
@@ -32,7 +29,7 @@
 			$newemail = trim($_POST['newemail']);
 	} else {
 		echo "Please fill something out in the form";
-		exit();
+		//exit();
 	}
 
 	// check if email already exists in db
@@ -59,11 +56,11 @@
 
 	//insert new info into db
 
-	else {
 
-	$sql = "INSERT into users where username='login_user' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail');
-	
-	if (!mysqli_query($con,$sql)) {
+
+	$sql = "INSERT into users where username='login_user' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail')";
+
+	if(!mysqli_query($db,$sql)) {
 		echo 'Something went wrong, not updated';
 	}
 	else {

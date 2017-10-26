@@ -35,7 +35,7 @@
 				ob_start();
 				header("location:main.php");
 		ob_flush();
-		//exit();
+		exit();
 	}
 	else {
 		$error = "Your Username or Password is invalid, please try again.";
