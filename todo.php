@@ -45,6 +45,26 @@ else{
 
   //create new list
 
+// Om någon försöker submitta en ny lista. Kommer INTE att köras första gången någon går in på sidan:
+if (isset($_POST['submitlist'])) {
+
+    // Om newlist inte är satt: skriv ut ett felmeddelande och exita
+    if (empty($_POST['newlist'])) {
+        printf("You must add a listname, try again.");
+    		exit();
+    }
+
+    # Get data from form
+   	$newlist = "";
+	  $newlist = trim($_POST['newlist']);
+    $stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
+	    $stmt->bind_param('s', $newlist);
+	    $stmt->execute();
+	    printf("<br>List Added!");
+      header("Refresh:0");
+}
+
+/*/
 if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
     # Get data from form
    	$newlist = "";
@@ -56,11 +76,13 @@ if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
 	    printf("<br>List Added!");
       header("Refresh:0");
 
-} elseif (empty($newlist)) {
+if (empty($newlist)) {
   printf("You must add a listname, try again.");
   exit();
 }
-
+	
+}
+/*/
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
