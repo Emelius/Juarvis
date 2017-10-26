@@ -83,7 +83,6 @@ if (isset($_POST) && !empty($_POST)) {
 	header("Refresh:0");
 }
 
-
   //change task status to completed and mark it as grey or other CSS
 
 ?>
