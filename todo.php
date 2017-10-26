@@ -66,13 +66,36 @@ if (isset($_POST) && !empty($_POST)) {
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
+if (isset($_POST) && !empty($_POST)) {
+    # Get data from form
+   	$newtask = "";
+	$newtask = trim($_POST['newtask']);
+
+	if (!$newlist) {
+		printf("You must add a task, try again.");
+		exit();
+	    }
+
+	$stmt = $db->prepare("insert tasks (task_id, taskname) VALUES ('', ?)");
+	    $stmt->bind_param('s', $newlist);
+	    $stmt->execute();
+	    printf("<br>Task Added!");
+	header("Refresh:0");
+}
+
 
   //change task status to completed and mark it as grey or other CSS
 
 ?>
 
 <form action="todo.php" method="POST">
-	<input type="text" name="newlist" placeholder="Listname" class="inputField">
+	<input type="text" name="newlist" placeholder="New List" class="inputField">
   <br>
   <input type="submit" name="submit" value="Add" class="button">
+</form>
+
+<form action="todo.php" method="POST">
+	<input type="text" name="newtask" placeholder="Add Task" class="inputField">
+	<br>
+	<input type="submit" name="submit" value="Add" class="button">
 </form>
