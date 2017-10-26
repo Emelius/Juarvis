@@ -52,7 +52,7 @@ if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
    	$newlist = "";
 	  $newlist = trim($_POST['newlist']);
 
-    $stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
+    $stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!");
@@ -78,7 +78,7 @@ if (isset($_POST['submittask']) && !empty($_POST['newtask'])) {
 		exit();
 	}/*/
 
-	 $stmt = $db->prepare("insert tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
+	 $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
 	    $stmt->bind_param('ss', $newtask, $newtaskdesc);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
