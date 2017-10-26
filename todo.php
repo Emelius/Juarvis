@@ -55,34 +55,15 @@ if (isset($_POST['submitlist'])) {
     }
 
     # Get data from form
-   	$newlist = "";
-	  $newlist = trim($_POST['newlist']);
-    $stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
-	    $stmt->bind_param('s', $newlist);
-	    $stmt->execute();
-	    printf("<br>List Added!");
-      header("Refresh:0");
+	$newlist = "";
+	$newlist = trim($_POST['newlist']);
+   	
+	$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
+	$stmt->bind_param('s', $newlist);
+	$stmt->execute();
+	printf("<br>List Added!");
+	header("Refresh:0");
 }
-
-/*/
-if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
-    # Get data from form
-   	$newlist = "";
-	  $newlist = trim($_POST['newlist']);
-
-    $stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
-	    $stmt->bind_param('s', $newlist);
-	    $stmt->execute();
-	    printf("<br>List Added!");
-      header("Refresh:0");
-
-if (empty($newlist)) {
-  printf("You must add a listname, try again.");
-  exit();
-}
-	
-}
-/*/
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
