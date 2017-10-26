@@ -1,6 +1,16 @@
 <!doctype html>
 
 <?php
+include("config.php");
+@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+if ($db->connect_error) {
+  echo "could not connect: " . $db->connect_error;
+  exit();
+}
+$stmt = $db->prepare("SELECT taskname, edate FROM tasks WHERE username = ?");
+$stmt->bind_param('s', $myusername);
+$stmt->execute();
+$stmt->bind_result($username, $password);
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 
@@ -17,7 +27,6 @@ $timestamp = strtotime($ym, "-01");
 if ($timestamp === false) {
   $timestamp = time();
 }
-
 //today
 $today = date('Y-m-d', time());
 
@@ -46,7 +55,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   $date = $ym.'-'.$day;
 
   if($today == $date) {
-      $week .='<td class="today"><a href="">'.$day;
+      $week .='<td class="today"><a href="">'.$day ;
   } else {
     $week .= '<td><a href="">'.$day;
  }
