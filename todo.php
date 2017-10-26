@@ -11,7 +11,7 @@
 	}
 
   //get and display all lists from DB
-	$sql = "SELECT listname FROM list"; //where user_id = 'login_user'";
+	$sql = "SELECT listname FROM lists"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
   $listname = "";
@@ -57,7 +57,7 @@ if (isset($_POST) && !empty($_POST)) {
 		exit();
 	    }
 
-	$stmt = $db->prepare("insert list (list_id, listname) VALUES ('', ?)");
+	$stmt = $db->prepare("insert lists (list_id, listname) VALUES ('', ?)");
 	    $stmt->bind_param('s', $newlist);
 	    $stmt->execute();
 	    printf("<br>List Added!");
