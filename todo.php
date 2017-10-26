@@ -36,8 +36,8 @@ $listname = "";
 
 if (mysqli_num_rows($result2) > 0) {
     // output data of each row
-    while($row = mysqli_fetch_assoc($result2)) {
-        echo "". $row["taskname"]. "<br>";
+    while($row2 = mysqli_fetch_assoc($result2)) {
+        echo "". $row2["taskname"]. "<br>";
     }
 }
 
@@ -115,12 +115,12 @@ if (isset($_POST) && !empty($_POST)) {
 	
   <?php
 
-  $sql3 = "SELECT listname FROM list";
+  $sql3 = "SELECT listname FROM lists";
   $result3 = mysqli_query($db, $sql3);
 
   echo "<select name='listname'>";
-  while ($row2 = mysqli_fetch_assoc($result3)) {
-      echo "<option value='" . $row2['listname'] ."'>" . $row2['listname'] ."</option><br>";
+  while ($row3 = mysqli_fetch_assoc($result3)) {
+      echo "<option value='" . $row3['listname'] ."'>" . $row3['listname'] ."</option><br>";
   }
   echo "</select>";
   ?>
