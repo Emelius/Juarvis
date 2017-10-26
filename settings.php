@@ -16,7 +16,7 @@
 
 	//set current user information in variables
 
-	$stmt = $db->prepare("select username,password,email from users where username='username'");
+	$stmt = $db->prepare("SELECT username,password,email from users where username='username'");
 	$stmt->execute();
 	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
 
@@ -37,30 +37,42 @@
 
 	// check if email already exists in db
 	if ($newemail != "") {
-		$sqlEmailExists = "SELECT email FROM users WHERE email = '$newemail'";
-		$result = $db->query($sqlEmailExists);
-
 		if ($result->num_rows > 0){
 			echo "That email already exists";
 			exit();
+			$sql = "SELECT email FROM users WHERE email = '$currentemail'";
+			$result = $db->query($sql);
+		}
+		else {
+			$sql = "SELECT email FROM users WHERE email = '$newemail'";
+			$result = $db->query($sql);
 		}
 	}
 
 	// check if username already exists in db
 	if ($newusername != "") {
-		$sqlUsernameExists = "SELECT username FROM users WHERE username = '$newusername'";
-		$result = $db->query($sqlUsernameExists);
-
 		if ($result->num_rows > 0){
 			echo "That username already exists";
 			exit();
+			$sql = "SELECT email FROM users WHERE username = '$currentusername'";
+			$result = $db->query($sql);
 		}
+		else {
+			$sql = "SELECT email FROM users WHERE username = '$newusername'";
+			$result = $db->query($sql);
+		}
+	}
+	else{
+		$sql = "SELECT email FROM users WHERE username = '$currentusername'";
+		$result = $db->query($sql);
 	}
 
 	//check if password matches the old one
 	if ($confirmpassword != ''){
-		//pls chek if $currentpassword
-	}else {
+		$sql = "SELECT email FROM users WHERE password = '$currentpassword'";
+		$result = $db->query($sql);
+		}
+		else {
 		echo "Wrong password.";
 	}
 
@@ -97,11 +109,12 @@
             <h4>Change Username</h4>
             <input type="text" name="newusername" value="<?php echo $currentusername ?>" placeholder="New Username" class="inputField"/>
             <h4>Change Password</h4>
-            <input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
             <input type="password" name="newpassword" value="<?php echo $currentpassword ?>" placeholder="New Password" class="inputField"/>
             <h4>Change Email</h4>
             <input type="email" name="newemail" value="<?php echo $currentemail ?>" placeholder="New Email" class="inputField"/>
-            <input type="submit" value="Save Changes" class="button">
+						<h4>Confirm with your old password</h4>
+						<input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
+						<input type="submit" value="Save Changes" class="button">
         </form>
     </div>
 
