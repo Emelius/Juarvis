@@ -112,8 +112,18 @@ if (isset($_POST) && !empty($_POST)) {
 	<br>
 	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
 	<br>
-	<select name="List">
-		<option value="hej">Hejsan</option>	
-	</select>
+	
+  <?php
+
+  $sql3 = "SELECT listname FROM list";
+  $result3 = mysqli_query($db, $sql3);
+
+  echo "<select name='listname'>";
+  while ($row2 = mysqli_fetch_assoc($result3)) {
+      echo "<option value='" . $row2['listname'] ."'>" . $row2['listname'] ."</option><br>";
+  }
+  echo "</select>";
+  ?>
+
 	<input type="submit" name="submit" value="Add" class="button">
 </form>
