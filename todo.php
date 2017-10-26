@@ -1,5 +1,3 @@
-<!--- reference: https://gist.github.com/hcmn/3773595 !--->
-
 <?php
   include 'config.php';
 
