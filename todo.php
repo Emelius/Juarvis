@@ -29,7 +29,7 @@ else{
 
   //get and display all tasks
 
-$sql2 = "SELECT taskname FROM tasks where list_id = list_id"; //and user_id = 'login_user'";
+$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
 	$result2 = mysqli_query($db, $sql2);
 
 $listname = "";
@@ -112,7 +112,7 @@ if (isset($_POST) && !empty($_POST)) {
 	<br>
 	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
 	<br>
-	
+
   <?php
 
   $sql3 = "SELECT listname FROM lists";
