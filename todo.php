@@ -56,12 +56,11 @@ if (isset($_POST['submitlist']) && !empty($_POST['newlist'])) {
 	    printf("<br>List Added!");
       header("Refresh:0");
 
-//echo error
-      if (empty($newlist)) {
-    	printf("You must add a listname, try again.");
-    	exit();
-    } 
+} elseif (empty($newlist)) {
+  printf("You must add a listname, try again.");
+  exit();
 }
+
 
   //create new task for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
 
