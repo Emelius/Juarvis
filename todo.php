@@ -43,7 +43,7 @@
 	}
 	else {
 	      echo "0 results";
-	    }
+	}
 
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
@@ -54,7 +54,7 @@
 		exit();
 	    }
 
-		else {
+	else {
 	    # Get data from form
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
@@ -76,7 +76,7 @@
 			exit();
 			}
 
-			else {
+		else {
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
@@ -112,8 +112,8 @@
 
 <form action="todo.php" method="POST">
 	<input type="text" name="newlist" placeholder="New List" class="inputField">
-  <br>
-  <input type="submit" name="submitlist" value="Add" class="button">
+	<br>
+	<input type="submit" name="submitlist" value="Add" class="button">
 </form>
 
 <form action="todo.php" method="POST">
