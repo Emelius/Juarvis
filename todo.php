@@ -66,22 +66,25 @@
 	  }
 	}
 
+//selected list_id (when creating task) should end up in $newlistid
+
+
 	//Create new task for specific list
-	if (isset($_POST['submittask'])) {
+if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
 
 	    //If newlist is not set, write error message, it not continue
 	    if (empty($_POST['newtask'])) {
 			printf("You must add a task, try again.");
 			exit();
-		}
+			}
 
-		else {
+			else {
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
 
-	    $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status, list_id) VALUES ('', ?, ?, '', '', '','',?)");
-	    $stmt->bind_param('ss', $newtask, $newtaskdesc);
+	    $stmt = $db->prepare("INSERT INTO 'tasks' ('task_id', 'taskname', 'taskdesc', 'sdate', 'edate', 'rdate', 'status', 'list_id') VALUES ('', ?, ?, '', '', '','',?)");
+	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $newlistid);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
 	    header("Refresh:0");
@@ -90,11 +93,13 @@
 
 	//Remove list and tasks with same list_id
 
+
+/*/
 	$stmt = $db->prepare("DELETE FROM `lists` WHERE list_id = ?");
         $stmt->bind_param('i', $list_id);
         $response = $stmt->execute();
         printf("<br>List deleted!");
-
+/*/
   	//Remove finished tasks
 
 	/*/
@@ -119,16 +124,12 @@
 
   <?php
 
-  $sql3 = "SELECT listname,list_id FROM lists";
+  $sql3 = "SELECT list_id,listname FROM lists";
   $result3 = mysqli_query($db, $sql3);
 
-	$stmt = $db->prepare("SELECT username,password,email from users WHERE username='$username'");
-	$stmt->execute();
-	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
-
-  echo "<select name='listname'>";
+  echo "<select name='tasklist'>";
   while ($row3 = mysqli_fetch_assoc($result3)) {
-      echo "<option value='" . $row3['listname']."'></option><br>";
+      echo "<option value='" . $row3['list_id'] ."'>" .$row3['listname'] ."</option><br>";
   }
   echo "</select>";
   ?>
