@@ -70,15 +70,16 @@
 
 	//check if username already exists in db
 	if ($newusername != "") {
+		$sql = "SELECT username FROM users WHERE username = '$newusername'";
+		$result = $db->query($sql);
+		
 		if ($result->num_rows > 0){
 			echo "That username already exists!";
 			exit();
-			$sql = "SELECT username FROM users WHERE username = '$currentusername'";
-			$result = $db->query($sql);
 		}
 		else {
-			$sql = "SELECT username FROM users WHERE username = '$newusername'";
-			$result = $db->query($sql);
+			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','','')");
+			$stmt->execute();
 		}
 	}
 
