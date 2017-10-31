@@ -10,7 +10,7 @@
     </head>
     <body>
     	<header>
-            <h1>Juarvis</h1>
+            <img src='img/juarvis_white.png alt="logo" id="logo_header"/>
             <!-- display logged in username or name?-->
             <nav id='headermenu'>
                 <ul>
