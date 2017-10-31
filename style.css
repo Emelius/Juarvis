@@ -194,7 +194,7 @@ header {
 #headermenu ul li {
 	float:left;
 	list-style: none;
-	margin:0;
+	margin:10px;
 	padding:0;
 }
 
@@ -203,6 +203,7 @@ header {
 	color: white;
 	font-size: 12pt;
 	transition: color .4s ease;
+	margin:0;
 }
 
 #headermenu ul li a:hover {
@@ -267,7 +268,7 @@ td a {
 }
 
 .today {
-	background-color: #80d4ff;
+	background-color: #DA0F5F;
 }
 
 /* end calender */
