@@ -90,8 +90,19 @@
 
 	//Remove list
 
+	$stmt = $db->prepare("DELETE FROM `lists` WHERE list_id = ?");
+        $stmt->bind_param('i', $list_id);
+        $response = $stmt->execute();
+        printf("<br>List deleted!");
+
   	//Remove finished tasks
 
+	/*/
+	$stmt = $db->prepare("DELETE FROM `tasks` WHERE task_id = ?");
+        $stmt->bind_param('i', $task_id);
+        $response = $stmt->execute();
+        printf("<br>Task deleted!");
+	/*/
 ?>
 
 <form action="todo.php" method="POST">
