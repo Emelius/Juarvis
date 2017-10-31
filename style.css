@@ -250,6 +250,9 @@ header {
 .tododiv{
 	float:left;
 	width:50%;
+	margin-top:30px;
+	padding:30px;
+	box-sizing: border-box;
 }
 
 /****** Calendar ********/
@@ -258,6 +261,8 @@ header {
 	float:left;
 	margin-top:30px;
 	width:50%;
+	padding:30px;
+	box-sizing: border-box;
 }
 
 th {
@@ -293,4 +298,7 @@ td a {
 
 footer {
 	float:left;
+	padding:30px;
+	font-sizing: 12pt;
+	box-sizing: border-box;
 }
