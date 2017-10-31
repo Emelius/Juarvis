@@ -4,7 +4,7 @@
 	include 'session.php';?>
 <?php
 	//set session variables
-	$userid = $_SESSION['userid'];
+	$userid = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
 
 	//establish db connection
