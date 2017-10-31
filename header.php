@@ -10,13 +10,12 @@
     </head>
     <body>
     	<header>
-            <h1>Juarvis<h1>
-            <!-- display logged in username or name?-->
-            <nav>
+            <img src='img/juarvis_white.png' alt="logo" id="logo_header"/>
+            <nav id='headermenu'>
                 <ul>
                     <li><a href="settings.php">Settings</a></li>
                     <li><a href="main.php">Home</a></li>
                 </ul>
             </nav>
-            <a href="logout.php">Log out</a>
+            <a id='logout' href="logout.php">Log out</a>
     	</header>
