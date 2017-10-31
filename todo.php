@@ -80,7 +80,7 @@
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
 
-	    $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
+	    $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status, list_id) VALUES ('', ?, ?, '', '', '','',?)");
 	    $stmt->bind_param('ss', $newtask, $newtaskdesc);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
@@ -119,12 +119,16 @@
 
   <?php
 
-  $sql3 = "SELECT listname FROM lists";
+  $sql3 = "SELECT listname,list_id FROM lists";
   $result3 = mysqli_query($db, $sql3);
+
+	$stmt = $db->prepare("SELECT username,password,email from users WHERE username='$username'");
+	$stmt->execute();
+	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
 
   echo "<select name='listname'>";
   while ($row3 = mysqli_fetch_assoc($result3)) {
-      echo "<option value='" . $row3['listname'] ."'>" . $row3['listname'] ."</option><br>";
+      echo "<option value='" . $row3['listname']."'></option><br>";
   }
   echo "</select>";
   ?>
