@@ -112,9 +112,9 @@
             <input type="password" name="newpassword" value="<?php echo $currentpassword ?>" placeholder="New Password" class="inputField"/>
             <h4>Change Email</h4>
             <input type="email" name="newemail" value="<?php echo $currentemail ?>" placeholder="New Email" class="inputField"/>
-						<h4>Confirm with your old password</h4>
-						<input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
-						<input type="submit" value="Save Changes" class="button">
+		<h4>Confirm with your old password</h4>
+		<input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
+		<input type="submit" value="Save Changes" class="button">
         </form>
     </div>
 
