@@ -20,7 +20,7 @@ h4 {
 	color: #DA0F5F;
 }
 
-a { 
+a {
 	text-decoration: none;
 	color: #DA0F5F;
 	margin: 10px;
@@ -31,7 +31,7 @@ p {
 	display: inline-block;
 }
 
-a:hover { 
+a:hover {
 	color: #000;
 }
 
@@ -53,9 +53,9 @@ hr {
 /*/Autofill forms/*/
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
-input:-webkit-autofill, 
+input:-webkit-autofill,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
@@ -151,7 +151,7 @@ select:-webkit-autofill:focus {
 	box-sizing: border-box;
 }
 
-.inputField:focus { 
+.inputField:focus {
     outline: none !important;
     border-color:#DA0F5F;
 }
@@ -184,6 +184,21 @@ select:-webkit-autofill:focus {
 
 }
 
+/*/header/*/
+header {
+	background-color: #DA0F5F;
+	height: 10%;
+}
+
+#headermenu ul {
+	overflow:hidden;
+}
+
+#headermenu ul li {
+	float:left;
+}
+
+
 /*/Settings/*/
 
 .settingsDiv {
@@ -207,7 +222,7 @@ select:-webkit-autofill:focus {
 
 .container {
 	margin-top:30px;
-	
+
 }
 
 th {
