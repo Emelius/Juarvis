@@ -246,11 +246,21 @@ header {
 
 /**** To do list *****/
 
+.tododivparent{
+	overflow:hidden;
+}
 
+.tododiv{
+	float:left;
+}
 
 /****** Calendar ********/
+.calendardivparent {
+	overflow:hidden;
+}
 
 .calendardiv {
+	float:right;
 	margin-top:30px;
 	width:50%;
 }
