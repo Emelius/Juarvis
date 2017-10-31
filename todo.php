@@ -1,93 +1,96 @@
 <?php
-  include 'config.php';
+	include 'config.php';
 
-  //establish db connection
-  @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+	//establish db connection
+	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
 	if ($db->connect_error) {
 		echo "could not connect: " . $db->connect_error;
 		exit();
 	}
 
-  //get and display all lists from DB
+	//get and display all lists from DB
 	$sql = "SELECT listname FROM lists"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
-  $listname = "";
+  	$listname = "";
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "". $row["listname"]. "<br>";
-    }
-}
+	if (mysqli_num_rows($result) > 0) {
+	    // output data of each row
+	    while($row = mysqli_fetch_assoc($result)) {
+		echo "". $row["listname"]. "<br>";
+	    }
+	}
 
-else{
-      echo "0 results";
-    }
+	else {
+	      echo "0 results";
+	}
 
-  //get and display all tasks
+	//get and display all tasks
 
-$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
-	$result2 = mysqli_query($db, $sql2);
+	$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
+		$result2 = mysqli_query($db, $sql2);
 
-$listname = "";
+	$taskname = "";
 
-if (mysqli_num_rows($result2) > 0) {
-    // output data of each row
-    while($row2 = mysqli_fetch_assoc($result2)) {
-        echo "". $row2["taskname"]. "<br>";
-    }
-}
+	if (mysqli_num_rows($result2) > 0) {
+		
+	    // output data of each row
+	    while($row2 = mysqli_fetch_assoc($result2)) {
+		echo "". $row2["taskname"]. "<br>";
+	    }
+	}
+	else {
+	      echo "0 results";
+	    }
 
-else{
-      echo "0 results";
-    }
+	//Create new list if user submits new list. Will NOT run first time user goes to page
+	if (isset($_POST['submitlist'])) {
 
-//CREATE NEW LIST
-//If user submits new list. Will NOT run first time user goes in on page:
-if (isset($_POST['submitlist'])) {
+	    //If newlist is not set echo error message
+	    if (empty($_POST['newlist'])) {
+		printf("You must add a listname, try again.");
+		exit();
+	    }
+		
+		else {
+	    # Get data from form
+		$newlist = "";
+		$newlist = trim($_POST['newlist']);
 
-    //If newlist is not set, write error message, it not continue
-    if (empty($_POST['newlist'])) {
-        printf("You must add a listname, try again.");
+		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
+		$stmt->bind_param('s', $newlist);
+		$stmt->execute();
+		printf("<br>List Added!");
+		header("Refresh:0");
+	  }
+	}
 
-    } else {
-    # Get data from form
-  	$newlist = "";
-  	$newlist = trim($_POST['newlist']);
+	//Create new task for specific list
+	if (isset($_POST['submittask'])) {
 
-  	$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
-  	$stmt->bind_param('s', $newlist);
-  	$stmt->execute();
-  	printf("<br>List Added!");
-  	header("Refresh:0");
+	    //If newlist is not set, write error message, it not continue
+	    if (empty($_POST['newtask'])) {
+			printf("You must add a task, try again.");
+			exit();
+		}
+		
+		else {
+	    # Get data from form
+	    $newtask = "";
+	    $newtask = trim($_POST['newtask']);
 
-  }
-}
+	    $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
+	    $stmt->bind_param('ss', $newtask, $newtaskdesc);
+	    $stmt->execute();
+	    printf("<br>Task Added!");
+	    header("Refresh:0");
+	  }
+	}
 
-//CREATE NEW TASK for specific list: taskname, taskdesc, sdate, edate, rdate, status(1)
-if (isset($_POST['submittask'])) {
+	//Remove list
 
-    //If newlist is not set, write error message, it not continue
-    if (empty($_POST['newtask'])) {
-		printf("You must add a task, try again.");
-
-  } else {
-
-    # Get data from form
-    $newtask = "";
-    $newtask = trim($_POST['newtask']);
-
-    $stmt = $db->prepare("INSERT INTO tasks (task_id, taskname, taskdesc, sdate, edate, rdate, status) VALUES ('', ?, ?, '', '', '','')");
-    $stmt->bind_param('ss', $newtask, $newtaskdesc);
-    $stmt->execute();
-    printf("<br>Task Added!");
-    header("Refresh:0");
-  }
-}
-
-  //change task status to completed and mark it as grey or other CSS
+  	//Remove finished tasks
 
 ?>
 
