@@ -2,19 +2,21 @@
 <?php
 include("config.php");
 //include("session.php");
-$username = $_SESSION['username'];
+ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 if ($db->connect_error) {
   echo "could not connect: " . $db->connect_error;
   exit();
 }
-$stmt = $db ->prepare("SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = $username");
+$username = $_SESSION['username'];
+echo "$username";
+$stmt = $db ->prepare("SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username'");
 $stmt->execute();
 $stmt->bind_result($taskname, $edate);
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 $test="hej";
-echo ($test);
+echo ($taskname);
 
 //Get prev & next month
 if (isset($_GET['ym'])) {
