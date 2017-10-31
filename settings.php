@@ -78,14 +78,9 @@
 
 	//insert new info into db
 
-	$sql = "INSERT into users where username='username' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail')";
-
-	if(!mysqli_query($db,$sql)) {
-		echo 'Something went wrong, not updated';
-	}
-	else {
-		echo 'Update successfull';
-	}
+	$stmt = $db->prepare("INSERT INTO users where username='username' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail')");
+	$stmt->execute();
+	$stmt->bind_result($newusername, $newpassword, $newemail);
 
 
 	//Safety yes
