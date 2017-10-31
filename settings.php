@@ -11,7 +11,7 @@ $username = $_SESSION['username'];
 
 		if ($db->connect_error) {
 			echo "could not connect: " . $db->connect_error;
-			printf("<br><a href=index.php>Return to home page </a>");
+			printf("<br><a href=index.php>Return to home page.</a>");
 			exit();
 	}
 
@@ -28,18 +28,16 @@ $username = $_SESSION['username'];
 
 	//Check forms
 	if (isset($_POST) && !empty($_POST)) {
+		
 	//Get data from form
-			$newusername = trim($_POST['newusername']);
-			$newpassword = trim($_POST['newpassword']);
-			$newemail = trim($_POST['newemail']);
-	} else {
-		echo "Please fill something out in the form";
-	}
-
+		$newusername = trim($_POST['newusername']);
+		$newpassword = trim($_POST['newpassword']);
+		$newemail = trim($_POST['newemail']);
+	
 	// check if email already exists in db
 	if ($newemail != "") {
 		if ($result->num_rows > 0){
-			echo "That email already exists";
+			echo "That email already exists!";
 			exit();
 			$sql = "SELECT email FROM users WHERE email = '$currentemail'";
 			$result = $db->query($sql);
@@ -53,7 +51,7 @@ $username = $_SESSION['username'];
 	// check if username already exists in db
 	if ($newusername != "") {
 		if ($result->num_rows > 0){
-			echo "That username already exists";
+			echo "That username already exists!";
 			exit();
 			$sql = "SELECT username FROM users WHERE username = '$currentusername'";
 			$result = $db->query($sql);
@@ -76,6 +74,12 @@ $username = $_SESSION['username'];
 
 	$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','$newpassword','$newemail')");
 	$stmt->execute();
+		
+	}
+
+	else {
+		echo "Please fill something out in the form.";
+	}
 
 	//Safety yes
 	$newusername = addslashes($newusername);
