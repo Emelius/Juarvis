@@ -12,7 +12,7 @@
     	<header>
             <h1>Juarvis<h1>
             <!-- display logged in username or name?-->
-            <nav>
+            <nav id='headermenu'>
                 <ul>
                     <li><a href="settings.php">Settings</a></li>
                     <li><a href="main.php">Home</a></li>
