@@ -58,8 +58,6 @@
 	    # Get data from form
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
-		$tasklist = "";
-		$tasklist = trim($_POST['tasklist']);
 
 		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
 		$stmt->bind_param('s', $newlist);
@@ -82,9 +80,11 @@
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
+		$tasklist = "";
+		$tasklist = trim($_POST['tasklist']);
 
 	    $stmt = $db->prepare("INSERT INTO 'tasks' ('task_id', 'taskname', 'taskdesc', 'sdate', 'edate', 'rdate', 'status', 'list_id') VALUES ('', ?, ?, '', '', '','',?)");
-	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $newlistid);
+	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $tasklist);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
 	    header("Refresh:0");
