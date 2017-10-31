@@ -25,19 +25,23 @@
 	$newusername = "";
 	$newpassword = "";
 	$newemail = "";
+	$confirmpassword = "";
 
 	//safety yes
 	$newusername = addslashes($newusername);
 	$newpassword = addslashes($newpassword);
 	$newemail = addslashes($newemail);
+	$confirmpassword = addslashes($confirmpassword);
 
 	$newusername = htmlentities($newusername);
 	$newpassword = htmlentities($newpassword);
 	$newemail = htmlentities($newemail);
+	$confirmpassword = htmlentities($confirpassword);
 
 	$newusername = mysqli_real_escape_string($db, $newusername);
 	$newpassword = mysqli_real_escape_string($db, $newpassword);
 	$newemail = mysqli_real_escape_string($db, $newemail);
+	$confirmpassword = mysqli_real_escape_string($db, $confirmpassword);
 
 	//check forms
 	if (isset($_POST) && !empty($_POST)) {
@@ -46,6 +50,7 @@
 		$newusername = trim($_POST['newusername']);
 		$newpassword = trim($_POST['newpassword']);
 		$newemail = trim($_POST['newemail']);
+		$confirmpassword = = trim($_POST['confirmpassword']);
 	
 	//check if email already exists in db
 	if ($newemail != "") {
