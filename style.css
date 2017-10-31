@@ -189,6 +189,7 @@ header {
 	overflow:hidden;
 	background-color: #DA0F5F;
 	height: 5%;
+	z-index: 10px;
 }
 
 #headermenu ul li {
@@ -222,7 +223,7 @@ header {
 }
 
 #logo_header {
-	width:3%;
+	width:40px;
 	margin:10px;
 	float:left;
 }
