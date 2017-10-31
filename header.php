@@ -18,5 +18,5 @@
                     <li><a href="main.php">Home</a></li>
                 </ul>
             </nav>
-            <a href="logout.php">Log out</a>
+            <a id='logout' href="logout.php">Log out</a>
     	</header>
