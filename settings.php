@@ -50,7 +50,7 @@
 		$newusername = trim($_POST['newusername']);
 		$newpassword = trim($_POST['newpassword']);
 		$newemail = trim($_POST['newemail']);
-		$confirmpassword = = trim($_POST['confirmpassword']);
+		$confirmpassword = trim($_POST['confirmpassword']);
 	
 	//check if email already exists in db
 	if ($newemail != "") {
