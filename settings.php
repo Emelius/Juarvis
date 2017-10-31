@@ -82,10 +82,13 @@
 			$stmt->execute();
 		}
 	}
+	
+	//hash newpassword
+	$newpassword = sha1($newpassword);
 
 	//check if password matches the old one
 	if ($confirmpassword != ""){
-		if ($confirmpassword != $currentpassword) {
+		if (sha1($confirmpassword) != $currentpassword) {
 			echo "Wrong password.";
 			exit();
 		}
