@@ -17,7 +17,7 @@
 	}
 
 	//set current user information in variables
-	$stmt = $db->prepare("SELECT username,password,email from users where username='username'");
+	$stmt = $db->prepare("SELECT username,password,email from users WHERE username='$username'");
 	$stmt->execute();
 	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
 
@@ -62,7 +62,7 @@
 			exit ();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','','$newemail')");
+			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','','','$newemail') WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 		
@@ -78,7 +78,7 @@
 			exit();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','','')");
+			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','$newusername','','') WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 	}
@@ -88,14 +88,9 @@
 		echo "Wrong password.";
 	}
 		else {
-			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','$newpassword','')");
+			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','','$newpassword','') WHERE user_id='$userid'");
 			$stmt->execute();		
 	}
-
-	//insert new info into db
-
-	/*/ $stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','$newpassword','$newemail')");
-	$stmt->execute(); /*/
 		
 	}
 
