@@ -205,6 +205,8 @@ header {
 
 #logout {
 	float:right;
+	color:white;
+	text-decoration: none;
 }
 
 
