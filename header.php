@@ -10,7 +10,7 @@
     </head>
     <body>
     	<header>
-            <h1>Juarvis<h1>
+            <h1>Juarvis</h1>
             <!-- display logged in username or name?-->
             <nav id='headermenu'>
                 <ul>
@@ -18,5 +18,5 @@
                     <li><a href="main.php">Home</a></li>
                 </ul>
             </nav>
-            <a href="logout.php">Log out</a>
+            <a id='logout' href="logout.php">Log out</a>
     	</header>
