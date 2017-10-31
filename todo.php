@@ -1,4 +1,3 @@
-<div class='tododivparent'>
 <div class='tododiv'>
 <?php
 	include 'config.php';
@@ -138,5 +137,4 @@ if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
 
 	<input type="submit" name="submittask" value="Add" class="button">
 </form>
-</div>
 </div>
