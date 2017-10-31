@@ -91,7 +91,6 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
 }
 
 ?>
-<div class="calendardivparent"> 
 <div class="calendardiv">
   <h3>
     <a href="?ym=<?php echo $prev; ?>"> &lt;<a/>
@@ -118,4 +117,3 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
 
  </table>
 </div>
-      </div>
