@@ -186,16 +186,25 @@ select:-webkit-autofill:focus {
 
 /*/header/*/
 header {
-	background-color: #DA0F5F;
-	height: 10%;
-}
-
-#headermenu ul {
 	overflow:hidden;
+	background-color: #DA0F5F;
+	height: 5%;
 }
 
 #headermenu ul li {
 	float:left;
+	list-style: none;
+	margin:0;
+}
+
+#headermenu ul li a{
+	text-decoration: none;
+	color: white;
+	font-size: 12pt;
+}
+
+#logout {
+	float:right;
 }
 
 
