@@ -249,12 +249,13 @@ header {
 
 .tododiv{
 	float:left;
+	width:50%;
 }
 
 /****** Calendar ********/
 
 .calendardiv {
-	float:right;
+	float:left;
 	margin-top:30px;
 	width:50%;
 }
@@ -289,3 +290,7 @@ td a {
 /* end calender */
 
 /**** Footer *****/
+
+footer {
+	float:left;
+}
