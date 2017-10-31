@@ -88,7 +88,7 @@
 	  }
 	}
 
-	//Remove list
+	//Remove list and tasks with same list_id
 
 	$stmt = $db->prepare("DELETE FROM `lists` WHERE list_id = ?");
         $stmt->bind_param('i', $list_id);
