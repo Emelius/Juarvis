@@ -62,7 +62,7 @@
 			exit ();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','','','$newemail') WHERE user_id='$userid'");
+			$stmt = $db->prepare("INSERT INTO 'users' ('user_id', 'username', 'password', 'email') VALUES ('','','','$newemail') WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 		
@@ -78,7 +78,7 @@
 			exit();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','$newusername','','') WHERE user_id='$userid'");
+			$stmt = $db->prepare("INSERT INTO 'users' ('user_id', 'username', 'password', 'email') VALUES ('','$newusername','','') WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 	}
@@ -93,7 +93,7 @@
 			exit();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','','$newpassword','') WHERE user_id='$userid'");
+			$stmt = $db->prepare("INSERT INTO 'users' ('user_id', 'username', 'password', 'email') VALUES ('','','$newpassword','') WHERE user_id='$userid'");
 			$stmt->execute();		
 		}
 	}
