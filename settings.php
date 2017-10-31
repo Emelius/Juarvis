@@ -84,9 +84,9 @@
 	if ($confirmpassword != $currentpassword){
 		echo "Wrong password.";
 	}
-	else {
-		$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','$newpassword','')");
-		$stmt->execute();		
+		else {
+			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','$newpassword','')");
+			$stmt->execute();		
 	}
 
 	//insert new info into db
