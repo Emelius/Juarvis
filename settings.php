@@ -79,7 +79,7 @@ $username = $_SESSION['username'];
 
 	//insert new info into db
 
-	$stmt = $db->prepare("INSERT INTO users where user_id='userid' ('',?,?,?,'') VALUES ('$newusername','$newpassword','$newemail')");
+	$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','$newpassword','$newemail')");
 	$stmt->execute();
 
 	//Safety yes
