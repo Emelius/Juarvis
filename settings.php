@@ -54,16 +54,15 @@
 	
 	//check if email already exists in db
 	if ($newemail != "") {
+		$sql = "SELECT email FROM users WHERE email = '$newemail'";
+		$result = $db->query($sql);
+		
 		if ($result->num_rows > 0){
 			echo "That email already exists!";
-			exit();
-			$sql = "SELECT email FROM users WHERE email = '$currentemail'";
-			$result = $db->query($sql);
+			exit ();
+		} else {
 		}
-		else {
-			$sql = "SELECT email FROM users WHERE email = '$newemail'";
-			$result = $db->query($sql);
-		}
+		
 	}
 
 	//check if username already exists in db
