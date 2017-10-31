@@ -29,12 +29,12 @@
 	//get and display all tasks
 
 	$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
-		$result2 = mysqli_query($db, $sql2);
+	$result2 = mysqli_query($db, $sql2);
 
 	$taskname = "";
 
 	if (mysqli_num_rows($result2) > 0) {
-		
+
 	    // output data of each row
 	    while($row2 = mysqli_fetch_assoc($result2)) {
 		echo "". $row2["taskname"]. "<br>";
@@ -52,7 +52,7 @@
 		printf("You must add a listname, try again.");
 		exit();
 	    }
-		
+
 		else {
 	    # Get data from form
 		$newlist = "";
@@ -74,7 +74,7 @@
 			printf("You must add a task, try again.");
 			exit();
 		}
-		
+
 		else {
 	    # Get data from form
 	    $newtask = "";
