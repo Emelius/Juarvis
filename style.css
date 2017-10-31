@@ -250,9 +250,9 @@ header {
 
 /****** Calendar ********/
 
-.container {
+.calendardiv {
 	margin-top:30px;
-
+	width:50%;
 }
 
 th {
@@ -271,7 +271,15 @@ td a {
 
 .today {
 	background-color: #DA0F5F;
+}
+
+.today a {
 	color:white;
+	transition: color .4s ease;
+}
+
+.today a:hover {
+	color:black;
 }
 
 /* end calender */
