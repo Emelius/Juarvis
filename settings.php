@@ -55,17 +55,13 @@ $username = $_SESSION['username'];
 		if ($result->num_rows > 0){
 			echo "That username already exists";
 			exit();
-			$sql = "SELECT email FROM users WHERE username = '$currentusername'";
+			$sql = "SELECT username FROM users WHERE username = '$currentusername'";
 			$result = $db->query($sql);
 		}
 		else {
-			$sql = "SELECT email FROM users WHERE username = '$newusername'";
+			$sql = "SELECT username FROM users WHERE username = '$newusername'";
 			$result = $db->query($sql);
 		}
-	}
-	else{
-		$sql = "SELECT email FROM users WHERE username = '$currentusername'";
-		$result = $db->query($sql);
 	}
 
 	//check if password matches the old one
