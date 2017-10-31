@@ -69,12 +69,11 @@ $username = $_SESSION['username'];
 	}
 
 	//check if password matches the old one
-	if ($confirmpassword != ''){
-		$sql = "SELECT email FROM users WHERE password = '$currentpassword'";
-		$result = $db->query($sql);
+	if ($confirmpassword != $currentpassword){
+		echo "Wrong password.";
 		}
 		else {
-		echo "Wrong password.";
+			
 	}
 
 	//insert new info into db
