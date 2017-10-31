@@ -3,7 +3,9 @@
 	include "head.php";
 
 
-
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	}
 	if(isset($_SESSION['username'])){
 		header("location:main.php");
 	}
@@ -31,9 +33,8 @@
 	if (sha1($mypassword) == $password){
 		$_SESSION['username'] = $myusername;
 		$_SESSION['user_id'] = $userid;
-
-				ob_start();
-				header("location:main.php");
+		ob_start();
+		header("location:main.php");
 		ob_flush();
 		exit();
 	}
