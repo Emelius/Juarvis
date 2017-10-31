@@ -10,9 +10,17 @@ if ($db->connect_error) {
 }
 $username = $_SESSION['username'];
 echo "$username";
+$taskname ='nothing';
+$edate ='nothing';
 $stmt = $db ->prepare("SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username'");
-$stmt->execute();
 $stmt->bind_result($taskname, $edate);
+$stmt->execute();
+$tasklist = array();
+
+while ($stmt->fetch()) {
+    printf("%s %s\n", $taskname, $edate);
+    $tasklist[] = array("taskname" => $taskname, "edate" => $edate);
+}
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 $test="hej";
