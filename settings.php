@@ -36,7 +36,7 @@
 	$newusername = htmlentities($newusername);
 	$newpassword = htmlentities($newpassword);
 	$newemail = htmlentities($newemail);
-	$confirmpassword = htmlentities($confirpassword);
+	$confirmpassword = htmlentities($confirmpassword);
 
 	$newusername = mysqli_real_escape_string($db, $newusername);
 	$newpassword = mysqli_real_escape_string($db, $newpassword);
