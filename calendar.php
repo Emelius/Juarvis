@@ -20,7 +20,7 @@ $tasklist = array();
 while ($stmt->fetch()) {
     printf("%s %s\n", $taskname, $edate);
     $tasklist[] = array("taskname" => $taskname, "edate" => $edate);
-    echo "$takslist";
+    printf("%d", $edate);
 }
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
