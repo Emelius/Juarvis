@@ -84,12 +84,15 @@
 	}
 
 	//check if password matches the old one
-	if ($confirmpassword != $currentpassword){
-		echo "Wrong password.";
-	}
+	if ($confirmpassword != ""){
+		if ($confirmpassword != $currentpassword) {
+			echo "Wrong password.";
+			exit();
+		}
 		else {
 			$stmt = $db->prepare("INSERT INTO users (user_id, username, password, email) VALUES ('','','$newpassword','') WHERE user_id='$userid'");
 			$stmt->execute();		
+		}
 	}
 		
 	}
