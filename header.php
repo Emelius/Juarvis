@@ -11,7 +11,6 @@
     <body>
     	<header>
             <img src='img/juarvis_white.png alt="logo" id="logo_header"/>
-            <!-- display logged in username or name?-->
             <nav id='headermenu'>
                 <ul>
                     <li><a href="settings.php">Settings</a></li>
