@@ -195,22 +195,35 @@ header {
 	float:left;
 	list-style: none;
 	margin:0;
+	padding:0;
 }
 
 #headermenu ul li a{
 	text-decoration: none;
 	color: white;
 	font-size: 12pt;
+	transition: color .4s ease;
+}
+
+#headermenu ul li a:hover {
+	color: #000;
 }
 
 #logout {
 	float:right;
 	color:white;
 	text-decoration: none;
+	transition: color .4s ease;
+}
+
+#logout:hover {
+	color: #000;
 }
 
 #logo_header {
-	width:15%;
+	width:3%;
+	margin:10px;
+	float:left;
 }
 
 /*/Settings/*/
