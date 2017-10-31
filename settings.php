@@ -60,7 +60,10 @@
 		if ($result->num_rows > 0){
 			echo "That email already exists!";
 			exit ();
-		} else {
+		}
+		else {
+			$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','','$newemail')");
+			$stmt->execute();
 		}
 		
 	}
