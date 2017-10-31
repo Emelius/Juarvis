@@ -4,7 +4,8 @@
 	include 'session.php';?>
 <?php
 
-//$userid = $_SESSION['userid'];
+$userid = $_SESSION['userid'];
+$username = $_SESSION['username'];
 
         @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
@@ -78,10 +79,8 @@
 
 	//insert new info into db
 
-	$stmt = $db->prepare("INSERT INTO users where username='username' ('',?,?,?,'') values ('$newusername','$newpassword','$newemail')");
+	$stmt = $db->prepare("INSERT INTO users where user_id='userid' ('',?,?,?,'') VALUES ('$newusername','$newpassword','$newemail')");
 	$stmt->execute();
-	$stmt->bind_result($newusername, $newpassword, $newemail);
-
 
 	//Safety yes
 	$newusername = addslashes($newusername);
