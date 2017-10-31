@@ -3,10 +3,11 @@
 	include 'config.php';
 	include 'session.php';?>
 <?php
+	//set session variables
+	$userid = $_SESSION['userid'];
+	$username = $_SESSION['username'];
 
-$userid = $_SESSION['userid'];
-$username = $_SESSION['username'];
-
+	//establish db connection
         @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
 		if ($db->connect_error) {
@@ -16,7 +17,6 @@ $username = $_SESSION['username'];
 	}
 
 	//set current user information in variables
-
 	$stmt = $db->prepare("SELECT username,password,email from users where username='username'");
 	$stmt->execute();
 	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
@@ -26,15 +26,28 @@ $username = $_SESSION['username'];
 	$newpassword = "";
 	$newemail = "";
 
-	//Check forms
+	//safety yes
+	$newusername = addslashes($newusername);
+	$newpassword = addslashes($newpassword);
+	$newemail = addslashes($newemail);
+
+	$newusername = htmlentities($newusername);
+	$newpassword = htmlentities($newpassword);
+	$newemail = htmlentities($newemail);
+
+	$newusername = mysqli_real_escape_string($db, $newusername);
+	$newpassword = mysqli_real_escape_string($db, $newpassword);
+	$newemail = mysqli_real_escape_string($db, $newemail);
+
+	//check forms
 	if (isset($_POST) && !empty($_POST)) {
 		
-	//Get data from form
+	//get data from form
 		$newusername = trim($_POST['newusername']);
 		$newpassword = trim($_POST['newpassword']);
 		$newemail = trim($_POST['newemail']);
 	
-	// check if email already exists in db
+	//check if email already exists in db
 	if ($newemail != "") {
 		if ($result->num_rows > 0){
 			echo "That email already exists!";
@@ -48,7 +61,7 @@ $username = $_SESSION['username'];
 		}
 	}
 
-	// check if username already exists in db
+	//check if username already exists in db
 	if ($newusername != "") {
 		if ($result->num_rows > 0){
 			echo "That username already exists!";
@@ -65,34 +78,23 @@ $username = $_SESSION['username'];
 	//check if password matches the old one
 	if ($confirmpassword != $currentpassword){
 		echo "Wrong password.";
-		}
-		else {
-			
+	}
+	else {
+		$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','','$newpassword','')");
+		$stmt->execute();		
 	}
 
 	//insert new info into db
 
-	$stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','$newpassword','$newemail')");
-	$stmt->execute();
+	/*/ $stmt = $db->prepare("INSERT INTO users where user_id='userid' (user_id, username, password, email) VALUES ('','$newusername','$newpassword','$newemail')");
+	$stmt->execute(); /*/
 		
 	}
 
 	else {
 		echo "Please fill something out in the form.";
 	}
-
-	//Safety yes
-	$newusername = addslashes($newusername);
-	$newpassword = addslashes($newpassword);
-	$newemail = addslashes($newemail);
-
-	$newusername = htmlentities($newusername);
-	$newpassword = htmlentities($newpassword);
-	$newemail = htmlentities($newemail);
-
-	$newusername = mysqli_real_escape_string($db, $newusername);
-	$newpassword = mysqli_real_escape_string($db, $newpassword);
-	$newemail = mysqli_real_escape_string($db, $newemail);
+	
 ?>
 
    <div class="settingsDiv">
