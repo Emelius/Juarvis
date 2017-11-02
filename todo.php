@@ -10,40 +10,37 @@
 		exit();
 	}
 
+
 	//get and display all lists from DB
-	$sql = "SELECT listname FROM lists"; //where user_id = 'login_user'";
+	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'login_user'";
 	$result = mysqli_query($db, $sql);
 
-  	$listname = "";
-
-	if (mysqli_num_rows($result) > 0) {
-	    // output data of each row
-	    while($row = mysqli_fetch_assoc($result)) {
-		echo "". $row["listname"]. "<br>";
-	    }
+	while( $row = mysqli_fetch_assoc($result)){
+    $new_array[] = $row; // Inside while loop
 	}
 
-	else {
-	      echo "0 results";
-	}
+	foreach ($new_array as $value) {
+		print_r($value["listname"]);
+		echo "<input type='button' class='deletebutton' value='x'/>";
+		echo "<br>";
 
-	//get and display all tasks
+		$list_id = $value["list_id"];
 
-	$sql2 = "SELECT taskname FROM tasks"; //and user_id = 'login_user'";
-	$result2 = mysqli_query($db, $sql2);
+		//display all tasks
+		$sql2 = "SELECT taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'login_user'";
+		$result2 = mysqli_query($db, $sql2);
 
-	$taskname = "";
+		$taskname = "";
 
-	if (mysqli_num_rows($result2) > 0) {
+		if (mysqli_num_rows($result2) > 0) {
 
-	    // output data of each row
-	    while($row2 = mysqli_fetch_assoc($result2)) {
-		echo "". $row2["taskname"]. "<br>";
-	    }
-	}
-	else {
-	      echo "0 results";
-	}
+				// output data of each row
+				while($row2 = mysqli_fetch_assoc($result2)) {
+						echo "". $row2["taskname"]. "<button>Delete task </button>";
+						echo "<br><br>";
+				}
+			}
+		}
 
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
@@ -80,8 +77,8 @@
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
-		$tasklist = "";
-		$tasklist = trim($_POST['tasklist']);
+			$tasklist = "";
+			$tasklist = trim($_POST['tasklist']);
 
 	    $stmt = $db->prepare("INSERT INTO 'tasks' ('task_id', 'taskname', 'taskdesc', 'sdate', 'edate', 'rdate', 'status', 'list_id') VALUES ('', ?, ?, '', '', '','',?)");
 	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $tasklist);
@@ -99,7 +96,7 @@
         $response = $stmt->execute();
         printf("<br>List deleted!");
 	/*/
-	
+
   	//Remove finished tasks
 
 	/*/
