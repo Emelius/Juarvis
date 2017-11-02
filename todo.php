@@ -13,7 +13,7 @@
 	$list_id='';
 
 	//get and display all lists from DB
-	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'login_user'";
+	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'username'";
 	$result = mysqli_query($db, $sql);
 
 	while( $row = mysqli_fetch_assoc($result)){
@@ -28,15 +28,15 @@
 		$list_id = $value["list_id"];
 
 		//display all tasks
-		$sql2 = "SELECT taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'login_user'";
+		$sql2 = "SELECT taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
 		$result2 = mysqli_query($db, $sql2);
 
 		$taskname = "";
 		$task_id = "";
 
-		$stmt = $db->prepare("SELECT task_id FROM tasks WHERE list_id = '$list_id' ");
+		/*/$stmt = $db->prepare("SELECT task_id FROM tasks WHERE list_id = '$list_id' ");
 		$stmt->execute();
-		$stmt->bind_result($task_id);
+		$stmt->bind_result($task_id);/*/
 
 		if (mysqli_num_rows($result2) > 0) {
 
@@ -93,7 +93,7 @@
 			$tasklist = trim($_POST['tasklist']);
 
 	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, sdate, edate, list_id) VALUES (?, ?, ?, ?, ?)");
-	    $stmt->bind_param('ssiii', $newtask, $newtaskdesc, $newStartDate, $newEndDate, $tasklist);
+	    $stmt->bind_param('ssssi', $newtask, $newtaskdesc, $newStartDate, $newEndDate, $tasklist);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
 	    header("Refresh:0");
