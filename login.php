@@ -22,16 +22,17 @@
 		exit();
 	}
 
-	echo "SELECT username, password FROM users WHERE username = '$myusername'";
+	echo "SELECT user_id, username, password FROM users WHERE username = '$myusername'";
 
-	$stmt = $db->prepare("SELECT username, password FROM users WHERE username = ?");
+	$stmt = $db->prepare("SELECT user_id, username, password FROM users WHERE username = ?");
 	$stmt->bind_param('s', $myusername);
+	$stmt->bind_result($userid,$username, $password);
 	$stmt->execute();
-	$stmt->bind_result($username, $password);
+
 
 	while ($stmt->fetch()) {
 	if (sha1($mypassword) == $password){
-		$_SESSION['username'] = $myusername;
+		$_SESSION['username'] = $username;
 		$_SESSION['user_id'] = $userid;
 		ob_start();
 		header("location:main.php");

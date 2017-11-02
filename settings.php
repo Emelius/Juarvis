@@ -4,6 +4,7 @@
 	include 'session.php';?>
 <?php
 	//set session variables
+	echo $_SESSION['user_id'];
 	$userid = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
 
@@ -45,44 +46,49 @@
 
 	//check forms
 	if (isset($_POST) && !empty($_POST)) {
-		
+
 	//get data from form
 		$newusername = trim($_POST['newusername']);
 		$newpassword = trim($_POST['newpassword']);
 		$newemail = trim($_POST['newemail']);
 		$confirmpassword = trim($_POST['confirmpassword']);
-	
+
 	//check if email already exists in db
 	if ($newemail != "") {
+		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 		$sql = "SELECT email FROM users WHERE email = '$newemail'";
 		$result = $db->query($sql);
-		
+
 		if ($result->num_rows > 0){
 			echo "That email already exists!";
 			exit ();
 		}
 		else {
+			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 			$stmt = $db->prepare("UPDATE users SET email = '$newemail' WHERE user_id='$userid'");
 			$stmt->execute();
 		}
-		
+
 	}
 
 	//check if username already exists in db
 	if ($newusername != "") {
+		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 		$sql = "SELECT username FROM users WHERE username = '$newusername'";
 		$result = $db->query($sql);
-		
+
 		if ($result->num_rows > 0){
 			echo "That username already exists!";
 			exit();
 		}
 		else {
+			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+			echo "UPDATE users SET username = '$newusername' WHERE user_id='$userid'";
 			$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 	}
-	
+
 	//hash newpassword
 	$newpassword = sha1($newpassword);
 
@@ -93,23 +99,24 @@
 			exit();
 		}
 		else {
+			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 			$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
-			$stmt->execute();		
+			$stmt->execute();
 		}
 	}
-		
+
 	}
 
 	else {
 		echo "Please fill something out in the form.";
 	}
-	
+
 ?>
 
    <div class="settingsDiv">
         <h2>Settings<h2>
         <h3>Fill in the forms below to change your settings.</h3>
-        <form method="POST" action="settingsinsert.php" class="settingsForm">
+        <form method="POST" action="settings.php" class="settingsForm">
             <h4>Change Username</h4>
             <input type="text" name="newusername" value="<?php echo $currentusername ?>" placeholder="New Username" class="inputField"/>
             <h4>Change Password</h4>

@@ -66,8 +66,8 @@ $active_day='';
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
 
-  $date = $ym.'-0'.$day;
-
+  $date = $ym.'-'.$day;
+  echo "$today, $date";
   if($today == $date) {
     //echo "today is today";
       $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
