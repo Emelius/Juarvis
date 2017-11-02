@@ -120,7 +120,10 @@
 	<br>
 	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
 	<br>
-	
+	<input type="date" name="newStartDate" class="inputField">
+	<br>
+	<input type="date" name="newEndDate" class="inputField">
+	<br>
 
   <?php
 
