@@ -79,11 +79,15 @@
 	    $newtask = trim($_POST['newtask']);
 			$newtaskdesc = "";
 	    $newtaskdesc = trim($_POST['newtaskdesc']);
+			$newStartDate = "";
+			$newStartDate = trim($_POST['newStartDate']);
+			$newEndDate = "";
+			$newEndDate = trim($_POST['newEndDate']);
 			$tasklist = "";
 			$tasklist = trim($_POST['tasklist']);
 
-	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, list_id) VALUES (?, ?, ?)");
-	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $tasklist);
+	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, sdate, edate, list_id) VALUES (?, ?, ?, ?, ?)");
+	    $stmt->bind_param('ssiii', $newtask, $newtaskdesc, $newStartDate, $newEndDate, $tasklist);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
 	    header("Refresh:0");
