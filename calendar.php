@@ -18,10 +18,11 @@ $stmt->execute();
 $tasklist = array();
 
 while ($stmt->fetch()) {
-    printf("%s %s\n", $taskname, $edate);
-    $tasklist[] = array("taskname" => $taskname, "edate" => $edate);
-    printf("%d", $edate);
+    printf("%s %s", $taskname, date($edate));
+    $tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
+    printf("%d", strlen($edate));
 }
+
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 $test="hej";
