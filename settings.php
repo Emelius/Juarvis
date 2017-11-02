@@ -62,7 +62,7 @@
 			exit ();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (email) VALUES ('$newemail') WHERE user_id='$userid'");
+			$stmt = $db->prepare("UPDATE users SET email = '$newemail' WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 		
@@ -78,7 +78,7 @@
 			exit();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (username) VALUES ('$newusername') WHERE user_id='$userid'");
+			$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
 			$stmt->execute();
 		}
 	}
@@ -93,7 +93,7 @@
 			exit();
 		}
 		else {
-			$stmt = $db->prepare("INSERT INTO users (password) VALUES ('$newpassword') WHERE user_id='$userid'");
+			$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
 			$stmt->execute();		
 		}
 	}
