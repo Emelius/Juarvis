@@ -43,7 +43,7 @@
 	}
 	else {
 	      echo "0 results";
-	    }
+	}
 
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
@@ -54,7 +54,7 @@
 		exit();
 	    }
 
-		else {
+	else {
 	    # Get data from form
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
@@ -67,11 +67,8 @@
 	  }
 	}
 
-//selected list_id (when creating task) should end up in $newlistid
-
-
 	//Create new task for specific list
-if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
+	if (isset($_POST['submittask'])) {
 
 	    //If newlist is not set, write error message, it not continue
 	    if (empty($_POST['newtask'])) {
@@ -79,13 +76,15 @@ if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
 			exit();
 			}
 
-			else {
+		else {
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
+		$tasklist = "";
+		$tasklist = trim($_POST['tasklist']);
 
 	    $stmt = $db->prepare("INSERT INTO 'tasks' ('task_id', 'taskname', 'taskdesc', 'sdate', 'edate', 'rdate', 'status', 'list_id') VALUES ('', ?, ?, '', '', '','',?)");
-	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $newlistid);
+	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $tasklist);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
 	    header("Refresh:0");
@@ -94,13 +93,13 @@ if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
 
 	//Remove list and tasks with same list_id
 
-
-/*/
+	/*/
 	$stmt = $db->prepare("DELETE FROM `lists` WHERE list_id = ?");
         $stmt->bind_param('i', $list_id);
         $response = $stmt->execute();
         printf("<br>List deleted!");
-/*/
+	/*/
+	
   	//Remove finished tasks
 
 	/*/
@@ -113,8 +112,8 @@ if (isset($_POST['submittask']) /*/&& isset($_POST['tasklist'])/*/) {
 
 <form action="todo.php" method="POST">
 	<input type="text" name="newlist" placeholder="New List" class="inputField">
-  <br>
-  <input type="submit" name="submitlist" value="Add" class="button">
+	<br>
+	<input type="submit" name="submitlist" value="Add" class="button">
 </form>
 
 <form action="todo.php" method="POST">
