@@ -11,22 +11,21 @@ if ($db->connect_error) {
 $username = $_SESSION['username'];
 //echo "$username";
 $taskname ='nothing';
-$edate ='nothing';
-$stmt = $db ->prepare("SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username'");
+$edate ='no date';
+if (isset($_GET['active_day'])){
+  $active_day = date("Y-m-d", strtotime($_GET['active_day']));
+}
+else{
+  $active_day = date("Y-m-d");
+}
+$sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
+$stmt = $db ->prepare($sql);
 $stmt->bind_result($taskname, $edate);
 $stmt->execute();
 $tasklist = array();
 
-while ($stmt->fetch()) {
-    printf("%s %s", $taskname, date($edate));
-    $tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
-    printf("%d", strlen($edate));
-}
-
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
-$test="hej";
-echo ($taskname);
 
 //Get prev & next month
 if (isset($_GET['ym'])) {
@@ -43,6 +42,7 @@ if ($timestamp === false) {
 }
 //today
 $today = date('Y-m-d', time());
+
 
 //for h3 title
 $html_title = date('Y/m', $timestamp);
@@ -61,20 +61,22 @@ $str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
 $weeks = array();
 $week = '';
 
+$active_day='';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
-
 for ($day = 1; $day <= $day_count; $day++, $str++) {
 
-  $date = $ym.'-'.$day;
+  $date = $ym.'-0'.$day;
 
   if($today == $date) {
-      $week .='<td class="today"><a href="">'.$day ;
+    //echo "today is today";
+      $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
   } else {
-    $week .= '<td><a href="">'.$day;
- }
-  $week .= '</a></td>';
+    $week .= "<td><a href='?active_day=$ym-$day'>".$day;
 
+ }
+
+  $week .= '</a></td>';
   //End of the week OR End of the month
   if($str % 7 == 6 || $day == $day_count) {
 
@@ -88,6 +90,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     $week = '';
 
   }
+
 
 }
 
@@ -113,8 +116,15 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
       foreach($weeks as $week){
           echo $week;
       }
-
    ?>
 
  </table>
+ <?php
+ echo "Found some tasks for" .$active_day;
+   while ($stmt->fetch()) {
+        echo "<br />";
+        printf("%s  ", $taskname);
+         //$tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
+     }
+  ?>
 </div>
