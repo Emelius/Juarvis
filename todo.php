@@ -36,7 +36,7 @@
 
 				// output data of each row
 				while($row2 = mysqli_fetch_assoc($result2)) {
-						echo "". $row2["taskname"]. "<button>Delete task </button>";
+						echo "". $row2["taskname"]. "<input type='button' class='deletebutton' value='x'/>";
 						echo "<br><br>";
 				}
 			}
@@ -77,10 +77,12 @@
 	    # Get data from form
 	    $newtask = "";
 	    $newtask = trim($_POST['newtask']);
+			$newtaskdesc = "";
+	    $newtaskdesc = trim($_POST['newtaskdesc']);
 			$tasklist = "";
 			$tasklist = trim($_POST['tasklist']);
 
-	    $stmt = $db->prepare("INSERT INTO 'tasks' ('task_id', 'taskname', 'taskdesc', 'sdate', 'edate', 'rdate', 'status', 'list_id') VALUES ('', ?, ?, '', '', '','',?)");
+	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, list_id) VALUES (?, ?, ?)");
 	    $stmt->bind_param('ssi', $newtask, $newtaskdesc, $tasklist);
 	    $stmt->execute();
 	    printf("<br>Task Added!");
@@ -118,6 +120,7 @@
 	<br>
 	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
 	<br>
+	
 
   <?php
 
