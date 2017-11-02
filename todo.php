@@ -10,6 +10,7 @@
 		exit();
 	}
 
+	$list_id='';
 
 	//get and display all lists from DB
 	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'login_user'";
@@ -21,7 +22,7 @@
 
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
-		echo "<input type='button' class='deletebutton' value='x'/>";
+		echo "<button class='deletebutton' value='$list_id'>x</button>";
 		echo "<br>";
 
 		$list_id = $value["list_id"];
@@ -31,12 +32,17 @@
 		$result2 = mysqli_query($db, $sql2);
 
 		$taskname = "";
+		$task_id = "";
+
+		$stmt = $db->prepare("SELECT task_id FROM tasks WHERE list_id = '$list_id' ");
+		$stmt->execute();
+		$stmt->bind_result($task_id);
 
 		if (mysqli_num_rows($result2) > 0) {
 
 				// output data of each row
 				while($row2 = mysqli_fetch_assoc($result2)) {
-						echo "". $row2["taskname"]. "<input type='button' class='deletebutton' value='x'/>";
+						echo "". $row2["taskname"]. "<button class='deletebutton' value='$task_id'>x</button>";
 						echo "<br><br>";
 				}
 			}
@@ -94,23 +100,15 @@
 	  }
 	}
 
-	//Remove list and tasks with same list_id
-
+	//Remove list and tasks with same list_id if deletbutton is clicked
 	/*/
-	$stmt = $db->prepare("DELETE FROM `lists` WHERE list_id = ?");
+				$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$list_id'");
         $stmt->bind_param('i', $list_id);
         $response = $stmt->execute();
         printf("<br>List deleted!");
 	/*/
+  //Remove finished tasks
 
-  	//Remove finished tasks
-
-	/*/
-	$stmt = $db->prepare("DELETE FROM `tasks` WHERE task_id = ?");
-        $stmt->bind_param('i', $task_id);
-        $response = $stmt->execute();
-        printf("<br>Task deleted!");
-	/*/
 ?>
 
 <form action="todo.php" method="POST">
