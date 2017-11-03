@@ -22,7 +22,7 @@
 
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
-		echo "<button class='deletebutton' value='$list_id'>x</button>";
+		echo "<button name='deletelist' class='deletebutton' value='$list_id'>x</button>";
 		echo "<br>";
 
 		$list_id = $value["list_id"];
@@ -42,7 +42,7 @@
 
 				// output data of each row
 				while($row2 = mysqli_fetch_assoc($result2)) {
-						echo "". $row2["taskname"]. "<button class='deletebutton' value='$task_id'>x</button>";
+						echo "". $row2["taskname"]. "<button name'deletetask' class='deletebutton' value='$task_id'>x</button>";
 						echo "<br><br>";
 				}
 			}
