@@ -268,7 +268,8 @@ header {
 	padding:30px;
 	box-sizing: border-box;
 	overflow: scroll;
-	float:right;
+	float:left;
+	clear:left;
 }
 
 .select {
