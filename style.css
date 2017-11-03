@@ -191,6 +191,7 @@ header {
 	width: 100%;
 	position:fixed;
 	z-index: 10;
+	top: 0;
 }
 
 #headermenu ul li {
@@ -301,5 +302,4 @@ footer {
 	width:100%;
 	background-color:#fff;
 	border-top:2px #eee solid;
-	display:block;
 }
