@@ -1,5 +1,5 @@
 		<footer>
-			<h5>Juarvis inc. 2017</h5>
+			<h5>© 2017 Juarvis inc.</h5>
 		</footer>
 	</body>
 </html>

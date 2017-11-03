@@ -146,10 +146,10 @@
 
 ?>
 
-<h2>Add new list</h2>
+<h2>Create new list</h2>
 <form action="todo.php" method="POST">
 	<h3>List name</h3>
-	<input type="text" name="newlist" placeholder="New List" class="inputField">
+	<input type="text" name="newlist" placeholder="Add a list name" class="inputField">
 	<br>
 	<input type="submit" name="submitlist" value="Create" class="button">
 </form>
@@ -157,10 +157,10 @@
 <h2>Add new task</h2>
 <form action="todo.php" method="POST">
 	<h3>Task name</h3>
-	<input type="text" name="newtask" placeholder="Add Task" class="inputField">
+	<input type="text" name="newtask" placeholder="Add a task name" class="inputField">
 	<br>
 	<h3>Task description</h3>
-	<input type="text" name="newtaskdesc" placeholder="Task Description" class="inputField">
+	<input type="text" name="newtaskdesc" placeholder="Add a task description" class="inputField">
 	<br>
 	<h3>Start date</h3>
 	<input type="date" name="newStartDate" class="inputField">
@@ -174,9 +174,9 @@
   $sql3 = "SELECT list_id,listname FROM lists";
   $result3 = mysqli_query($db, $sql3);
 
-  echo "<select name='tasklist'>";
+  echo "<select class='select' name='tasklist'>";
   while ($row3 = mysqli_fetch_assoc($result3)) {
-      echo "<option value='" . $row3['list_id'] ."'>" .$row3['listname'] ."</option><br>";
+      echo "<option class='options' value='" . $row3['list_id'] ."'>" .$row3['listname'] ."</option><br>";
   }
   echo "</select>";
   ?>
