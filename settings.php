@@ -4,7 +4,6 @@
 	include 'session.php';?>
 <?php
 	//set session variables
-	echo $_SESSION['user_id'];
 	$userid = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
 
