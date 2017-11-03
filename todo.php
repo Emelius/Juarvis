@@ -42,7 +42,7 @@
 
 				// output data of each row
 				while($row2 = mysqli_fetch_assoc($result2)) {
-						echo "". $row2["taskname"]. "<button name'deletetask' class='deletebutton' value='$task_id'>x</button>";
+						echo "". $row2["taskname"]. "<button name='deletetask' class='deletebutton' value='$task_id'>x</button>";
 						echo "<br><br>";
 				}
 			}
