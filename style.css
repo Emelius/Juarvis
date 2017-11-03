@@ -1,4 +1,4 @@
-/*/ all pages /*/
+/*/ all pages#DA0F5F /*/
 
 body {
 	font-family: 'Source Sans Pro', sans-serif;
@@ -31,7 +31,7 @@ h4 {
 
 h5 {
 	font-size: 9pt;
-	color: #ddd;
+	color: #DA0F5F;
 	margin:0;
 }
 
@@ -272,49 +272,24 @@ header {
 }
 
 .select {
-	/* Size and position */
-	 position: relative; /* Enable absolute positioning for children and pseudo elements */
-	 width: 200px;
-	 padding: 10px;
-	 margin: 0 auto;
-
-	 /* Styles */
-	 background: #9bc7de;
-	 color: #fff;
-	 outline: none;
-	 cursor: pointer;
-
-	 /* Font settings */
-	 font-weight: bold;
+		outline: 0;
+    overflow: hidden;
+    height: 30px;
+    background: #fff;
+    color: #DA0F5F;
+    border: 1px solid #000;
+    padding: 5px 0px 7px 0px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 10px;
 }
 
-.select:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    margin-top: -6px;
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent #fff;
-}
 
 .options{
-	/* Size & position */
-	    position: absolute;
-	    top: 100%;
-	    left: 0; /* Size */
-	    right: 0; /* Size */
-
-	    /* Styles */
-	    background: #fff;
-	    font-weight: normal; /* Overwrites previous font-weight: bold; */
-
-	    /* Hiding */
-	    opacity: 0;
-	    pointer-events: none;
+	border: none;
+	background: #fff;
+	color: #DA0F5F;
+	transition: color .4s ease;
 }
 
 /****** Calendar ********/
