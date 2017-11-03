@@ -22,14 +22,17 @@
 
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
-
-		//deletes third list, how do we store the right list id
+//deletes third list, how do we store the right list id
 		$list_id = $value["list_id"];
 
 		echo "<form method='post' action'todo.php'>";
 		echo "<input type='submit' name='deletelist' value='x'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
+
+		echo "<br>";
+
+
 
 		//display all tasks
 		//$sql2 = "SELECT taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
