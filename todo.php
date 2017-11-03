@@ -51,7 +51,11 @@
 				while($row2 = mysqli_fetch_assoc($taskname)) {
 						echo "". $row2["taskname"]. "";
 
-						echo "<br>";
+						/*/
+						echo "<form method='post' action'todo.php'>";
+						echo "<input type='submit' name='deletetask' value='x'/>";
+						echo "<input type='hidden' name='id' value='$task_id'/>";
+						echo "</form>"; /*/
 
 				}
 			}
@@ -128,6 +132,17 @@
 
 
 //Remove specific task in a list if deletebutton is clicked
+
+	/*/if (isset($_POST['deletetask'])) {
+
+		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$task_id'");
+		//$stmt->bind_param('i', $list_id);
+		//$response = $stmt->execute();
+		$stmt->execute();
+
+		header("Refresh:0");
+	}
+	/*/
 
 ?>
 
