@@ -26,8 +26,8 @@
 		//deletes third list, how do we store the right list id
 		$list_id = $value["list_id"];
 
-		echo "<form method='post' action'todo.php'>";
-		echo "<input type='submit' name='deletelist' value='x'/>";
+		echo "<form method='post' action'main.php'>";
+		echo "<input type='submit' name='deletelist' value='X'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
 
@@ -47,7 +47,7 @@
 
 				$task_id = $value["task_id"];
 
-				echo "<form method='post' action'todo.php'>";
+				echo "<form method='post' action'main.php'>";
 				echo "<input type='submit' name='deletetask' value='x'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
@@ -112,14 +112,12 @@
 
 	if (isset($_POST['deletelist'])) {
 
-		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$list_id'");
-		//$stmt->bind_param('i', $list_id);
-		//$response = $stmt->execute();
+		$id = $_POST['id'];
+
+		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$id'");
 		$stmt->execute();
 
-		$stmt = $db->prepare ("DELETE FROM tasks WHERE list_id = '$list_id'");
-		//$stmt->bind_param('i', $list_id);
-		//$response = $stmt->execute();
+		$stmt = $db->prepare ("DELETE FROM tasks WHERE list_id = '$id'");
 		$stmt->execute();
 
 		header("Refresh:0");
@@ -128,21 +126,20 @@
 
 //Remove specific task in a list if deletebutton is clicked
 
-	/*/if (isset($_POST['deletetask'])) {
+	if (isset($_POST['deletetask'])) {
 
-		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$task_id'");
-		//$stmt->bind_param('i', $list_id);
-		//$response = $stmt->execute();
+		$id = $_POST['id'];
+
+		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
 		$stmt->execute();
 
 		header("Refresh:0");
 	}
-	/*/
 
 ?>
 
 <h2>Create new list</h2>
-<form action="todo.php" method="POST">
+<form action="main.php" method="POST">
 	<h3>List name</h3>
 	<input type="text" name="newlist" placeholder="Add a list name" class="inputField">
 	<br>
@@ -150,7 +147,7 @@
 </form>
 
 <h2>Add new task</h2>
-<form action="todo.php" method="POST">
+<form action="main.php" method="POST">
 	<h3>Task name</h3>
 	<input type="text" name="newtask" placeholder="Add a task name" class="inputField">
 	<br>
