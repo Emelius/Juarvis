@@ -3,22 +3,32 @@
 include("config.php");
 include("session.php");
 include 'header.php';
+
 ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+
 if ($db->connect_error) {
   echo "could not connect: " . $db->connect_error;
   exit();
 }
+
 $username = $_SESSION['username'];
 //echo "$username";
 $taskname ='nothing';
 $edate ='no date';
-if (isset($_GET['active_day'])){
+
+if (isset($_GET['active_day'])) {
   $active_day = date("Y-m-d", strtotime($_GET['active_day']));
-}
-else{
+  $ym = date("Y-m", strtotime($_GET['active_day']));
+} else if (isset($_GET['ym'])) {
   $active_day = date("Y-m-d");
+  $ym = $_GET['ym'];
+} else {
+  //this month
+  $active_day = date("Y-m-d");
+  $ym = date('Y-m');
 }
+
 $sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
 $stmt = $db ->prepare($sql);
 $stmt->bind_result($taskname, $edate);
@@ -29,12 +39,12 @@ $tasklist = array();
 date_default_timezone_set("Europe/Stockholm");
 
 //Get prev & next month
-if (isset($_GET['ym'])) {
+/*/if (isset($_GET['ym'])) {
   $ym = $_GET['ym'];
 } else {
   //this month
   $ym = date('Y-m');
-}
+}/*/
 
 //Check format
 $timestamp = strtotime($ym, "-01");
