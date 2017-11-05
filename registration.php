@@ -35,6 +35,10 @@ if (isset($_POST) && !empty($_POST)) {
     # Open the database
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+$newusername = mysqli_real_escape_string($db, $newusername);
+$newpassword = mysqli_real_escape_string($db, $newpassword);
+$newemail = mysqli_real_escape_string($db, $newemail);
+
     if ($db->connect_error) {
         echo "could not connect: " . $db->connect_error;
         printf("<br><a href=registration.php>Registration failed, try again</a>");

@@ -5,6 +5,7 @@
 	//establish db connection
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+
 	if ($db->connect_error) {
 		echo "could not connect: " . $db->connect_error;
 		exit();
@@ -134,6 +135,28 @@
 
 		header("Refresh:0");
 	}
+
+	/*/ //security myes, I need fixing myes
+	$newlist = addslashes($newlist);
+	$newtask = addslashes($newtask);
+	$newtaskdesc = addslashes($newtaskdesc);
+	$newStartDate = addslashes($newStartDate);
+	$newEndDate = addslashes($newEndDate);
+	$tasklist = addslashes($tasklist);
+
+	$newlist = htmlentities ($newlist);
+	$newtask = htmlentities ($newtask);
+	$newtaskdesc = htmlentities($newtaskdesc);
+	$newStartDate = htmlentities($newStartDate);
+	$newEndDate = htmlentities($newEndDate);
+	$tasklist = htmlentities ($tasklist);
+
+	$newlist = htmlentities ($db, $newlist);
+	$newtask = mysqli_real_escape_string($db, $newtask);
+	$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
+	$newStartDate = mysqli_real_escape_string($db, $newStartDate);
+	$newEndDate = mysqli_real_escape_string($db, $newEndDate);
+	$tasklist = mysqli_real_escape_string($db, $tasklist); /*/
 
 ?>
 

@@ -8,7 +8,7 @@
 	$username = $_SESSION['username'];
 
 	//establish db connection
-        @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+    @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
 		if ($db->connect_error) {
 			echo "could not connect: " . $db->connect_error;

@@ -106,7 +106,7 @@ select:-webkit-autofill:focus {
 .loginDiv {
 	margin:0 auto;
 	width:25%;
-	margin-top: 10%;
+	margin-top: 7%;
 }
 
 .loginDiv h1 {
@@ -177,7 +177,7 @@ select:-webkit-autofill:focus {
 .registrationDiv {
 	margin:0 auto;
 	width:25%;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 .registrationDiv h1 {
@@ -311,6 +311,7 @@ th {
 
 td {
 	font-weight:200px;
+	text-align:center;
 }
 
 td a {
