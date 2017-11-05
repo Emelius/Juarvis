@@ -111,7 +111,7 @@
 	//Remove list and tasks with same list_id if deletebutton is clicked
 
 	if (isset($_POST['deletelist'])) {
-
+		//hidden id is used to determine which list should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$id'");
@@ -127,7 +127,7 @@
 //Remove specific task in a list if deletebutton is clicked
 
 	if (isset($_POST['deletetask'])) {
-
+		//hidden id is used to determine which task should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
