@@ -13,18 +13,19 @@ if ($db->connect_error) {
 }
 
 $username = $_SESSION['username'];
-//echo "$username";
+
 $taskname ='nothing';
 $edate ='no date';
 
 if (isset($_GET['active_day'])) {
+  //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
   $active_day = date("Y-m-d", strtotime($_GET['active_day']));
   $ym = date("Y-m", strtotime($_GET['active_day']));
 } else if (isset($_GET['ym'])) {
   $active_day = date("Y-m-d");
   $ym = $_GET['ym'];
 } else {
-  //this month
+  //if user has not clicked on a day, set active day and ym variable to this month
   $active_day = date("Y-m-d");
   $ym = date('Y-m');
 }

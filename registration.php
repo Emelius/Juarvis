@@ -5,7 +5,7 @@
 
 <?php
 if (isset($_POST) && !empty($_POST)) {
-    // This is the postback so add the book to the database
+
     # Get data from form
     $newusername = "";
     $newpassword = "";
@@ -15,15 +15,17 @@ if (isset($_POST) && !empty($_POST)) {
     $newpassword = trim($_POST['password']);
     $newemail = trim($_POST['email']);
 
+		//hash the new password
     $newpassword = sha1($newpassword);
 
-
+		//if username, password, email are not filled in print error message
     if (!$newusername || !$newpassword || !$newemail) {
         printf("You must specify both username, email and a password");
         printf("<br><a href=registration.php>Try again</a>");
         exit();
     }
 
+		//security for forms
     $newusername = addslashes($newusername);
     $newemail = addslashes($newemail);
     $newpassword = addslashes($newpassword);
@@ -32,20 +34,22 @@ if (isset($_POST) && !empty($_POST)) {
     $newemail = htmlentities($newemail);
     $newpassword = htmlentities($newpassword);
 
-    # Open the database
-@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+    //connect to database
+		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
-$newusername = mysqli_real_escape_string($db, $newusername);
-$newpassword = mysqli_real_escape_string($db, $newpassword);
-$newemail = mysqli_real_escape_string($db, $newemail);
+		$newusername = mysqli_real_escape_string($db, $newusername);
+		$newpassword = mysqli_real_escape_string($db, $newpassword);
+		$newemail = mysqli_real_escape_string($db, $newemail);
 
+		//error message if could not connect to db
     if ($db->connect_error) {
         echo "could not connect: " . $db->connect_error;
         printf("<br><a href=registration.php>Registration failed, try again</a>");
         exit();
     }
 
-    // Prepare an insert statement and execute it
+    //Prepare an sql insert statement and execute it
+		//insert the new username, password and email to db in the table users
     $stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
     $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
@@ -60,8 +64,8 @@ $newemail = mysqli_real_escape_string($db, $newemail);
             <img src="img/juarvis.png" alt="logo" id="logo"/>
             <h1>Juárvis</h1>
             <h2>Register now to get started!</h2>
-			<h3>Fill in your details below to sign up.</h3>
 
+						<h3>Fill in your details below to sign up.</h3>
             <form class="registrationForm" action="registration.php" method="POST">
                 <input type="text" name="username" placeholder="Username" class="inputField">
                 <br>
