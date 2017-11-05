@@ -17,12 +17,13 @@
 	$result = mysqli_query($db, $sql);
 
 	while( $row = mysqli_fetch_assoc($result)){
-    $new_array[] = $row; // Inside while loop
+    $new_array[] = $row;
 	}
 
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
-//deletes third list, how do we store the right list id
+
+		//deletes third list, how do we store the right list id
 		$list_id = $value["list_id"];
 
 		echo "<form method='post' action'todo.php'>";
@@ -32,35 +33,29 @@
 
 		echo "<br>";
 
+ 		//first check if there are tasks with list id
+		$taskSql = "SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
+		$tasksRes = $db->query($taskSql);
 
-
-		//display all tasks
-		//$sql2 = "SELECT taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
-		//$result2 = mysqli_query($db, $sql2);
-
-		$taskname = "";
-		$task_id = "";
-
-		$stmt = $db->prepare("SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' ");
-		$stmt->execute();
-		$stmt->bind_result($task_id, $taskname);
-
-		if (mysqli_num_rows($taskname) > 0) {
-
-				// output data of each row
-				while($row2 = mysqli_fetch_assoc($taskname)) {
-						echo "". $row2["taskname"]. "";
-
-						/*/
-						echo "<form method='post' action'todo.php'>";
-						echo "<input type='submit' name='deletetask' value='x'/>";
-						echo "<input type='hidden' name='id' value='$task_id'/>";
-						echo "</form>"; /*/
-
-				}
+		if($tasksRes->num_rows > 0) {
+			while($row = mysqli_fetch_assoc($tasksRes)){
+				$new_task_array[] = $row;
 			}
-		}
 
+			foreach ($new_task_array as $value) {
+				print_r($value["taskname"]);
+
+				$task_id = $value["task_id"];
+
+				echo "<form method='post' action'todo.php'>";
+				echo "<input type='submit' name='deletetask' value='x'/>";
+				echo "<input type='hidden' name='id' value='$task_id'/>";
+				echo "</form>";
+
+				echo "<br>";
+			}
+ 		}
+	}
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
 
