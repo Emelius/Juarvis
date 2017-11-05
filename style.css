@@ -26,7 +26,8 @@ h3 {
 }
 
 h4 {
-	color: #DA0F5F;
+	font-size: 13pt;
+	margin:0;
 }
 
 h5 {
@@ -208,6 +209,11 @@ header {
 	top: 0;
 }
 
+.spacer
+{
+    width: 100%;
+}
+
 #headermenu ul li {
 	float:left;
 	list-style: none;
@@ -248,7 +254,8 @@ header {
 /*/Settings/*/
 
 .settingsDiv {
-	width:25%;
+	width:50%;
+	margin:0 auto;
 }
 
 .settingsDiv h3 {
@@ -275,22 +282,15 @@ header {
 .select {
 		outline: 0;
     overflow: hidden;
-    height: 30px;
+    width: 100%;
     background: #fff;
-    color: #DA0F5F;
+    color: #000;
     border: 1px solid #000;
-    padding: 5px 0px 7px 0px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 10px;
-}
-
-
-.options{
-	border: none;
-	background: #fff;
-	color: #DA0F5F;
-	transition: color .4s ease;
+    padding: 10px 0px 7px 0px;
+    border-radius: 30px;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		font-size: 12pt;
 }
 
 /****** Calendar ********/
@@ -341,5 +341,4 @@ footer {
 	border-top:1px #eee solid;
 	float:left;
 	text-align: center;
-	margin:0;
 }

@@ -23,15 +23,12 @@
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
 
-		//deletes third list, how do we store the right list id
 		$list_id = $value["list_id"];
 
 		echo "<form method='post' action'main.php'>";
 		echo "<input type='submit' name='deletelist' value='X'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
-
-		echo "<br>";
 
  		//first check if there are tasks with list id
 		$taskSql = "SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
@@ -40,8 +37,9 @@
 		if($tasksRes->num_rows > 0) {
 			while($row = mysqli_fetch_assoc($tasksRes)){
 				$new_task_array[] = $row;
-			}
 
+}
+			//get and display all tasks
 			foreach ($new_task_array as $value) {
 				print_r($value["taskname"]);
 
@@ -70,6 +68,7 @@
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
 
+		//add list to db
 		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
 		$stmt->bind_param('s', $newlist);
 		$stmt->execute();
@@ -108,7 +107,7 @@
 	  }
 	}
 
-	//Remove list and tasks with same list_id if deletbutton is clicked
+	//Remove list and tasks with same list_id if deletebutton is clicked
 
 	if (isset($_POST['deletelist'])) {
 
