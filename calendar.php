@@ -1,7 +1,8 @@
 <!doctype html>
 <?php
 include("config.php");
-//include("session.php");
+include("session.php");
+include 'header.php';
 ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 if ($db->connect_error) {
@@ -18,11 +19,7 @@ if (isset($_GET['active_day'])){
 else{
   $active_day = date("Y-m-d");
 }
-$sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
-$stmt = $db ->prepare($sql);
-$stmt->bind_result($taskname, $edate);
-$stmt->execute();
-$tasklist = array();
+
 
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
@@ -30,6 +27,7 @@ date_default_timezone_set("Europe/Stockholm");
 //Get prev & next month
 if (isset($_GET['ym'])) {
   $ym = $_GET['ym'];
+  //$active_day = $_GET['active_day'];
 } else {
   //this month
   $ym = date('Y-m');
@@ -55,24 +53,24 @@ $next = date('Y-m', mktime(0,0,0, date('m',$timestamp)+1, 1, date('Y',$timestamp
 $day_count = date('t', $timestamp);
 
 //0:sun, 1:mon, 2:tues ...
-$str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
+$str = date('w', mktime(0,0,0, date('m',$timestamp), 0, date('Y',$timestamp)));
 
 //Create calendar
 $weeks = array();
 $week = '';
 
-$active_day='';
+//$active_day='';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
 
-  $date = $ym.'-'.$day;
+  $date = $ym.'-0'.$day;
   //echo "$today, $date";
   if($today == $date) {
     //echo "today is today";
-      $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
+      $week .="<td class='today'><a href='?ym=$ym-$day'>".$day;
   } else {
-    $week .= "<td><a href='?active_day=$ym-$day'>".$day;
+    $week .= "<td><a href='?ym=$ym-$day'>".$day;
 
  }
 
@@ -90,7 +88,11 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     $week = '';
 
   }
-
+  $sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$ym-$day' ";
+  $stmt = $db ->prepare($sql);
+  $stmt->bind_result($taskname, $edate);
+  $stmt->execute();
+  $tasklist = array();
 
 }
 
