@@ -2,7 +2,7 @@
 	include "config.php";
 	include "head.php";
 
-
+//checks if a session is started
 	if (session_status() == PHP_SESSION_NONE) {
 	    session_start();
 	}
@@ -28,7 +28,7 @@
 		exit();
 	}
 
-	
+
 
 	$stmt = $db->prepare("SELECT user_id, username, password FROM users WHERE username = ?");
 	$stmt->bind_param('s', $myusername);
