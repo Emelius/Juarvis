@@ -2,7 +2,7 @@
 <?php
 include("config.php");
 include("session.php");
-include 'header.php';
+//include 'header.php';
 
 ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
@@ -28,6 +28,8 @@ if (isset($_GET['active_day'])) {
   $active_day = date("Y-m-d");
   $ym = date('Y-m');
 }
+
+
 
 $sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
 $stmt = $db ->prepare($sql);
@@ -72,18 +74,21 @@ $str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
 $weeks = array();
 $week = '';
 
-$active_day='';
+//$active_day='';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
-
+  $ymd= $ym."-0" .$day;
   $date = $ym.'-0'.$day;
   //echo "$today, $date";
   if($today == $date) {
     //echo "today is today";
       $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
-  } else {
-    $week .= "<td><a href='?active_day=$ym-$day'>".$day;
+  }
+
+
+   else {
+    $week .= "<td class=<?php echo ($current_page=='about_us.php')? 'active':NULL?>"><a href='?active_day=$ym-$day'>".$day;
 
  }
 
