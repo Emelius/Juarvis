@@ -57,7 +57,7 @@ $str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
 //Create calendar
 $weeks = array();
 $week = '';
-$active_day='';
+//$active_day='';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
@@ -80,6 +80,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     $week = '';
   }
 }
+
 ?>
 <div class="calendardiv">
   <h3>
@@ -106,7 +107,8 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
 
  </table>
  <?php
- echo "<h3> Found some tasks </h3>" .$active_day;
+
+ echo "<h3> Found some tasks for " .$active_day."</h3>";
    while ($stmt->fetch()) {
         echo "<br />";
         printf("%s  ", $taskname);
