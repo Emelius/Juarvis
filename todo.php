@@ -5,6 +5,7 @@
 	//establish db connection
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+
 	if ($db->connect_error) {
 		echo "could not connect: " . $db->connect_error;
 		exit();
@@ -23,15 +24,12 @@
 	foreach ($new_array as $value) {
 		print_r($value["listname"]);
 
-		//deletes third list, how do we store the right list id
 		$list_id = $value["list_id"];
 
 		echo "<form method='post' action'main.php'>";
 		echo "<input type='submit' name='deletelist' value='X'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
-
-		echo "<br>";
 
  		//first check if there are tasks with list id
 		$taskSql = "SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
@@ -40,8 +38,9 @@
 		if($tasksRes->num_rows > 0) {
 			while($row = mysqli_fetch_assoc($tasksRes)){
 				$new_task_array[] = $row;
-			}
 
+}
+			//get and display all tasks
 			foreach ($new_task_array as $value) {
 				print_r($value["taskname"]);
 
@@ -70,6 +69,7 @@
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
 
+		//add list to db
 		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
 		$stmt->bind_param('s', $newlist);
 		$stmt->execute();
@@ -108,10 +108,10 @@
 	  }
 	}
 
-	//Remove list and tasks with same list_id if deletbutton is clicked
+	//Remove list and tasks with same list_id if deletebutton is clicked
 
 	if (isset($_POST['deletelist'])) {
-
+		//hidden id is used to determine which list should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$id'");
@@ -127,7 +127,7 @@
 //Remove specific task in a list if deletebutton is clicked
 
 	if (isset($_POST['deletetask'])) {
-
+		//hidden id is used to determine which task should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
@@ -135,6 +135,28 @@
 
 		header("Refresh:0");
 	}
+
+	/*/ //security myes, I need fixing myes
+	$newlist = addslashes($newlist);
+	$newtask = addslashes($newtask);
+	$newtaskdesc = addslashes($newtaskdesc);
+	$newStartDate = addslashes($newStartDate);
+	$newEndDate = addslashes($newEndDate);
+	$tasklist = addslashes($tasklist);
+
+	$newlist = htmlentities ($newlist);
+	$newtask = htmlentities ($newtask);
+	$newtaskdesc = htmlentities($newtaskdesc);
+	$newStartDate = htmlentities($newStartDate);
+	$newEndDate = htmlentities($newEndDate);
+	$tasklist = htmlentities ($tasklist);
+
+	$newlist = htmlentities ($db, $newlist);
+	$newtask = mysqli_real_escape_string($db, $newtask);
+	$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
+	$newStartDate = mysqli_real_escape_string($db, $newStartDate);
+	$newEndDate = mysqli_real_escape_string($db, $newEndDate);
+	$tasklist = mysqli_real_escape_string($db, $tasklist); /*/
 
 ?>
 

@@ -13,9 +13,12 @@
             <img src='img/juarvis_white.png' alt="logo" id="logo_header"/>
             <nav id='headermenu'>
                 <ul>
-                    <li><a href="settings.php">Settings</a></li>
                     <li><a href="main.php">Home</a></li>
+                    <li><a href="settings.php">Settings</a></li>
                 </ul>
             </nav>
             <a id='logout' href="logout.php">Log out</a>
     	</header>
+      <div class="spacer">
+        &nbsp;
+      </div>

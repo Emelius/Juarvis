@@ -15,7 +15,13 @@
 		$myusername =  stripslashes($_POST['myusername']);
 		$mypassword =  stripslashes($_POST['mypassword']);
 
+		$myusername = htmlentities($_POST['myusername']);
+		$mypassword = htmlentities($_POST['mypassword']);
+
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+
+	$myusername = mysqli_real_escape_string($db, $myusername);
+	$mypassword = mysqli_real_escape_string($db, $mypassword);
 
 	if ($db->connect_error) {
 		echo "could not connect: " . $db->connect_error;
