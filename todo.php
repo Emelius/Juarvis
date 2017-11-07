@@ -5,19 +5,22 @@
 	//establish db connection
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
-
+	//error message if no connection to db
 	if ($db->connect_error) {
 		echo "could not connect: " . $db->connect_error;
 		exit();
 	}
 
 	//create tabbuttons for each list
+	//declare the variables here so that they are global
 	$listname='';
 	$list_id='';
 
 	$sql1 = "SELECT listname, list_id FROM lists"; //where user_id = 'username'";
 	$result1 = mysqli_query($db, $sql1);
 
+	//fetch the result from our query as an "associative array" and place into row and set this to our new list array
+	//we are doing this so that we can go through the query result in an easier way and select and set values to new variables to be used later
 	while( $row = mysqli_fetch_assoc($result1)){
     $list_array[] = $row;
 	}
@@ -26,7 +29,10 @@
 		$listname = $value["listname"];
 		$list_id = $value["list_id"];
 ?>
+
+<!--We exit php here and create the button in html to solve a problem with ''-->
 	<button class='listTab' onclick='openList(event,"l<?php echo $list_id ?>")' ><?php echo $listname ?></button>
+
 <?php
 
 	}
@@ -47,12 +53,15 @@
 
 		$list_id = $value["list_id"];
 		echo "<div class='listContent' id='l$list_id'>";
-		print_r($value["listname"]);
 
-		echo "\n<form method='post' action='main.php'>";
-		echo "\n<input type='submit' name='deletelist' value='X'/>";
-		echo "\n<input type='hidden' name='id' value='$list_id'/>";
-		echo "\n</form>";
+		echo "<h3>";
+		print_r($value["listname"]);
+		echo "</h3>";
+
+		echo "<form method='post' action='main.php'>";
+		echo "<input type='submit' name='deletelist' value='X'/>";
+		echo "<input type='hidden' name='id' value='$list_id'/>";
+		echo "</form>";
 
  		//first check if there are tasks with list id
 		$taskSql = "SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
@@ -63,7 +72,7 @@
 				$new_task_array[] = $row;
 
 }
-			//get and display all tasks
+			//for the array, get and display all tasknames (this is the 'value' in the array)
 			foreach ($new_task_array as $value) {
 				print_r($value["taskname"]);
 
@@ -82,6 +91,7 @@
 	echo "</div>";
 ?>
 
+<!--Javascript for when we display the lists and tasks-->
 	<script type="text/javascript">
 
 	function openList(event,list_id) {
@@ -102,14 +112,7 @@
 
 			document.getElementById(list_id).style.display='block';
 
-	    // // Get all elements with class listTab and remove the class "active"
-	    // listTab = document.getElementsByClassName("listTab");
-	    // for (i = 0; i < listTab.length; i++) {
-	    //     listTab[i].className = listTab[i].className.replace("currentList", "");
-	    // }
-			//
-	    // // Show the current tab, and add an "active" class to the button that opened the tab
-	    // document.getElementsByClassName(list_id).style.display = "block";
+	    //Show the current tab, and add an "active" class called currentList to the button that opened the tab
 	    event.currentTarget.classList.add("currentList");
 	}
 	</script>
@@ -146,7 +149,7 @@
 	//Create new task for specific list
 	if (isset($_POST['submittask'])) {
 
-	    //If newlist is not set, write error message, it not continue
+	    //If newlist is not set, write error message, and do not continue with code
 	    if (empty($_POST['newtask'])) {
 			printf("You must add a task, try again.");
 			exit();
@@ -184,6 +187,7 @@
 			$newEndDate = mysqli_real_escape_string($db, $newEndDate);
 			$tasklist = mysqli_real_escape_string($db, $tasklist);
 
+			//insert tasks into db in the correct way and print out task added!
 	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, sdate, edate, list_id) VALUES (?, ?, ?, ?, ?)");
 	    $stmt->bind_param('ssssi', $newtask, $newtaskdesc, $newStartDate, $newEndDate, $tasklist);
 	    $stmt->execute();
@@ -195,7 +199,8 @@
 	//Remove list and tasks with same list_id if deletebutton is clicked
 
 	if (isset($_POST['deletelist'])) {
-		//hidden id is used to determine which list should be deleted
+
+		//hidden id from the echo:d form is used to determine which list should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$id'");
@@ -211,7 +216,8 @@
 //Remove specific task in a list if deletebutton is clicked
 
 	if (isset($_POST['deletetask'])) {
-		//hidden id is used to determine which task should be deleted
+
+		//hidden id from the echo:d form is used to determine which task should be deleted
 		$id = $_POST['id'];
 
 		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
