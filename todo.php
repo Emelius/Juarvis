@@ -38,7 +38,7 @@
 	}
 
 	foreach ($new_array as $value) {
-		echo "<div id='listContent'>";
+		echo "<div class='listContent'>";
 		print_r($value["listname"]);
 
 		$list_id = $value["list_id"];

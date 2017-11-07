@@ -1,21 +1,20 @@
-function openList(evt, cityName) {
+function openList(evt, listname) {
     // Declare all variables
-    var i, tabcontent, tablinks;
+    var i, listContent, listTab;
 
-    // Get all elements with class="taskcontent" and hide them
-    tabcontent = document.getElementsByClassName("taskcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+    // Get all elements with class listContent and hide them
+    listContent = document.getElementsByClassName("listContent");
+    for (i = 0; i < listContent.length; i++) {
+        listContent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    // Get all elements with class listTab and remove the class "active"
+    listTab = document.getElementsByClassName("listTab");
+    for (i = 0; i < listTab.length; i++) {
+        listTab[i].className = listTab[i].className.replace("active", "");
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementsByClassName(listContent).style.display = "block";
+    evt.currentTarget.className += "active";
 }
-Try it Yourself »
