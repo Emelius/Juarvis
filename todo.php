@@ -1,6 +1,6 @@
 <div class='tododiv'>
 <?php
-	include 'config.php';
+
 
 	//establish db connection
 	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
@@ -13,8 +13,9 @@
 
 	//create tabbuttons for each list
 	$listname='';
+	$list_id='';
 
-	$sql1 = "SELECT listname FROM lists"; //where user_id = 'username'";
+	$sql1 = "SELECT listname, list_id FROM lists"; //where user_id = 'username'";
 	$result1 = mysqli_query($db, $sql1);
 
 	while( $row = mysqli_fetch_assoc($result1)){
@@ -23,12 +24,13 @@
 	echo "<div id='tabDiv'>";
 	foreach ($list_array as $value) {
 		$listname = $value["listname"];
+		$list_id = $value["list_id"];
 
-		echo "<button class='listTab' onclick='openList(click, '$listname')' >$listname</button>";
+		echo "<button class='listTab' onclick='openList("; echo"'l$list_id')' >$listname</button>";
 	}
 	echo "</div>";
 
-
+	echo "<div id='listParent'>";
 	//get and display all lists from DB
 	$list_id='';
 
@@ -41,15 +43,14 @@
 
 	foreach ($new_array as $value) {
 
-		echo "<div class='listContent'>";
+		$list_id = $value["list_id"];
+		echo "<div class='listContent' id='l$list_id'>";
 		print_r($value["listname"]);
 
-		$list_id = $value["list_id"];
-
-		echo "<form method='post' action'main.php'>";
-		echo "<input type='submit' name='deletelist' value='X'/>";
-		echo "<input type='hidden' name='id' value='$list_id'/>";
-		echo "</form>";
+		echo "\n<form method='post' action='main.php'>";
+		echo "\n<input type='submit' name='deletelist' value='X'/>";
+		echo "\n<input type='hidden' name='id' value='$list_id'/>";
+		echo "\n</form>";
 
  		//first check if there are tasks with list id
 		$taskSql = "SELECT task_id, taskname FROM tasks WHERE list_id = '$list_id' "; //and user_id = 'username'";
@@ -66,7 +67,7 @@
 
 				$task_id = $value["task_id"];
 
-				echo "<form method='post' action'main.php'>";
+				echo "<form method='post' action='main.php'>";
 				echo "<input type='submit' name='deletetask' value='x'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
@@ -76,29 +77,34 @@
  		}
 		echo "</div>";
 	}
+	echo "</div>";
 ?>
 
 	<script type="text/javascript">
 
-	function openList(event, <?php $listname ?>) {
+	function openList(list_id) {
 	    // Declare all variables
 	    var i, listContent, listTab;
 
+			var lp= document.getElementById('listParent');
+
 	    // Get all elements with class listContent and hide them
-	    listContent = document.getElementsByClassName("listContent");
-	    for (i = 0; i < listContent.length; i++) {
-	        listContent[i].style.display = "none";
+	    //listContent = document.getElementsByClassName("listContent");
+	    for (i = 0; i < lp.length; i++) {
+				lp.children[i].style.display='none';
 	    }
 
-	    // Get all elements with class listTab and remove the class "active"
-	    listTab = document.getElementsByClassName("listTab");
-	    for (i = 0; i < listTab.length; i++) {
-	        listTab[i].className = listTab[i].className.replace("currentList", "");
-	    }
+			document.getElementById(list_id).style.display='block';
 
-	    // Show the current tab, and add an "active" class to the button that opened the tab
-	    document.getElementsByClassName("listContent").style.display = "block";
-	    event.currentTarget.className += "currentList";
+	    // // Get all elements with class listTab and remove the class "active"
+	    // listTab = document.getElementsByClassName("listTab");
+	    // for (i = 0; i < listTab.length; i++) {
+	    //     listTab[i].className = listTab[i].className.replace("currentList", "");
+	    // }
+			//
+	    // // Show the current tab, and add an "active" class to the button that opened the tab
+	    // document.getElementsByClassName(list_id).style.display = "block";
+	    // event.currentTarget.className += "currentList";
 	}
 	</script>
 

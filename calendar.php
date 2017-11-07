@@ -14,6 +14,9 @@ $taskname ='nothing';
 $edate ='no date';
 if (isset($_GET['active_day'])) {
   //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
+  //today
+  $today = date('Y-m-d', time());
+
   $active_day = date("Y-m-d", strtotime($_GET['active_day']));
   $ym = date("Y-m", strtotime($_GET['active_day']));
 } else if (isset($_GET['ym'])) {
@@ -43,8 +46,7 @@ $timestamp = strtotime($ym, "-01");
 if ($timestamp === false) {
   $timestamp = time();
 }
-//today
-$today = date('Y-m-d', time());
+
 //for h3 title
 $html_title = date('Y/m', $timestamp);
 //Create prev & next month link mktime(hour, minute, second, month, day, year)
@@ -61,12 +63,17 @@ $week = '';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
-  $date = $ym.'-0'.$day;
+  $day2 = sprintf("%02d", $day);
+  $date = $ym.'-'.$day2;
   //echo "$today, $date";
-  if($today == $date) {
+  if($active_day == $date) {
     //echo "today is today";
-      $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
-  } else {
+
+      $week .="<td class='clickedday'><a href='?active_day=$ym-$day'>".$day;
+  } else if ($today == $date){
+
+$week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
+    }else {
     $week .= "<td><a href='?active_day=$ym-$day'>".$day;
  }
   $week .= '</a></td>';
