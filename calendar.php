@@ -3,12 +3,14 @@
 include("config.php");
 include("session.php");
 ob_start();
+
 //Database connection
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 if ($db->connect_error) {
   echo "could not connect: " . $db->connect_error;
   exit();
 }
+
 //sets $username = to the username thats used to login from session
 $username = $_SESSION['username'];
 $taskname ='nothing';
@@ -16,7 +18,7 @@ $edate ='no date';
 //checks if the url is ending on ex: active_day=2017-12-01. if true the selected date from the user is saved in a correct way.
 if (isset($_GET['active_day'])) {
   //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
-  //today
+  //always set today to todays date
   $today = date('Y-m-d', time());
   $active_day = date("Y-m-d", strtotime($_GET['active_day']));
   $ym = date("Y-m", strtotime($_GET['active_day']));
