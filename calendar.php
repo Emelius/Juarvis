@@ -2,7 +2,7 @@
 <?php
 include("config.php");
 include("session.php");
-include 'header.php';
+
 ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 if ($db->connect_error) {

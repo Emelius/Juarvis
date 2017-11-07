@@ -10,7 +10,7 @@
     </head>
     <body>
     	<header>
-            <img src='img/juarvis_white.png' alt="logo" id="logo_header"/>
+            <a href="main.php"><img src='img/juarvis_white.png' alt="logo" id="logo_header"/></a>
             <nav id='headermenu'>
                 <ul>
                     <li><a class="<?php echo ($current_page == 'main.php')? 'active' :NULL?>" href="main.php">Home</a></li>
