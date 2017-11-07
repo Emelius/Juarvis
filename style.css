@@ -210,13 +210,6 @@ header {
 	top: 0;
 }
 
-
-
-.spacer
-{
-    width: 100%;
-}
-
 #headermenu ul li {
 	float:left;
 	list-style: none;
@@ -295,17 +288,20 @@ header {
 }
 
 .listTab {
-	background-color: inherit;
+	background-color: #DA0F5F;
+	border-radius: 4px;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
   transition: all .4s ease;
+	margin-right:10px;
+	color:white;
 }
 
 .listTab:hover {
-	background-color:#DA0F5F;
+	background-color:#000;
 	color:white;
 	border-radius: 4px;
 }
@@ -314,6 +310,14 @@ header {
 	background-color:#000;
 	color:white;
 	border-radius: 4px;
+	border: none;
+	outline: none;
+
+}
+
+.currentList:focus {
+	outline: none;
+
 }
 
 .listContent{
