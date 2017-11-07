@@ -59,7 +59,7 @@
 		echo "</h3>";
 
 		echo "<form method='post' action='main.php'>";
-		echo "<input class='deleteButton' type='submit' name='deletelist' value='x'/>";
+		echo "<input class='deleteButton' type='submit' name='deletelist' value='remove'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
 
