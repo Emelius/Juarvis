@@ -210,6 +210,8 @@ header {
 	top: 0;
 }
 
+
+
 .spacer
 {
     width: 100%;
@@ -228,6 +230,9 @@ header {
 	font-size: 12pt;
 	transition: color .4s ease;
 	margin:0;
+}
+#headermenu .active{
+	color: black;
 }
 
 #headermenu ul li a:hover {
@@ -251,6 +256,7 @@ header {
 	margin:10px;
 	float:left;
 }
+
 
 /*/Settings/*/
 
@@ -305,8 +311,6 @@ header {
 .listTab.active {
 	border: 1px solid #000;
 }
-
-hej
 
 .listContent{
 		display: none !important;

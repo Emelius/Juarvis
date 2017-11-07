@@ -1,7 +1,9 @@
 <?php
 
-//$url = $_SERVER['REQUEST_URI'];
-//$strings = explode('/', $url);
+$url = $_SERVER['REQUEST_URI'];
+$strings = explode('/', $url);
+$current_page = end($strings);
+
 
 $dbname = 'juarvis';
 $dbuser = 'root';
