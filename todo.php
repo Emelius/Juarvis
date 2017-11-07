@@ -59,7 +59,7 @@
 		echo "</h3>";
 
 		echo "<form method='post' action='main.php'>";
-		echo "<input type='submit' name='deletelist' value='X'/>";
+		echo "<input class='deleteButton' type='submit' name='deletelist' value='x'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
 
@@ -79,11 +79,10 @@
 				$task_id = $value["task_id"];
 
 				echo "<form method='post' action='main.php'>";
-				echo "<input type='submit' name='deletetask' value='x'/>";
+				echo "<input class='deleteButton' type='submit' name='deletetask' value='x'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
 
-				echo "<br>";
 			}
  		}
 		echo "</div>";
@@ -255,6 +254,7 @@
 	<input type="date" name="newEndDate" class="inputField">
 	<br>
 	<h3>Select list</h3>
+	<br>
   <?php
 
   $sql3 = "SELECT list_id,listname FROM lists";

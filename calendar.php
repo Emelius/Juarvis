@@ -97,11 +97,11 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
 
 ?>
 <div class="calendardiv">
-  <h3>
+  <h2>
     <a href="?ym=<?php echo $prev; ?>"> &lt;<a/>
       <?php echo $html_title; ?>
     <a href="?ym=<?php echo $next; ?>"> &gt;</a>
-  <h3>
+  <h2>
   <br>
   <table class="table table-bordered">
     <tr>
