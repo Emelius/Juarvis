@@ -2,21 +2,16 @@
 <?php
 include("config.php");
 include("session.php");
-//include 'header.php';
-
+include 'header.php';
 ob_start();
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-
 if ($db->connect_error) {
   echo "could not connect: " . $db->connect_error;
   exit();
 }
-
 $username = $_SESSION['username'];
-
 $taskname ='nothing';
 $edate ='no date';
-
 if (isset($_GET['active_day'])) {
   //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
   $active_day = date("Y-m-d", strtotime($_GET['active_day']));
@@ -29,18 +24,13 @@ if (isset($_GET['active_day'])) {
   $active_day = date("Y-m-d");
   $ym = date('Y-m');
 }
-
-
-
 $sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
 $stmt = $db ->prepare($sql);
 $stmt->bind_result($taskname, $edate);
 $stmt->execute();
 $tasklist = array();
-
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
-
 //Get prev & next month
 /*/if (isset($_GET['ym'])) {
   $ym = $_GET['ym'];
@@ -48,7 +38,6 @@ date_default_timezone_set("Europe/Stockholm");
   //this month
   $ym = date('Y-m');
 }/*/
-
 //Check format
 $timestamp = strtotime($ym, "-01");
 if ($timestamp === false) {
@@ -56,61 +45,41 @@ if ($timestamp === false) {
 }
 //today
 $today = date('Y-m-d', time());
-
-
 //for h3 title
 $html_title = date('Y/m', $timestamp);
-
 //Create prev & next month link mktime(hour, minute, second, month, day, year)
 $prev = date('Y-m', mktime(0,0,0, date('m',$timestamp)-1, 1, date('Y',$timestamp)));
 $next = date('Y-m', mktime(0,0,0, date('m',$timestamp)+1, 1, date('Y',$timestamp)));
-
 //Number of days in the month
 $day_count = date('t', $timestamp);
-
 //0:sun, 1:mon, 2:tues ...
 $str = date('w', mktime(0,0,0, date('m',$timestamp), 1, date('Y',$timestamp)));
-
 //Create calendar
 $weeks = array();
 $week = '';
-
-//$active_day='';
+$active_day='';
 //Add empty cell
 $week .=str_repeat('<td></td>',$str);
 for ($day = 1; $day <= $day_count; $day++, $str++) {
-  $ymd= $ym."-0" .$day;
   $date = $ym.'-0'.$day;
   //echo "$today, $date";
   if($today == $date) {
     //echo "today is today";
       $week .="<td class='today'><a href='?active_day=$ym-$day'>".$day;
-  }
-
-
-   else {
-    $week .= "<td class=<?php echo ($current_page=='about_us.php')? 'active':NULL?>"><a href='?active_day=$ym-$day'>".$day;
-
+  } else {
+    $week .= "<td><a href='?active_day=$ym-$day'>".$day;
  }
-
   $week .= '</a></td>';
   //End of the week OR End of the month
   if($str % 7 == 6 || $day == $day_count) {
-
     if($day == $day_count){
       $week .= str_repeat('<td></td>',6-($str % 7));
     }
-
     $weeks[] = '<tr>'.$week.'</tr>';
-
     //Prepare for a new week
     $week = '';
-
   }
-
-
 }
-
 ?>
 <div class="calendardiv">
   <h3>
