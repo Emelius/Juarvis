@@ -108,7 +108,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
  </table>
  <?php
 
- echo "<h3> Found some tasks for " .$active_day."</h3>";
+ echo "<h3> Tasks do the " .$active_day."</h3>";
    while ($stmt->fetch()) {
         echo "<br />";
         printf("%s  ", $taskname);

@@ -20,17 +20,17 @@
 	while( $row = mysqli_fetch_assoc($result1)){
     $list_array[] = $row;
 	}
+	echo "<div id='tabDiv'>";
 	foreach ($list_array as $value) {
 		$listname = $value["listname"];
-		echo "<div id='tabDiv'>";
-		echo "<button class='listTab' onclick='openList(event, '$listname')'>$listname</button>";
+
+		echo "<button class='listTab' onclick='openList(click, '$listname')' >$listname</button>";
 	}
 	echo "</div>";
 
 
 	//get and display all lists from DB
 	$list_id='';
-	$listname='';
 
 	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'username'";
 	$result = mysqli_query($db, $sql);
@@ -40,9 +40,8 @@
 	}
 
 	foreach ($new_array as $value) {
-		$listname = $value["listname"];
 
-		echo "<div class='$listname'>";
+		echo "<div class='listContent'>";
 		print_r($value["listname"]);
 
 		$list_id = $value["list_id"];
@@ -81,8 +80,6 @@
 
 	<script type="text/javascript">
 
-	document.getElementsByClassName('listTab').addEventListener('event', openList());
-
 	function openList(event, <?php $listname ?>) {
 	    // Declare all variables
 	    var i, listContent, listTab;
@@ -96,12 +93,12 @@
 	    // Get all elements with class listTab and remove the class "active"
 	    listTab = document.getElementsByClassName("listTab");
 	    for (i = 0; i < listTab.length; i++) {
-	        listTab[i].className = listTab[i].className.replace("active", "");
+	        listTab[i].className = listTab[i].className.replace("currentList", "");
 	    }
 
 	    // Show the current tab, and add an "active" class to the button that opened the tab
-	    document.getElementsByClassName("listTab").style.display = "block";
-	    event.currentTarget.className += "active";
+	    document.getElementsByClassName("listContent").style.display = "block";
+	    event.currentTarget.className += "currentList";
 	}
 	</script>
 

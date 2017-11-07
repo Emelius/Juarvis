@@ -137,7 +137,7 @@ select:-webkit-autofill:focus {
 	font-size: 12pt;
 	color: #fff;
 	border: 1px solid #DA0F5F;
-	border-radius: 20px;
+	border-radius: 4px;
 	background-color: #DA0F5F;
 	width: 100%;
 	padding: 10px;
@@ -308,8 +308,10 @@ header {
 	border-radius: 4px;
 }
 
-.listTab.active {
-	border: 1px solid #000;
+.currentList {
+	background-color:#000;
+	color:white;
+	border-radius: 4px;
 }
 
 .listContent{
@@ -327,7 +329,7 @@ header {
     color: #000;
     border: 1px solid #000;
     padding: 10px 0px 7px 0px;
-    border-radius: 30px;
+    border-radius: 4px;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		font-size: 12pt;

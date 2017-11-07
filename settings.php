@@ -84,7 +84,7 @@
 			}
 			else {
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-				echo "UPDATE users SET username = '$newusername' WHERE user_id='$userid'";
+				
 				$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
 				$stmt->execute();
 			}
