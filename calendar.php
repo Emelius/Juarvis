@@ -66,6 +66,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
   $day2 = sprintf("%02d", $day);
   $date = $ym.'-'.$day2;
   //echo "$today, $date";
+    $today = date('Y-m-d', time());
   if($active_day == $date) {
     //echo "today is today";
 
