@@ -1,4 +1,4 @@
-function openList(evt, listname) {
+function openList(event, listname) {
     // Declare all variables
     var i, listContent, listTab;
 
