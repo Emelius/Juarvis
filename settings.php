@@ -84,7 +84,7 @@
 			}
 			else {
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-				
+
 				$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
 				$stmt->execute();
 			}
@@ -103,6 +103,7 @@
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 				$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
 				$stmt->execute();
+				header("Refresh:0");
 			}
 		}
 
