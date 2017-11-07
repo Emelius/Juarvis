@@ -11,9 +11,25 @@
 		exit();
 	}
 
-	$list_id='';
+	//create tabbuttons for each list
+	$listname='';
+
+	$sql1 = "SELECT listname FROM lists"; //where user_id = 'username'";
+	$result1 = mysqli_query($db, $sql1);
+
+	while( $row = mysqli_fetch_assoc($result1)){
+    $list_array[] = $row;
+	}
+	foreach ($list_array as $value) {
+		$listname = $value["listname"];
+		echo "<div id='tabDiv'>";
+		echo "<button class='listTab' onclick='openList(event, '$listname')'>$listname</button>";
+	}
+	echo "</div>";
+
 
 	//get and display all lists from DB
+	$list_id='';
 	$sql = "SELECT listname, list_id FROM lists"; //where user_id = 'username'";
 	$result = mysqli_query($db, $sql);
 
@@ -22,6 +38,7 @@
 	}
 
 	foreach ($new_array as $value) {
+		echo "<div id='listContent'>";
 		print_r($value["listname"]);
 
 		$list_id = $value["list_id"];
@@ -54,6 +71,7 @@
 				echo "<br>";
 			}
  		}
+		echo "</div>";
 	}
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
@@ -68,6 +86,11 @@
 	    # Get data from form
 		$newlist = "";
 		$newlist = trim($_POST['newlist']);
+
+		//security myes
+		$newlist = addslashes($newlist);
+		$newlist = htmlentities ($newlist);
+		$newlist = htmlentities ($db, $newlist);
 
 		//add list to db
 		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
@@ -99,6 +122,25 @@
 			$newEndDate = trim($_POST['newEndDate']);
 			$tasklist = "";
 			$tasklist = trim($_POST['tasklist']);
+
+			//security
+			$newtask = addslashes($newtask);
+			$newtaskdesc = addslashes($newtaskdesc);
+			$newStartDate = addslashes($newStartDate);
+			$newEndDate = addslashes($newEndDate);
+			$tasklist = addslashes($tasklist);
+
+			$newtask = htmlentities ($newtask);
+			$newtaskdesc = htmlentities($newtaskdesc);
+			$newStartDate = htmlentities($newStartDate);
+			$newEndDate = htmlentities($newEndDate);
+			$tasklist = htmlentities ($tasklist);
+
+			$newtask = mysqli_real_escape_string($db, $newtask);
+			$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
+			$newStartDate = mysqli_real_escape_string($db, $newStartDate);
+			$newEndDate = mysqli_real_escape_string($db, $newEndDate);
+			$tasklist = mysqli_real_escape_string($db, $tasklist);
 
 	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, sdate, edate, list_id) VALUES (?, ?, ?, ?, ?)");
 	    $stmt->bind_param('ssssi', $newtask, $newtaskdesc, $newStartDate, $newEndDate, $tasklist);
@@ -135,28 +177,6 @@
 
 		header("Refresh:0");
 	}
-
-	/*/ //security myes, I need fixing myes
-	$newlist = addslashes($newlist);
-	$newtask = addslashes($newtask);
-	$newtaskdesc = addslashes($newtaskdesc);
-	$newStartDate = addslashes($newStartDate);
-	$newEndDate = addslashes($newEndDate);
-	$tasklist = addslashes($tasklist);
-
-	$newlist = htmlentities ($newlist);
-	$newtask = htmlentities ($newtask);
-	$newtaskdesc = htmlentities($newtaskdesc);
-	$newStartDate = htmlentities($newStartDate);
-	$newEndDate = htmlentities($newEndDate);
-	$tasklist = htmlentities ($tasklist);
-
-	$newlist = htmlentities ($db, $newlist);
-	$newtask = mysqli_real_escape_string($db, $newtask);
-	$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
-	$newStartDate = mysqli_real_escape_string($db, $newStartDate);
-	$newEndDate = mysqli_real_escape_string($db, $newEndDate);
-	$tasklist = mysqli_real_escape_string($db, $tasklist); /*/
 
 ?>
 
