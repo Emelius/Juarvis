@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-	font-weight: 500;
+	font-weight: 400;
 	margin:0;
 	font-size: 20pt;
 }
@@ -21,17 +21,19 @@ h2, h3, h4, h5 {
 
 h2 {
 	font-size: 18pt;
-	font-weight: 400;
+	font-weight: 300;
 }
 
 h3 {
 	font-size: 15pt;
 	font-weight: 300;
+	margin-top:10px;
 }
 
 h4 {
 	font-size: 13pt;
 	font-weight: 300;
+	margin-top:10px;
 }
 
 h5 {
@@ -324,6 +326,10 @@ header {
     padding: 6px 12px;
 }
 
+#listDiv {
+	margin: 30px 0px;
+}
+
 .select {
 		outline: 0;
     overflow: hidden;
@@ -331,8 +337,6 @@ header {
     background: #fff;
     color: #000;
     border: 1px solid #000;
-    padding: 10px 0px 7px 0px;
-    border-radius: 4px;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		font-size: 12pt;

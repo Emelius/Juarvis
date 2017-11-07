@@ -118,6 +118,7 @@
 	</script>
 
 <?php
+
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
 
@@ -229,13 +230,15 @@
 ?>
 
 <br>
-<h2>Create new list</h2>
-<form action="main.php" method="POST">
-	<h3>List name</h3>
-	<input type="text" name="newlist" placeholder="Add a list name" class="inputField">
-	<br>
-	<input type="submit" name="submitlist" value="Create" class="button">
-</form>
+<div id="listDiv">
+	<h2>Create new list</h2>
+	<form action="main.php" method="POST">
+		<h3>List name</h3>
+		<input type="text" name="newlist" placeholder="Add a list name" class="inputField">
+		<br>
+		<input type="submit" name="submitlist" value="Create" class="button">
+	</form>
+</div>
 
 <h2>Add new task</h2>
 <form action="main.php" method="POST">
