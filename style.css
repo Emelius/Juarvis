@@ -288,8 +288,10 @@ header {
 
 .tabDiv{
 	overflow:hidden;
-	border:1px solid #ccc;
-	background-color:red;
+}
+
+#listParent {
+	clear:both;
 }
 
 .listTab {
@@ -315,10 +317,8 @@ header {
 }
 
 .listContent{
-		display: none !important;
+		display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .select {
@@ -378,7 +378,7 @@ td a {
 	background-color:#000;
 }
 
-.clickedday a { 
+.clickedday a {
 	color:white;
 }
 

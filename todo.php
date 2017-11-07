@@ -25,8 +25,10 @@
 	foreach ($list_array as $value) {
 		$listname = $value["listname"];
 		$list_id = $value["list_id"];
+?>
+	<button class='listTab' onclick='openList(event,"l<?php echo $list_id ?>")' ><?php echo $listname ?></button>
+<?php
 
-		echo "<button class='listTab' onclick='openList("; echo"'l$list_id')' >$listname</button>";
 	}
 	echo "</div>";
 
@@ -82,16 +84,20 @@
 
 	<script type="text/javascript">
 
-	function openList(list_id) {
+	function openList(event,list_id) {
 	    // Declare all variables
 	    var i, listContent, listTab;
 
 			var lp= document.getElementById('listParent');
-
+			var td= document.getElementById('tabDiv');
 	    // Get all elements with class listContent and hide them
 	    //listContent = document.getElementsByClassName("listContent");
-	    for (i = 0; i < lp.length; i++) {
+	    for (i = 0; i < lp.children.length; i++) {
 				lp.children[i].style.display='none';
+	    }
+
+			for (i = 0; i < td.children.length; i++) {
+				td.children[i].classList.remove('currentList');
 	    }
 
 			document.getElementById(list_id).style.display='block';
@@ -104,7 +110,7 @@
 			//
 	    // // Show the current tab, and add an "active" class to the button that opened the tab
 	    // document.getElementsByClassName(list_id).style.display = "block";
-	    // event.currentTarget.className += "currentList";
+	    event.currentTarget.classList.add("currentList");
 	}
 	</script>
 
