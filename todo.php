@@ -210,6 +210,7 @@
 
 ?>
 
+<br>
 <h2>Create new list</h2>
 <form action="main.php" method="POST">
 	<h3>List name</h3>
