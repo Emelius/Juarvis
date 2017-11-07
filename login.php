@@ -28,7 +28,7 @@
 		exit();
 	}
 
-	echo "SELECT user_id, username, password FROM users WHERE username = '$myusername'";
+	
 
 	$stmt = $db->prepare("SELECT user_id, username, password FROM users WHERE username = ?");
 	$stmt->bind_param('s', $myusername);
