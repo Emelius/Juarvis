@@ -210,6 +210,8 @@ header {
 	top: 0;
 }
 
+
+
 .spacer
 {
     width: 100%;
@@ -228,6 +230,9 @@ header {
 	font-size: 12pt;
 	transition: color .4s ease;
 	margin:0;
+}
+#headermenu .active{
+	color: black;
 }
 
 #headermenu ul li a:hover {
@@ -251,6 +256,7 @@ header {
 	margin:10px;
 	float:left;
 }
+
 
 /*/Settings/*/
 
@@ -278,39 +284,6 @@ header {
 	overflow: scroll;
 	float:left;
 	clear:left;
-}
-
-.tabDiv{
-	overflow:hidden;
-	border:1px solid #ccc;
-	background-color:red;
-}
-
-.listTab {
-	background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: all .4s ease;
-}
-
-.listTab:hover {
-	background-color:#DA0F5F;
-	color:white;
-	border-radius: 4px;
-}
-
-.listTab.active {
-	border: 1px solid #000;
-}
-
-.listContent{
-		display: none !important;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .select {
