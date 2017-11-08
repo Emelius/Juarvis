@@ -34,7 +34,13 @@
 	<button class='listTab' onclick='openList(event,"l<?php echo $list_id ?>")' ><?php echo $listname ?></button>
 
 <?php
+@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+//error message if no connection to db
+if ($db->connect_error) {
+	echo "could not connect: " . $db->connect_error;
+	exit();
+}
 	}
 	echo "</div>";
 
@@ -79,7 +85,7 @@
 				$task_id = $value["task_id"];
 
 				echo "<form method='post' action='main.php'>";
-				echo "<input class='deleteButton' type='submit' name='deletetask' value='x'/>";
+				echo "<input class='deleteButton2' type='submit' name='deletetask' value='x'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
 
@@ -117,7 +123,13 @@
 	</script>
 
 <?php
+@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+//error message if no connection to db
+if ($db->connect_error) {
+	echo "could not connect: " . $db->connect_error;
+	exit();
+}
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
 
@@ -135,13 +147,13 @@
 		//security myes
 		$newlist = addslashes($newlist);
 		$newlist = htmlentities ($newlist);
-		$newlist = htmlentities ($db, $newlist);
+		$newlist = mysqli_real_escape_string ($db, $newlist);
 
 		//add list to db
 		$stmt = $db->prepare("INSERT INTO lists (list_id, listname) VALUES ('', ?)");
 		$stmt->bind_param('s', $newlist);
 		$stmt->execute();
-		printf("<br>List Added!");
+		printf("</br>List Added!");
 		header("Refresh:0");
 	  }
 	}
