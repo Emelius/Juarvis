@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!doctype html>
 <html>
     <head>
@@ -19,3 +20,6 @@
             </nav>
             <a id='logout' href="logout.php">Log out</a>
     	</header>
+      <div class="spacer">
+        &nbsp;
+      </div>
