@@ -103,32 +103,29 @@
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 				$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
 				$stmt->execute();
-				header("Refresh:0");
 			}
 		}
-
-	}
-
-	else {
-		echo "Please fill something out in the form.";
+		else {
+			echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
+		}
 	}
 
 ?>
 
-   <div class="settingsDiv">
-        <h2>Settings<h2>
-        <h3>Fill in the forms below to change your settings.</h3>
-        <form method="POST" action="settings.php" class="settingsForm">
-            <h4>Change Username</h4>
-            <input type="text" name="newusername" value="<?php echo $currentusername ?>" placeholder="New Username" class="inputField"/>
-            <h4>Change Password</h4>
-            <input type="password" name="newpassword" value="<?php echo $currentpassword ?>" placeholder="New Password" class="inputField"/>
-            <h4>Change Email</h4>
-            <input type="email" name="newemail" value="<?php echo $currentemail ?>" placeholder="New Email" class="inputField"/>
-		<h4>Confirm with your old password</h4>
-		<input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
-		<input type="submit" value="Save Changes" class="button">
-        </form>
-    </div>
+<div class="settingsDiv">
+		 <h2>Settings<h2>
+		 <h3>Fill in the forms below to change your settings.</h3>
+		 <form method="POST" action="settings.php" class="settingsForm">
+				 <h4>Change Username</h4>
+				 <input type="text" name="newusername" value="<?php echo $currentusername ?>" placeholder="New Username" class="inputField"/>
+				 <h4>Change Password</h4>
+				 <input type="password" name="newpassword" value="<?php echo $currentpassword ?>" placeholder="New Password" class="inputField"/>
+				 <h4>Change Email</h4>
+				 <input type="email" name="newemail" value="<?php echo $currentemail ?>" placeholder="New Email" class="inputField"/>
+ <h4>Confirm with your old password</h4>
+ <input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
+ <input type="submit" value="Save Changes" class="button">
+		 </form>
+ </div>
 
 <?php include 'footer.php'; ?>
