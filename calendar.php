@@ -34,7 +34,27 @@ else {
   $active_day = date("Y-m-d");
   $ym = date('Y-m');
 }
-
+//login alert
+/*function alert(){
+  $sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
+  $result = mysqli_query($db, $sql1);
+  while( $row = mysqli_fetch_assoc($result)){
+    $new_array[] = $row;
+    if (!empty($new_array)) {
+      echo "<script type='text/javascript'>
+        alert('This tasks is due today:
+        <?php
+          foreach ($new_array as $value){
+            print_r($value['listname']);
+          }
+        ?>
+      ');
+      </script>
+    ";
+    }
+  }
+}
+alert();*/
 //the query that asks for taskname and edate from db where the depending of whichc user is logged in and which date you have clicked on in the calendar.
 $sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
 $stmt = $db ->prepare($sql);
@@ -42,6 +62,7 @@ $stmt->bind_result($taskname, $edate);
 $stmt->execute();
 $tasklist = array();
 
+<<<<<<< HEAD
 /*///login alert
 $sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
 $stmt1 = $db ->prepare($sql1);
@@ -49,6 +70,8 @@ $stmt1->bind_result($taskname);
 $stmt1->execute();
 while( $row = mysqli_fetch_assoc($stmt1)){
   $new_array[] = $row;
+=======
+>>>>>>> 10797147a2f2ba681e4bf47497815ee41a71c1d8
 
 }/*/
 
