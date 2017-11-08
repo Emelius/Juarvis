@@ -41,6 +41,18 @@ $stmt = $db ->prepare($sql);
 $stmt->bind_result($taskname, $edate);
 $stmt->execute();
 $tasklist = array();
+//login alert
+$sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
+$stmt1 = $db ->prepare($sql1);
+$stmt1->bind_result($taskname);
+$stmt1->execute();
+while( $row = mysqli_fetch_assoc($stmt1)){
+  $new_array[] = $row;
+  
+}
+
+
+
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
 //Check format
@@ -120,13 +132,16 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
    ?>
 
  </table>
- <?php
- //echos out the tasks for the current day and the date of the day.
- echo "<h3> Tasks do the " .$active_day."</h3>";
-   while ($stmt->fetch()) {
-        echo "<br />";
-        printf("%s  ", $taskname);
-         //$tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
-     }
-  ?>
+    <?php
+    //echos out the tasks for the current day and the date of the day.
+    echo "<h3> Tasks due the " .$active_day."</h3>";
+      echo "<ul id='calendarList'>";
+      while ($stmt->fetch()) {
+           echo "<br />";
+           printf("%s  ", "<il class= calendarTasks>".$taskname."</il>");
+            //$tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
+        }
+     ?>
+  </ul>
+
 </div>
