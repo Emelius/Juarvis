@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2017 at 11:23 AM
+-- Generation Time: Nov 08, 2017 at 12:11 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -39,7 +39,10 @@ CREATE TABLE `lists` (
 --
 
 INSERT INTO `lists` (`list_id`, `listname`, `user_id`) VALUES
-(11, 'My first list', NULL);
+(28, 'Laundry', 10),
+(29, 'School', 10),
+(30, 'Home', 10),
+(31, 'Work', 10);
 
 -- --------------------------------------------------------
 
@@ -51,12 +54,22 @@ CREATE TABLE `tasks` (
   `task_id` int(11) NOT NULL,
   `taskname` varchar(255) NOT NULL,
   `taskdesc` varchar(255) DEFAULT NULL,
-  `sdate` date DEFAULT NULL,
   `edate` date DEFAULT NULL,
-  `rdate` date DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
   `list_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`task_id`, `taskname`, `taskdesc`, `edate`, `list_id`) VALUES
+(28, 'Php', 'stupid project', '2017-11-22', 29),
+(29, 'hej', '', '2017-11-18', 28),
+(30, 'ost', 'jfakdjfn', '2017-11-17', 28),
+(31, 'fh', 'jvhgn', '2017-11-20', 28),
+(32, 'fh', 'jvhgn', '2017-11-20', 28),
+(33, 'gh', 'ghm', '2017-12-31', 28),
+(34, 'hometask', 'kalalalalf', '2017-11-25', 30);
 
 -- --------------------------------------------------------
 
@@ -110,12 +123,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lists`
 --
 ALTER TABLE `lists`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `users`
 --
