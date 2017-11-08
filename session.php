@@ -8,6 +8,6 @@
    if(
      (!isset($_SESSION['username']) && (!isset($_SESSION['user_id']))))
    {
-      header("location:main.php");
+    //  header("location:login.php");
    }
 ?>
