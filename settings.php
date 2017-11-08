@@ -54,6 +54,22 @@
 		$newemail = trim($_POST['newemail']);
 		$confirmpassword = trim($_POST['confirmpassword']);
 
+		//hash newpassword
+		$newpassword = sha1($newpassword);
+
+		//check if password matches the old one
+		if ($confirmpassword != ""){
+			if (sha1($confirmpassword) != $currentpassword) {
+				echo "Wrong password.";
+				exit();
+			}
+			else {
+				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+				$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
+				$stmt->execute();
+				echo "ostboll";
+
+
 		//check if email already exists in db
 		if ($newemail != "") {
 			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
@@ -89,21 +105,7 @@
 				$stmt->execute();
 			}
 		}
-
-		//hash newpassword
-		$newpassword = sha1($newpassword);
-
-		//check if password matches the old one
-		if ($confirmpassword != ""){
-			if (sha1($confirmpassword) != $currentpassword) {
-				echo "Wrong password.";
-				exit();
-			}
-			else {
-				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-				$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
-				$stmt->execute();
-			}
+		}
 		}
 		else {
 			echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";

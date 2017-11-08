@@ -193,7 +193,7 @@ if ($db->connect_error) {
 			while($row = mysqli_fetch_assoc($tasksRes)){
 				$new_task_array[] = $row;
 
-}
+			}
 			//for the array, get and display all tasknames (this is the 'value' in the array)
 			foreach ($new_task_array as $value) {
 				print_r($value["taskname"]);
@@ -206,6 +206,9 @@ if ($db->connect_error) {
 				echo "<input class='deleteButton2' type='submit' name='deletetask' value='x'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
+
+				//clear array
+				unset($new_task_array);
 
 			}
  		}
