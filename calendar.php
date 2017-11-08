@@ -41,17 +41,16 @@ $stmt = $db ->prepare($sql);
 $stmt->bind_result($taskname, $edate);
 $stmt->execute();
 $tasklist = array();
-//login alert
+
+/*///login alert
 $sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
 $stmt1 = $db ->prepare($sql1);
 $stmt1->bind_result($taskname);
 $stmt1->execute();
 while( $row = mysqli_fetch_assoc($stmt1)){
   $new_array[] = $row;
-  
-}
 
-
+}/*/
 
 //Set timezone
 date_default_timezone_set("Europe/Stockholm");
