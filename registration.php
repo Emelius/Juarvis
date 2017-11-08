@@ -20,11 +20,11 @@ if (isset($_POST) && !empty($_POST)) {
 
 		//if username, password, email are not filled in print error message
     if (!$newusername || !$newpassword || !$newemail) {
-        printf("You must specify both username, email and a password");
-        printf("<br><a href=registration.php>Try again</a>");
-        exit();
-    }
+			echo "<script type='text/javascript'> alert('You must specify both username, email and password.'); </script>";
+		}
 
+		//if filled in, insert into db
+		else {
 		//security for forms
     $newusername = addslashes($newusername);
     $newemail = addslashes($newemail);
@@ -56,6 +56,7 @@ if (isset($_POST) && !empty($_POST)) {
     printf("<br>Account created!");
     printf("<br><a href=index.php>Login</a>");
     exit;
+	}
 }
 
 ?>

@@ -11,8 +11,7 @@ if ($db->connect_error) {
 
 	    //If newlist is not set echo error message
 	    if (empty($_POST['newlist'])) {
-		printf("You must add a listname, try again.");
-		exit();
+			echo "<script type='text/javascript'> alert('Please fill in the form to create a new list.'); </script>";
 	    }
 
 	else {
@@ -41,8 +40,7 @@ if ($db->connect_error) {
 
 	    //If newlist is not set, write error message, and do not continue with code
 	    if (empty($_POST['newtask'])) {
-			printf("You must add a task, try again.");
-			exit();
+				echo "<script type='text/javascript'> alert('Please fill in the form to add a new task.'); </script>";
 			}
 
 		else {
