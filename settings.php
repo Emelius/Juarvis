@@ -27,7 +27,7 @@
 	$stmt = $db->prepare("SELECT username, password, email FROM users WHERE user_id='$userid'");
 	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
 	$stmt->execute();
-	$stmt->fetch()
+	$stmt->fetch();
 
 	var_dump($currentpassword);
 
