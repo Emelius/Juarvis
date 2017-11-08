@@ -53,8 +53,7 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
     $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
-    printf("<br>Account created!");
-    printf("<br><a href=index.php>Login</a>");
+    header('location:index.php');
     exit;
 	}
 }
