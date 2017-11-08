@@ -10,18 +10,25 @@
 	$username = $_SESSION['username'];
 
 	//establish db connection
-    @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+  @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
-		if ($db->connect_error) {
+	if ($db->connect_error) {
 			echo "could not connect: " . $db->connect_error;
 			printf("<br><a href=index.php>Return to home page.</a>");
 			exit();
 	}
 
+	//declare variables
+	$currentusername = '';
+	$currentpassword = '';
+	$currentemail = '';
+
 	//set current user information in variables
-	$stmt = $db->prepare("SELECT username,password,email from users WHERE username='$username'");
-	$stmt->execute();
+	$stmt = $db->prepare("SELECT username, password, email FROM users WHERE user_id='$userid'");
 	$stmt->bind_result($currentusername, $currentpassword, $currentemail);
+	$stmt->execute();
+
+	var_dump($currentpassword);
 
 	//set variables
 	$newusername = "";
@@ -54,63 +61,71 @@
 		$newemail = trim($_POST['newemail']);
 		$confirmpassword = trim($_POST['confirmpassword']);
 
-		//hash newpassword
-		$newpassword = sha1($newpassword);
+		if (empty($confirmpassword)) {
+			echo "<script type='text/javascript'> alert('Please confirm with your old password.'); </script>";
+			header("Refresh:0");
+			exit();
+		}
 
-		//check if password matches the old one
-		if ($confirmpassword != ""){
-			if (sha1($confirmpassword) != $currentpassword) {
-				echo "Wrong password.";
-				exit();
-			}
-			else {
+		if (sha1($confirmpassword) != $currentpassword) {
+			echo "<script type='text/javascript'> alert('Wrong password.'); </script>";
+			header("Refresh:0");
+			exit();
+		}
+
+		if (!empty($confirmpassword) && sha1($confirmpassword) == $currentpassword) {
+
+			//check if email already exists in db, if not insert
+			if ($newemail != "") {
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-				$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
-				$stmt->execute();
-				echo "ostboll";
+				$sql = "SELECT email FROM users WHERE email = '$newemail'";
+				$result = $db->query($sql);
 
-
-		//check if email already exists in db
-		if ($newemail != "") {
-			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-			$sql = "SELECT email FROM users WHERE email = '$newemail'";
-			$result = $db->query($sql);
-
-			if ($result->num_rows > 0){
-				echo "That email already exists!";
-				exit ();
+				if ($result->num_rows > 0){
+					echo "<script type='text/javascript'> alert('That email already exists!'); </script>";
+					exit ();
+				}
+				else {
+					@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+					$stmt = $db->prepare("UPDATE users SET email = '$newemail' WHERE user_id='$userid'");
+					$stmt->execute();
+				}
 			}
-			else {
+
+			//check if username already exists in db, if not insert
+			if ($newusername != "") {
 				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-				$stmt = $db->prepare("UPDATE users SET email = '$newemail' WHERE user_id='$userid'");
-				$stmt->execute();
+				$sql = "SELECT username FROM users WHERE username = '$newusername'";
+				$result = $db->query($sql);
+
+				if ($result->num_rows > 0){
+					echo "<script type='text/javascript'> alert('That username is already taken!'); </script>";
+					exit();
+				}
+				else {
+					@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+
+					$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
+					$stmt->execute();
+				}
 			}
 
-		}
+			//hash newpassword
+			$newpassword = sha1($newpassword);
 
-		//check if username already exists in db
-		if ($newusername != "") {
-			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-			$sql = "SELECT username FROM users WHERE username = '$newusername'";
-			$result = $db->query($sql);
+			//insert new passwrod
+			if ($newpassword != ""){
 
-			if ($result->num_rows > 0){
-				echo "That username already exists!";
-				exit();
-			}
-			else {
-				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-
-				$stmt = $db->prepare("UPDATE users SET username = '$newusername' WHERE user_id='$userid'");
-				$stmt->execute();
+					@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+					$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
+					$stmt->execute();
 			}
 		}
-		}
-		}
-		else {
-			echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
-		}
-	}
+}
+
+// if (isset($_POST) && empty($_POST)) {
+// 	echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
+// }
 
 ?>
 
