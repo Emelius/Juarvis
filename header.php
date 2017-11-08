@@ -20,6 +20,3 @@
             </nav>
             <a id='logout' href="logout.php">Log out</a>
     	</header>
-      <div class="spacer">
-        &nbsp;
-      </div>
