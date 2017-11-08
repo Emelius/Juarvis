@@ -299,7 +299,8 @@ header {
 	background-color:#DA0F5F;
 	border: none;
 	border-radius: 4px;
-	padding: 10px;
+	padding-right: 8px;
+	padding-left: 8px;
 	color:#fff;
 	font-weight: 400;
 	transition: all .4s ease;
