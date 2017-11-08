@@ -218,7 +218,7 @@ header {
 	overflow:hidden;
 	background-color: #DA0F5F;
 	width: 100%;
-	height:11%;
+	height: auto;
 	position:fixed;
 	top: 0;
 }
