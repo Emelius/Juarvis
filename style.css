@@ -282,7 +282,7 @@ header {
 	width:50%;
 	padding:30px;
 	box-sizing: border-box;
-	overflow: scroll;
+	overflow: hidden;
 	float:left;
 	clear:left;
 }
