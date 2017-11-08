@@ -280,7 +280,7 @@ header {
 
 .tododiv{
 	width:50%;
-	padding:30px;
+	padding: 30px;
 	box-sizing: border-box;
 	overflow: hidden;
 	float:left;
@@ -353,7 +353,19 @@ header {
 
 .listContent{
 		display: none;
-    padding: 6px 12px;
+    padding: 10px 0px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 #listDiv {
@@ -381,11 +393,16 @@ header {
 	float:left;
 }
 
+.calendardiv a {
+	text-decoration: none;
+	font-weight: 300;
+}
+
 th {
 	height: 30px;
 	text-align:center;
-	font-weight:400px;
 	font-size: 14pt;
+	font-weight: 400;
 }
 
 td {
@@ -397,6 +414,16 @@ td {
 td a {
 	text-decoration:none;
 	font-size: 14pt;
+	font-weight: 300;
+}
+
+td a:hover {
+	text-decoration:none;
+}
+
+
+.table-bordered td, .table-bordered th {
+  border: 1px solid #000;
 }
 
 .today {
@@ -419,6 +446,28 @@ td a {
 
 .clickedday a {
 	color:white;
+}
+
+#calendarList {
+	list-style: circle;
+	padding: 0px;
+	margin: 0px;
+	-webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.calendarTasks {
+	
 }
 
 /**** Footer *****/
