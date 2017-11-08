@@ -295,6 +295,18 @@ header {
 .deleteButton:hover {
 	background-color: #000;
 }
+.deleteButton2{
+	background-color:#DA0F5F;
+	border: none;
+	border-radius: 4px;
+	padding: 10px;
+	color:#fff;
+	font-weight: 400;
+	transition: all .4s ease;
+}
+.deleteButton2:hover {
+	background-color: #000;
+}
 
 .tabDiv{
 	overflow:hidden;
