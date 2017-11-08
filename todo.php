@@ -213,8 +213,8 @@ if ($db->connect_error) {
  		}
 		echo "</div>";
 	}
-	echo "</div>";
 }
+	echo "</div>";
 ?>
 
 <!--Javascript for when we display the lists and tasks-->
