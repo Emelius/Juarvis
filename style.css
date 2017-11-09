@@ -37,7 +37,7 @@ h4 {
 }
 
 h5 {
-	font-size: 9pt;
+	font-size: 10pt;
 	color: #000;
 	font-weight: 100;
 }
@@ -60,8 +60,8 @@ a:hover {
 hr {
 		border: none;
     height: 1px;
-    color: #ddd; /* old IE */
-    background-color: #ddd; /* Modern Browsers */
+    color: #eee; /* old IE */
+    background-color: #eee; /* Modern Browsers */
 		margin: 10px 0px;
 }
 
@@ -440,7 +440,7 @@ td a:hover {
 
 
 .table-bordered td, .table-bordered th {
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
 }
 
 .today {
@@ -502,7 +502,7 @@ footer {
 	box-sizing: border-box;
 	width:100%;
 	background-color:#fff;
-	border-top:1px #eee solid;
+	
 	float:left;
 	text-align: center;
 }
