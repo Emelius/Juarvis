@@ -29,8 +29,6 @@
 	$stmt->execute();
 	$stmt->fetch();
 
-	var_dump($currentpassword);
-
 	//set variables
 	$newusername = "";
 	$newpassword = "";
@@ -140,7 +138,7 @@
 				$stmt->execute();
 			}
 		}
-
+		header("Refresh:0");
 }
 
 // if (isset($_POST) && empty($_POST)) {
