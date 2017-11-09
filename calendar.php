@@ -56,9 +56,9 @@ else {
 }
 alert();*/
 //the query that asks for taskname and edate from db where the depending of whichc user is logged in and which date you have clicked on in the calendar.
-$sql ="SELECT taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
+$sql ="SELECT task_id, taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
 $stmt = $db ->prepare($sql);
-$stmt->bind_result($taskname, $edate);
+$stmt->bind_result($task_id, $taskname, $edate);
 $stmt->execute();
 $tasklist = array();
 
@@ -157,10 +157,25 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
       echo "<ul id='calendarList'>";
       while ($stmt->fetch()) {
            echo "<br />";
-           printf("%s  ", "<il class= calendarTasks>".$taskname."</il>");
+           printf("%s  ", "<li class= calendarTasks>".$taskname."</li>");
             //$tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
+            echo "<form method='post' action='main.php'>";
+            echo "<input class='deleteButton2' type='submit' name='deletetask' value='remove'/>";
+            echo "<input type='hidden' name='id' value='$task_id'/>";
+            echo "</form>";
         }
+
      ?>
   </ul>
+  <?php
+    if (isset($_POST['deletetask'])) {
+
+      //hidden id from the echo:d form is used to determine which task should be deleted
+      $id = $_POST['id'];
+
+      $stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
+      $stmt->execute();
+    }
+  ?>
 
 </div>
