@@ -84,6 +84,7 @@
 
 				if ($result->num_rows > 0){
 					echo "<script type='text/javascript'> alert('That email already exists!'); </script>";
+					header("Refresh:0");
 					exit ();
 				}
 				else {
@@ -91,6 +92,12 @@
 					$stmt = $db->prepare("UPDATE users SET email = '$newemail' WHERE user_id='$userid'");
 					$stmt->execute();
 				}
+			}
+			else{
+				$newemail = $currentemail;
+				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+				$sql = "SELECT email FROM users WHERE email = '$newemail'";
+				$result = $db->query($sql);
 			}
 
 			//check if username already exists in db, if not insert
@@ -101,6 +108,7 @@
 
 				if ($result->num_rows > 0){
 					echo "<script type='text/javascript'> alert('That username is already taken!'); </script>";
+					header("Refresh:0");
 					exit();
 				}
 				else {
@@ -110,18 +118,29 @@
 					$stmt->execute();
 				}
 			}
+			else{
+				$newusername = $currentusername;
+				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+				$sql = "SELECT username FROM users WHERE username = '$newusername'";
+				$result = $db->query($sql);
+			}
 
-			//hash newpassword
-			$newpassword = sha1($newpassword);
-
-			//insert new passwrod
+			//insert new passwrod, else insert old password
 			if ($newpassword != ""){
+					//hash newpassword
+					$newpassword = sha1($newpassword);
 
 					@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 					$stmt = $db->prepare("UPDATE users SET password = '$newpassword' WHERE user_id='$userid'");
 					$stmt->execute();
 			}
+			else {
+				@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+				$stmt = $db->prepare("UPDATE users SET password = '$currentpassword' WHERE user_id='$userid'");
+				$stmt->execute();
+			}
 		}
+
 }
 
 // if (isset($_POST) && empty($_POST)) {
@@ -135,12 +154,12 @@
 		 <h3>Fill in the forms below to change your settings.</h3>
 		 <form method="POST" action="settings.php" class="settingsForm">
 				 <h4>Change Username</h4>
-				 <input type="text" name="newusername" value="<?php echo $currentusername ?>" placeholder="New Username" class="inputField"/>
+				 <input type="text" name="newusername" value="" placeholder="<?php echo $currentusername ?>" class="inputField"/>
 				 <h4>Change Password</h4>
-				 <input type="password" name="newpassword" value="<?php echo $currentpassword ?>" placeholder="New Password" class="inputField"/>
+				 <input type="password" name="newpassword" value="" placeholder="New Password" class="inputField"/>
 				 <h4>Change Email</h4>
-				 <input type="email" name="newemail" value="<?php echo $currentemail ?>" placeholder="New Email" class="inputField"/>
- <h4>Confirm with your old password</h4>
+				 <input type="email" name="newemail" value="" placeholder="<?php echo $currentemail ?>" class="inputField"/>
+ <h3 id="confirmPass">Confirm with your old password</h3>
  <input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
  <input type="submit" value="Save Changes" class="button">
 		 </form>
