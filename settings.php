@@ -52,7 +52,7 @@
 	$confirmpassword = mysqli_real_escape_string($db, $confirmpassword);
 
 	//check forms
-	if (isset($_POST) && !empty($_POST)) {
+	if (isset($_POST['btnSave']) && !empty($_POST)) {
 
 	//get data from form
 		$newusername = trim($_POST['newusername']);
@@ -141,9 +141,9 @@
 		header("Refresh:0");
 }
 
-// if (isset($_POST) && empty($_POST)) {
-// 	echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
-// }
+else{
+ 	echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
+ }
 
 ?>
 
@@ -152,14 +152,14 @@
 		 <h3>Fill in the forms below to change your settings.</h3>
 		 <form method="POST" action="settings.php" class="settingsForm">
 				 <h4>Change Username</h4>
-				 <input type="text" name="newusername" value="" placeholder="<?php echo $currentusername ?>" class="inputField"/>
+				 <input type="text" name="newusername" placeholder="<?php echo $currentusername ?>" class="inputField"/>
 				 <h4>Change Password</h4>
-				 <input type="password" name="newpassword" value="" placeholder="New Password" class="inputField"/>
+				 <input type="password" name="newpassword" placeholder="New Password" class="inputField"/>
 				 <h4>Change Email</h4>
-				 <input type="email" name="newemail" value="" placeholder="<?php echo $currentemail ?>" class="inputField"/>
+				 <input type="email" name="newemail"  placeholder="<?php echo $currentemail ?>" class="inputField"/>
  <h3 id="confirmPass">Confirm with your old password</h3>
  <input type="password" name="confirmpassword" placeholder="Confirm Password" class="inputField"/>
- <input type="submit" value="Save Changes" class="button">
+ <input type="submit" value="Save Changes" class="button" name="btnSave">
 		 </form>
  </div>
 
