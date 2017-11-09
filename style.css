@@ -58,10 +58,11 @@ a:hover {
 }
 
 hr {
-	border: none;
-    height: 2px;
-    color: #DA0F5F; /* old IE */
-    background-color: #DA0F5F; /* Modern Browsers */
+		border: none;
+    height: 1px;
+    color: #ddd; /* old IE */
+    background-color: #ddd; /* Modern Browsers */
+		margin: 10px 0px;
 }
 
 
@@ -287,29 +288,41 @@ header {
 	clear:left;
 }
 
+#listHeading {
+	display:inline-block;
+	margin: 10px 10px 10px 0px;
+}
+
+.listContent form {
+	display: inline;
+}
+
+#taskHeading {
+	display:inline-block;
+	margin: 10px 10px 10px 0px;
+}
+
 .deleteButton{
-	background-color:#DA0F5F;
+	background-color:#fff;
 	border: none;
-	border-radius: 4px;
-	color:#fff;
+	color: #DA0f5f;
 	font-weight: 400;
 	transition: all .4s ease;
+	font-size: 10pt;
 }
 .deleteButton:hover {
-	background-color: #000;
+	color: #000;
 }
 .deleteButton2{
-	background-color:#DA0F5F;
+	background-color:#fff;
 	border: none;
-	border-radius: 4px;
-	padding-right: 8px;
-	padding-left: 8px;
-	color:#fff;
+	color: #DA0f5f;
 	font-weight: 400;
 	transition: all .4s ease;
+	font-size: 10pt;
 }
 .deleteButton2:hover {
-	background-color: #000;
+	color: #000;
 }
 
 .tabDiv{

@@ -177,14 +177,16 @@ if ($db->connect_error) {
 		$list_id = $value["list_id"];
 		echo "<div class='listContent' id='l$list_id'>";
 
-		echo "<h3>";
+		echo "<h3 id='listHeading'>";
 		print_r($value["listname"]);
 		echo "</h3>";
 
 		echo "<form method='post' action='main.php'>";
-		echo "<input class='deleteButton' type='submit' name='deletelist' value='remove'/>";
+		echo "<input class='deleteButton' type='submit' name='deletelist' value='delete'/>";
 		echo "<input type='hidden' name='id' value='$list_id'/>";
 		echo "</form>";
+
+		echo "<br>";
 
  		//first check if there are tasks with list id
 		$taskSql = "SELECT task_id, taskname, taskdesc, edate FROM tasks WHERE list_id = '$list_id'";
@@ -197,16 +199,23 @@ if ($db->connect_error) {
 			}
 			//for the array, get and display all tasknames (this is the 'value' in the array)
 			foreach ($new_task_array as $value) {
+
+				echo "<h4 id='taskHeading'>";
 				print_r($value["taskname"]);
-				print_r($value["taskdesc"]);
-				print_r($value["edate"]);
+				echo "</h4>";
 
 				$task_id = $value["task_id"];
 
 				echo "<form method='post' action='main.php'>";
-				echo "<input class='deleteButton2' type='submit' name='deletetask' value='x'/>";
+				echo "<input class='deleteButton2' type='submit' name='deletetask' value='remove'/>";
 				echo "<input type='hidden' name='id' value='$task_id'/>";
 				echo "</form>";
+
+				echo "<br>";
+				print_r($value["taskdesc"]);
+				echo "<br>";
+				print_r($value["edate"]);
+				echo "<hr>";
 
 				//clear array before starting over
 				unset($new_task_array);
