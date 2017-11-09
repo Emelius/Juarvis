@@ -423,7 +423,7 @@ td a:hover {
 
 
 .table-bordered td, .table-bordered th {
-  border: 1px solid #000;
+  border: 1px solid #ddd;
 }
 
 .today {
@@ -467,7 +467,7 @@ td a:hover {
 }
 
 .calendarTasks {
-	
+
 }
 
 /**** Footer *****/
