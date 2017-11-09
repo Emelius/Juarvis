@@ -141,7 +141,7 @@
 		header("Refresh:0");
 }
 
-else{
+else {
  	echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
  }
 
