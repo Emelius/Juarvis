@@ -1,3 +1,4 @@
+<div class='tododiv'>
 <?php
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
@@ -110,7 +111,7 @@ if ($db->connect_error) {
 	}
 
 ?>
-<div class='tododiv'>
+
 <?php
 	$userid = $_SESSION['user_id'];
 
@@ -214,8 +215,9 @@ if ($db->connect_error) {
  		}
 		echo "</div>";
 	}
+		echo "</div>";
 }
-	echo "</div>";
+
 ?>
 
 <!--Javascript for when we display the lists and tasks-->
