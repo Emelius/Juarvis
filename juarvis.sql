@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 08, 2017 at 12:11 PM
+-- Generation Time: Nov 09, 2017 at 05:51 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -39,10 +39,9 @@ CREATE TABLE `lists` (
 --
 
 INSERT INTO `lists` (`list_id`, `listname`, `user_id`) VALUES
-(28, 'Laundry', 10),
-(29, 'School', 10),
-(30, 'Home', 10),
-(31, 'Work', 10);
+(32, 'Shopping', NULL),
+(37, 'Shopping', 16),
+(38, 'School', 16);
 
 -- --------------------------------------------------------
 
@@ -63,13 +62,8 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`task_id`, `taskname`, `taskdesc`, `edate`, `list_id`) VALUES
-(28, 'Php', 'stupid project', '2017-11-22', 29),
-(29, 'hej', '', '2017-11-18', 28),
-(30, 'ost', 'jfakdjfn', '2017-11-17', 28),
-(31, 'fh', 'jvhgn', '2017-11-20', 28),
-(32, 'fh', 'jvhgn', '2017-11-20', 28),
-(33, 'gh', 'ghm', '2017-12-31', 28),
-(34, 'hometask', 'kalalalalf', '2017-11-25', 30);
+(8, 'PHP project', 'Code and cry and code and cry', '2017-11-11', 38),
+(12, 'Milk', 'R&ouml;d', '2017-11-17', 37);
 
 -- --------------------------------------------------------
 
@@ -89,7 +83,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`) VALUES
-(10, 'Emelie', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'emelie@emelie.com');
+(15, 'Johannes', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'testet@email.com'),
+(16, 'Emelie', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'emelie@email.com');
 
 --
 -- Indexes for dumped tables
@@ -123,17 +118,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lists`
 --
 ALTER TABLE `lists`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
