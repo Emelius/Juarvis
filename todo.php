@@ -268,13 +268,13 @@ if ($db->connect_error) {
 	<input type="text" name="newtaskdesc" placeholder="Add a task description" class="inputField">
 	<br>
 	<h3>Date</h3>
-	<input type="date" name="newEndDate" class="inputField">
+	<input type="date" name="newEndDate" class="inputField" required>
 	<br>
 	<h3>Select list</h3>
 	<br>
   <?php
 
-  $sql3 = "SELECT list_id,listname FROM lists";
+  $sql3 = "SELECT list_id,listname FROM lists WHERE user_id = '$userid'";
   $result3 = mysqli_query($db, $sql3);
 
   echo "<select class='select' name='tasklist'>";
