@@ -35,21 +35,38 @@ if (isset($_POST) && !empty($_POST)) {
     $newpassword = htmlentities($newpassword);
 
     //connect to database
-		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+
 
 		$newusername = mysqli_real_escape_string($db, $newusername);
 		$newpassword = mysqli_real_escape_string($db, $newpassword);
 		$newemail = mysqli_real_escape_string($db, $newemail);
 
+		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+		$sql = "SELECT email FROM users WHERE email = '$newemail'";
+		$result = $db->query($sql);
+
+		if ($result->num_rows > 0){
+			echo "<script type='text/javascript'> alert('That email already exists!'); </script>";
+			header("Refresh:0");
+			exit ();
+		}
+		$sql = "SELECT username FROM users WHERE username = '$newusername'";
+		$result = $db->query($sql);
+
+		if ($result->num_rows > 0){
+			echo "<script type='text/javascript'> alert('That name already exists!'); </script>";
+			header("Refresh:0");
+			exit ();
+		}
+    //Prepare an sql insert statement and execute it
+		//insert the new username, password and email to db in the table users
+		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 		//error message if could not connect to db
     if ($db->connect_error) {
         echo "could not connect: " . $db->connect_error;
         printf("<br><a href=registration.php>Registration failed, try again</a>");
         exit();
     }
-
-    //Prepare an sql insert statement and execute it
-		//insert the new username, password and email to db in the table users
     $stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
     $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
