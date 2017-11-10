@@ -1,28 +1,26 @@
 <?php
-if (isset($_SESSION['userip']) === false){
+    include('config.php');
 
-    #here we store the IP into the session 'userip'
-    $_SESSION['userip'] = $_SERVER['REMOTE_ADDR'];
-}
+    //checks if the user IP is set
+    if (isset($_SESSION['userip']) === false){     
+    //stores the IP into the session 'userip'
+        $_SESSION['userip'] = $_SERVER['REMOTE_ADDR'];
+    }
 
-#now we check if the IP where the session is generated is the same as the IP of the current user
+    //checks if the IP of the current user is the same as the IP when the session was started
+    if ($_SESSION['userip'] !== $_SERVER['REMOTE_ADDR']){
+        //if it is not the same all session variables are removed and session is destroyed
+        session_unset();
+        session_destroy();
+    }   
 
-if ($_SESSION['userip'] !== $_SERVER['REMOTE_ADDR']){
-    #if it is not the same, we just remove all session variables
-    #this way the attacker will have no session
-    session_unset();
-    session_destroy();
+    //Starts session engine if not started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-}
-   include('config.php');
-   if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
-  //echo $_SESSION['username'];
-//checks if a session is set and sends it forward to the main page
-   if(
-     (!isset($_SESSION['username']) && (!isset($_SESSION['user_id']))))
-   {
-     header("location:login.php");
+    //checks if a session is set, if set redirects to main page
+   if ( (!isset($_SESSION['username']) && (!isset($_SESSION['user_id']))) ) {
+        header("location:login.php");
    }
 ?>
