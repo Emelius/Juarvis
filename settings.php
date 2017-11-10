@@ -43,17 +43,21 @@
 		$newemail = trim($_POST['newemail']);
 		$confirmpassword = trim($_POST['confirmpassword']);
 
-		//safety yes
+		//safety
+		
+		//returns a string with backslashes in front of predefined characters ',",\,NULL
 		$newusername = addslashes($newusername);
 		$newpassword = addslashes($newpassword);
 		$newemail = addslashes($newemail);
 		$confirmpassword = addslashes($confirmpassword);
-
+		
+		//converts characters to HTML entities
 		$newusername = htmlentities($newusername);
 		$newpassword = htmlentities($newpassword);
 		$newemail = htmlentities($newemail);
 		$confirmpassword = htmlentities($confirmpassword);
 
+		//
 		$newusername = mysqli_real_escape_string($db, $newusername);
 		$newpassword = mysqli_real_escape_string($db, $newpassword);
 		$newemail = mysqli_real_escape_string($db, $newemail);
