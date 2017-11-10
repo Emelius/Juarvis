@@ -57,7 +57,7 @@
 		$newemail = htmlentities($newemail);
 		$confirmpassword = htmlentities($confirmpassword);
 
-		//
+		//escapes special characters in a string for use in an SQL statement (NUL (ASCII 0), \n, \r, \, ', ", and Control-Z)
 		$newusername = mysqli_real_escape_string($db, $newusername);
 		$newpassword = mysqli_real_escape_string($db, $newpassword);
 		$newemail = mysqli_real_escape_string($db, $newemail);
