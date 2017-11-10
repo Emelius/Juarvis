@@ -19,11 +19,11 @@
     //checks if the url is ending on ex: active_day=2017-12-01. if true the selected date from the user is saved in a correct way.
     if (isset($_GET['active_day'])) {
 
-        //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
-        //always set today to todays date
-        $today = date('Y-m-d', time());
-        $active_day = date("Y-m-d", strtotime($_GET['active_day']));
-        $ym = date("Y-m", strtotime($_GET['active_day']));
+      //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
+      //always set today to todays date
+      $today = date('Y-m-d', time());
+      $active_day = date("Y-m-d", strtotime($_GET['active_day']));
+      $ym = date("Y-m", strtotime($_GET['active_day']));
     }
 
     // checks if ym is set ex:ym=2017-12
@@ -81,7 +81,6 @@
     $stmt = $db ->prepare($sql);
     $stmt->bind_result($task_id, $taskname, $edate);
     $stmt->execute();
-    $tasklist = array();
 
     //Set timezone
     date_default_timezone_set("Europe/Stockholm");
@@ -180,12 +179,11 @@
     echo "<h3> Tasks due the " .$active_day."</h3>";
       echo "<ul id='calendarList'>";
 
-      //fetches the data from the sql query on row 76, loops through this data and displays the taskname in a list for that date.
+      //fetches the data from the sql query on row 80, loops through this data and displays the taskname in a list for that date.
       while ($stmt->fetch()) {
            echo "<br />";
            printf("%s  ", "<li class= calendarTasks>".$taskname."</li>");
 
-            //$tasklist[$edate[2]] = array("taskname" => $taskname, "edate" => explode("-", $edate));
             echo "<form method='post' action='main.php'>";
             echo "<input class='deleteButton2' type='submit' name='deletetask' value='remove'/>";
             echo "<input type='hidden' name='id' value='$task_id'/>";
