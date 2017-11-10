@@ -185,8 +185,9 @@ if ($db->connect_error) {
 	    $new_array[] = $row;
 		}
 
-	foreach ($new_array as $value) {
-		//$value gives us the actual value in the array ($key gives the position in the array but we do not use this)
+		//echo lists, tasks and deletebuttons
+		foreach ($new_array as $value) {
+		//$value gives us a value in the array
 		$list_id = $value["list_id"];
 		echo "<div class='listContent' id='l$list_id'>";
 
@@ -248,7 +249,7 @@ if ($db->connect_error) {
 
 	function openList(event,list_id) {
 	    // Declare all variables
-	    var i, listContent, listTab;
+	    var i;
 
 			var lp= document.getElementById('listParent');
 			var td= document.getElementById('tabDiv');
@@ -263,6 +264,7 @@ if ($db->connect_error) {
 				td.children[i].classList.remove('currentList');
 	    }
 
+			//sets element with id list_id to display block
 			document.getElementById(list_id).style.display='block';
 
 	    //Show the current tab, and add an "active" class called currentList to the button that opened the tab
@@ -298,9 +300,11 @@ if ($db->connect_error) {
 	<br>
   <?php
 
+	//fetch lists and list id from db
   $sql3 = "SELECT list_id,listname FROM lists WHERE user_id = '$userid'";
   $result3 = mysqli_query($db, $sql3);
 
+	//create a select element with listnames displayed in options and list id hidden as value
   echo "<select class='select' name='tasklist'>";
   while ($row3 = mysqli_fetch_assoc($result3)) {
       echo "<option class='options' value='" . $row3['list_id'] ."'>" .$row3['listname'] ."</option><br>";
