@@ -1,4 +1,4 @@
-<!-- Reference http://codingwithsara.com/how-to-code-calendar-in-php/-->
+<!--Calendar code based on code from: http://codingwithsara.com/how-to-code-calendar-in-php/-->
 <!doctype html>
 <?php
 include("config.php");
@@ -162,6 +162,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     //echos out the tasks for the current day and the date of the day.
     echo "<h3> Tasks due the " .$active_day."</h3>";
       echo "<ul id='calendarList'>";
+      //fetches the data from the sql query on row 76, loops through this data and displays the taskname in a list for that date.
       while ($stmt->fetch()) {
            echo "<br />";
            printf("%s  ", "<li class= calendarTasks>".$taskname."</li>");
