@@ -1,5 +1,6 @@
 <div class='tododiv'>
 <?php
+//Establish database connection
 @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
 //error message if no connection to db
@@ -7,86 +8,88 @@ if ($db->connect_error) {
 	echo "could not connect: " . $db->connect_error;
 	exit();
 }
+	//Checks if submitlist is set.
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
 
 	    //If newlist is not set echo error message
 	    if (empty($_POST['newlist'])) {
-			echo "<script type='text/javascript'> alert('Please fill in the form to create a new list.'); </script>";
+				echo "<script type='text/javascript'> alert('Please fill in the form to create a new list.'); </script>";
 	    }
 
-	else {
-		$userid = $_SESSION['user_id'];
-	    # Get data from form
-		$newlist = "";
-		$newlist = trim($_POST['newlist']);
+			else {
+				$userid = $_SESSION['user_id'];
+				$newlist = "";
+				//Get data from form
+				$newlist = trim($_POST['newlist']);
 
-		//security myes
-		$newlist = addslashes($newlist);
-		$newlist = htmlentities ($newlist);
-		$newlist = mysqli_real_escape_string ($db, $newlist);
+				//security myes
+				$newlist = addslashes($newlist);
+				$newlist = htmlentities ($newlist);
+				$newlist = mysqli_real_escape_string ($db, $newlist);
 
-		//add list to db
-		$stmt = $db->prepare("INSERT INTO lists (list_id, listname, user_id) VALUES ('', ?, ?)");
-		$stmt->bind_param('si', $newlist, $userid);
-		$stmt->execute();
-		printf("</br>List Added!");
-		header("Refresh:0");
-		die();
-	  }
-	}
+				//Add list to db
+				$stmt = $db->prepare("INSERT INTO lists (list_id, listname, user_id) VALUES ('', ?, ?)");
+				$stmt->bind_param('si', $newlist, $userid);
+				$stmt->execute();
+				printf("</br>List Added!");
+				header("Refresh:0");
+				die();
+			  }
+			}
 
-	//Create new task for specific list
+	//Add new task to a specific list
+	//Checks if submittask is set
 	if (isset($_POST['submittask'])) {
 
-	    //If newlist is not set, write error message, and do not continue with code
-	    if (empty($_POST['newtask'])) {
+	   //If newtask is not set, write error message
+	   if (empty($_POST['newtask'])) {
 				echo "<script type='text/javascript'> alert('Please fill in the form to add a new task.'); </script>";
 			}
 
-		else {
-	    # Get data from form
-	    $newtask = "";
-	    $newtask = trim($_POST['newtask']);
-			$newtaskdesc = "";
-	    $newtaskdesc = trim($_POST['newtaskdesc']);
-			$newEndDate = "";
-			$newEndDate = trim($_POST['newEndDate']);
-			$tasklist = "";
-			$tasklist = trim($_POST['tasklist']);
+			else {
+		    # Get data from form
+		    $newtask = "";
+		    $newtask = trim($_POST['newtask']);
+				$newtaskdesc = "";
+		    $newtaskdesc = trim($_POST['newtaskdesc']);
+				$newEndDate = "";
+				$newEndDate = trim($_POST['newEndDate']);
+				$tasklist = "";
+				$tasklist = trim($_POST['tasklist']);
 
-			//security
-			$newtask = addslashes($newtask);
-			$newtaskdesc = addslashes($newtaskdesc);
-			$newEndDate = addslashes($newEndDate);
-			$tasklist = addslashes($tasklist);
+				//security
+				$newtask = addslashes($newtask);
+				$newtaskdesc = addslashes($newtaskdesc);
+				$newEndDate = addslashes($newEndDate);
+				$tasklist = addslashes($tasklist);
 
-			$newtask = htmlentities ($newtask);
-			$newtaskdesc = htmlentities($newtaskdesc);
-			$newEndDate = htmlentities($newEndDate);
-			$tasklist = htmlentities ($tasklist);
+				$newtask = htmlentities ($newtask);
+				$newtaskdesc = htmlentities($newtaskdesc);
+				$newEndDate = htmlentities($newEndDate);
+				$tasklist = htmlentities ($tasklist);
 
-			$newtask = mysqli_real_escape_string($db, $newtask);
-			$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
-			$newEndDate = mysqli_real_escape_string($db, $newEndDate);
-			$tasklist = mysqli_real_escape_string($db, $tasklist);
+				$newtask = mysqli_real_escape_string($db, $newtask);
+				$newtaskdesc = mysqli_real_escape_string($db, $newtaskdesc);
+				$newEndDate = mysqli_real_escape_string($db, $newEndDate);
+				$tasklist = mysqli_real_escape_string($db, $tasklist);
 
-			//insert tasks into db in the correct way and print out task added!
-	    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, edate, list_id) VALUES (?, ?, ?, ?)");
-	    $stmt->bind_param('sssi', $newtask, $newtaskdesc, $newEndDate, $tasklist);
-	    $stmt->execute();
-	    printf("<br>Task Added!");
-	    header("Refresh:0");
-	  }
-	}
+				//insert tasks into db in the correct way and print out task added!
+		    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, edate, list_id) VALUES (?, ?, ?, ?)");
+		    $stmt->bind_param('sssi', $newtask, $newtaskdesc, $newEndDate, $tasklist);
+		    $stmt->execute();
+		    printf("<br>Task Added!");
+		    header("Refresh:0");
+		  }
+		}
 
 	//Remove list and tasks with same list_id if deletebutton is clicked
-
 	if (isset($_POST['deletelist'])) {
 
 		//hidden id from the echo:d form is used to determine which list should be deleted
 		$id = $_POST['id'];
 
+		//Delete from lists and tasks where the list_id=the sent hidden id from the form
 		$stmt = $db->prepare ("DELETE FROM lists WHERE list_id = '$id'");
 		$stmt->execute();
 
@@ -104,6 +107,7 @@ if ($db->connect_error) {
 		//hidden id from the echo:d form is used to determine which task should be deleted
 		$id = $_POST['id'];
 
+		//Delete from tasks where the task_id=the sent hidden id from the form
 		$stmt = $db->prepare ("DELETE FROM tasks WHERE task_id = '$id'");
 		$stmt->execute();
 
@@ -113,6 +117,7 @@ if ($db->connect_error) {
 ?>
 
 <?php
+	//set the session to the variable userid
 	$userid = $_SESSION['user_id'];
 
 	//establish db connection
@@ -124,7 +129,6 @@ if ($db->connect_error) {
 		exit();
 	}
 
-	//create tabbuttons for each list
 	//declare the variables here so that they are global
 	$listname='';
 	$list_id='';
@@ -137,43 +141,52 @@ if ($db->connect_error) {
 	while( $row = mysqli_fetch_assoc($result1)){
     $list_array[] = $row;
 	}
+	//This is when you for example log in for the first time and have no lists. Otherwise you would get error messages
 	if (empty($list_array)) {
 		echo 'No lists found. Add a list!';
 	}
+
+	///////////////////Start creating tabbuttons for each list
 	else {
-	echo "<div id='tabDiv'>";
-	foreach ($list_array as $value) {
-		$listname = $value["listname"];
-		$list_id = $value["list_id"];
+		echo "<div id='tabDiv'>";
+
+		//$value gives us the actual value in the array, in this case listname and list_id is what we want to use and set to variables
+		foreach ($list_array as $value) {
+			$listname = $value["listname"];
+			$list_id = $value["list_id"];
 ?>
 
 <!--We exit php here and create the button in html to solve a problem with ''-->
+<!--Here we also add a javascript onclick-->
 	<button class='listTab' onclick='openList(event,"l<?php echo $list_id ?>")' ><?php echo $listname ?></button>
 
 <?php
-@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+			@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
-//error message if no connection to db
-if ($db->connect_error) {
-	echo "could not connect: " . $db->connect_error;
-	exit();
-}
-	}
-	echo "</div>";
+			//error message if no connection to db
+			if ($db->connect_error) {
+				echo "could not connect: " . $db->connect_error;
+				exit();
+			}
 
-	echo "<div id='listParent'>";
-	//get and display all lists from DB
-	$list_id='';
+		}
 
-	$sql = "SELECT listname, list_id FROM lists WHERE user_id = '$userid'";
-	$result = mysqli_query($db, $sql);
+		echo "</div>";
+		echo "<div id='listParent'>";
 
-	while( $row = mysqli_fetch_assoc($result)){
-    $new_array[] = $row;
-	}
+		//get and display all lists from DB
+		$list_id='';
+
+		$sql = "SELECT listname, list_id FROM lists WHERE user_id = '$userid'";
+		$result = mysqli_query($db, $sql);
+
+		//Creates an array, for each row in the result from the query
+		while( $row = mysqli_fetch_assoc($result)){
+	    $new_array[] = $row;
+		}
 
 	foreach ($new_array as $value) {
-
+		//$value gives us the actual value in the array ($key gives the position in the array but we do not use this)
 		$list_id = $value["list_id"];
 		echo "<div class='listContent' id='l$list_id'>";
 
@@ -193,6 +206,7 @@ if ($db->connect_error) {
 		$tasksRes = $db->query($taskSql);
 
 		if($tasksRes->num_rows > 0) {
+			//Creates an array, for each row in the result from the query
 			while($row = mysqli_fetch_assoc($tasksRes)){
 				$new_task_array[] = $row;
 
@@ -244,6 +258,7 @@ if ($db->connect_error) {
 				lp.children[i].style.display='none';
 	    }
 
+			//Onclick remove the class currentList from our tasks
 			for (i = 0; i < td.children.length; i++) {
 				td.children[i].classList.remove('currentList');
 	    }
@@ -252,7 +267,7 @@ if ($db->connect_error) {
 
 	    //Show the current tab, and add an "active" class called currentList to the button that opened the tab
 	    event.currentTarget.classList.add("currentList");
-	}
+		}
 	</script>
 
 
