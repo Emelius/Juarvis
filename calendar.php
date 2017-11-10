@@ -37,40 +37,40 @@ else {
 }
 
 //login alert
-function alert(){
-  //set variables
-  $username = $_SESSION['username'];
-  $today = date('Y-m-d', time());
-
-  //db connection
-  @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-  if ($db->connect_error) {
-    echo "could not connect: " . $db->connect_error;
-    exit();
-  }
-
-  //get tasks
-  $sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
-  $result = mysqli_query($db, $sql1);
-  while( $row = mysqli_fetch_assoc($result)){
-    $new_array[] = $row;
-
-    if (!empty($new_array)) {
-      echo
-      "<script type='text/javascript'>
-        alert('Tasks due today:";
-
-          foreach ($new_array as $value){
-            print_r($value['taskname']);
-          }
-
-      echo
-        "');
-      </script>";
-    }
-  }
-}
-alert();
+// function alert(){
+//   //set variables
+//   $username = $_SESSION['username'];
+//   $today = date('Y-m-d', time());
+//
+//   //db connection
+//   @ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+//   if ($db->connect_error) {
+//     echo "could not connect: " . $db->connect_error;
+//     exit();
+//   }
+//
+//   //get tasks
+//   $sql1 ="SELECT taskname FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$today' ";
+//   $result = mysqli_query($db, $sql1);
+//   while( $row = mysqli_fetch_assoc($result)){
+//     $new_array[] = $row;
+//
+//     if (!empty($new_array)) {
+//       echo
+//       "<script type='text/javascript'>
+//         alert('Tasks due today:";
+//
+//           foreach ($new_array as $value){
+//             print_r($value['taskname']);
+//           }
+//
+//       echo
+//         "');
+//       </script>";
+//     }
+//   }
+// }
+// alert();
 
 //the query that asks for taskname and edate from db where the depending of whichc user is logged in and which date you have clicked on in the calendar.
 $sql ="SELECT task_id, taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
