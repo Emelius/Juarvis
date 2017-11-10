@@ -15,25 +15,28 @@ if (isset($_POST) && !empty($_POST)) {
     $newpassword = trim($_POST['password']);
     $newemail = trim($_POST['email']);
 
-		//hash the new password
+	//hash the new password
     $newpassword = sha1($newpassword);
 
-		//if username, password, email are not filled in print error message
+	//if username, password, email are not filled in print error message
     if (!$newusername || !$newpassword || !$newemail) {
 			echo "<script type='text/javascript'> alert('You must specify both username, email and password.'); </script>";
-		}
+	}
 
-		//if filled in, insert into db
-		else {
+	//if filled in, insert into db
+	else {
+		
 		//security for forms
+
 		//removes all the slashes to convert the text to a one line string.
-    $newusername = addslashes($newusername);
-    $newemail = addslashes($newemail);
-    $newpassword = addslashes($newpassword);
+		$newusername = addslashes($newusername);
+		$newemail = addslashes($newemail);
+		$newpassword = addslashes($newpassword);
+		
 		//protects the forms with html entities, and protects against html injection
-    $newusername = htmlentities($newusername);
-    $newemail = htmlentities($newemail);
-    $newpassword = htmlentities($newpassword);
+		$newusername = htmlentities($newusername);
+		$newemail = htmlentities($newemail);
+		$newpassword = htmlentities($newpassword);
 
 		//removes all the slashes to convert the text to a one line string.
 		$newusername = mysqli_real_escape_string($db, $newusername);
@@ -42,15 +45,22 @@ if (isset($_POST) && !empty($_POST)) {
 
 		//connect to database
 		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+		if ($db->connect_error) {
+        echo "could not connect: " . $db->connect_error;
+        printf("<br><a href=registration.php>Registration failed, try again</a>");
+        exit();
+    	}
+		
+		//fetch email from db, checks if there already exists a row with that email in the db
 		$sql = "SELECT email FROM users WHERE email = '$newemail'";
 		$result = $db->query($sql);
-		//checks if there already exists a row with that email in the db
 		if ($result->num_rows > 0){
 			echo "<script type='text/javascript'> alert('That email already exists!'); </script>";
 			header("Refresh:0");
 			exit ();
 		}
-		//gets the username from the db
+		
+		//fetch the username from the db
 		$sql = "SELECT username FROM users WHERE username = '$newusername'";
 		$result = $db->query($sql);
 		//checks if that username exits in the database
@@ -59,22 +69,14 @@ if (isset($_POST) && !empty($_POST)) {
 			header("Refresh:0");
 			exit ();
 		}
-    //Prepare an sql insert statement and execute it
-		//insert the new username, password and email to db in the table users
-		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-		//error message if could not connect to db
-    if ($db->connect_error) {
-        echo "could not connect: " . $db->connect_error;
-        printf("<br><a href=registration.php>Registration failed, try again</a>");
-        exit();
-    }
-		//inserts the new variables into the db
-    $stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
-    $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
-    $stmt->execute();
-    header('location:index.php');
-    exit;
-	}
+		
+		//inserts the new username, password and email into the db
+		$stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
+		$stmt->bind_param('sss', $newusername, $newpassword, $newemail);
+		$stmt->execute();
+		header('location:index.php');
+			exit;
+		}
 }
 
 ?>
