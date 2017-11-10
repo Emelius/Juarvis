@@ -26,33 +26,34 @@ if (isset($_POST) && !empty($_POST)) {
 		//if filled in, insert into db
 		else {
 		//security for forms
+		//removes all the slashes to convert the text to a one line string.
     $newusername = addslashes($newusername);
     $newemail = addslashes($newemail);
     $newpassword = addslashes($newpassword);
-
+		//protects the forms with html entities, and protects against html injection
     $newusername = htmlentities($newusername);
     $newemail = htmlentities($newemail);
     $newpassword = htmlentities($newpassword);
 
-    //connect to database
-
-
+		//removes all the slashes to convert the text to a one line string.
 		$newusername = mysqli_real_escape_string($db, $newusername);
 		$newpassword = mysqli_real_escape_string($db, $newpassword);
 		$newemail = mysqli_real_escape_string($db, $newemail);
 
+		//connect to database
 		@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 		$sql = "SELECT email FROM users WHERE email = '$newemail'";
 		$result = $db->query($sql);
-
+		//checks if there already exists a row with that email in the db
 		if ($result->num_rows > 0){
 			echo "<script type='text/javascript'> alert('That email already exists!'); </script>";
 			header("Refresh:0");
 			exit ();
 		}
+		//gets the username from the db
 		$sql = "SELECT username FROM users WHERE username = '$newusername'";
 		$result = $db->query($sql);
-
+		//checks if that username exits in the database
 		if ($result->num_rows > 0){
 			echo "<script type='text/javascript'> alert('That name already exists!'); </script>";
 			header("Refresh:0");
@@ -67,6 +68,7 @@ if (isset($_POST) && !empty($_POST)) {
         printf("<br><a href=registration.php>Registration failed, try again</a>");
         exit();
     }
+		//inserts the new variables into the db
     $stmt = $db->prepare("INSERT INTO users (`user_id`, `username`, `password`, `email`) values ('', ?, ?, ?)");
     $stmt->bind_param('sss', $newusername, $newpassword, $newemail);
     $stmt->execute();
