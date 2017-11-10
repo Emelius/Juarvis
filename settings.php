@@ -29,36 +29,35 @@
 	$stmt->execute();
 	$stmt->fetch();
 
-	//set variables
-	$newusername = "";
-	$newpassword = "";
-	$newemail = "";
-	$confirmpassword = "";
+	if (isset($_POST['btnSave']) && empty($_POST['newusername']) && empty($_POST['newpassword']) && empty($_POST['newemail']) ) {
 
-	//safety yes
-	$newusername = addslashes($newusername);
-	$newpassword = addslashes($newpassword);
-	$newemail = addslashes($newemail);
-	$confirmpassword = addslashes($confirmpassword);
+	            echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
 
-	$newusername = htmlentities($newusername);
-	$newpassword = htmlentities($newpassword);
-	$newemail = htmlentities($newemail);
-	$confirmpassword = htmlentities($confirmpassword);
+	        }
 
-	$newusername = mysqli_real_escape_string($db, $newusername);
-	$newpassword = mysqli_real_escape_string($db, $newpassword);
-	$newemail = mysqli_real_escape_string($db, $newemail);
-	$confirmpassword = mysqli_real_escape_string($db, $confirmpassword);
-
-	//check forms
-	if (isset($_POST['btnSave']) && !empty($_POST)) {
+elseif (isset($_POST['btnSave'])){
 
 	//get data from form
 		$newusername = trim($_POST['newusername']);
 		$newpassword = trim($_POST['newpassword']);
 		$newemail = trim($_POST['newemail']);
 		$confirmpassword = trim($_POST['confirmpassword']);
+
+		//safety yes
+		$newusername = addslashes($newusername);
+		$newpassword = addslashes($newpassword);
+		$newemail = addslashes($newemail);
+		$confirmpassword = addslashes($confirmpassword);
+
+		$newusername = htmlentities($newusername);
+		$newpassword = htmlentities($newpassword);
+		$newemail = htmlentities($newemail);
+		$confirmpassword = htmlentities($confirmpassword);
+
+		$newusername = mysqli_real_escape_string($db, $newusername);
+		$newpassword = mysqli_real_escape_string($db, $newpassword);
+		$newemail = mysqli_real_escape_string($db, $newemail);
+		$confirmpassword = mysqli_real_escape_string($db, $confirmpassword);
 
 		if (empty($confirmpassword)) {
 			echo "<script type='text/javascript'> alert('Please confirm with your old password.'); </script>";
@@ -141,9 +140,6 @@
 		header("Refresh:0");
 }
 
-else {
- 	echo "<script type='text/javascript'> alert('Please fill something out in the form.'); </script>";
- }
 
 ?>
 
