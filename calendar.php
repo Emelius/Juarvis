@@ -2,7 +2,6 @@
 <!doctype html>
 <?php
 include("config.php");
-include("session.php");
 ob_start();
 
 //Database connection
