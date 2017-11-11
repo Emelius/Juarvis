@@ -1,23 +1,24 @@
 <div class='tododiv'>
 <?php
-//Establish database connection
-@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+	//Establish database connection
+	@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
-//error message if no connection to db
-if ($db->connect_error) {
-	echo "could not connect: " . $db->connect_error;
-	exit();
-}
+	//error message if no connection to db
+	if ($db->connect_error) {
+		echo "could not connect: " . $db->connect_error;
+		exit();
+	}
+	
 	//Checks if submitlist is set.
 	//Create new list if user submits new list. Will NOT run first time user goes to page
 	if (isset($_POST['submitlist'])) {
 
-	    //If newlist is not set echo error message
+	    //If newlist is sumbitted empty, echo error message
 	    if (empty($_POST['newlist'])) {
 				echo "<script type='text/javascript'> alert('Please fill in the form to create a new list.'); </script>";
 	    }
 
-			else {
+		else {
 				$userid = $_SESSION['user_id'];
 				$newlist = "";
 				//Get data from form
@@ -36,7 +37,7 @@ if ($db->connect_error) {
 				header("Refresh:0");
 				die();
 			  }
-			}
+		}
 
 	//Add new task to a specific list
 	//Checks if submittask is set
@@ -49,10 +50,10 @@ if ($db->connect_error) {
 
 			else {
 		    # Get data from form
-		    $newtask = "";
-		    $newtask = trim($_POST['newtask']);
+				$newtask = "";
+				$newtask = trim($_POST['newtask']);
 				$newtaskdesc = "";
-		    $newtaskdesc = trim($_POST['newtaskdesc']);
+				$newtaskdesc = trim($_POST['newtaskdesc']);
 				$newEndDate = "";
 				$newEndDate = trim($_POST['newEndDate']);
 				$tasklist = "";
@@ -75,12 +76,12 @@ if ($db->connect_error) {
 				$tasklist = mysqli_real_escape_string($db, $tasklist);
 
 				//insert tasks into db in the correct way and print out task added!
-		    $stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, edate, list_id) VALUES (?, ?, ?, ?)");
-		    $stmt->bind_param('sssi', $newtask, $newtaskdesc, $newEndDate, $tasklist);
-		    $stmt->execute();
-		    printf("<br>Task Added!");
-		    header("Refresh:0");
-		  }
+				$stmt = $db->prepare("INSERT INTO tasks (taskname, taskdesc, edate, list_id) VALUES (?, ?, ?, ?)");
+				$stmt->bind_param('sssi', $newtask, $newtaskdesc, $newEndDate, $tasklist);
+				$stmt->execute();
+				printf("<br>Task Added!");
+				header("Refresh:0");
+		  	}
 		}
 
 	//Remove list and tasks with same list_id if deletebutton is clicked
@@ -251,25 +252,26 @@ if ($db->connect_error) {
 	    // Declare all variables
 	    var i;
 
-			var lp= document.getElementById('listParent');
-			var td= document.getElementById('tabDiv');
+		var lp= document.getElementById('listParent');
+		var td= document.getElementById('tabDiv');
+		
 	    // Get all elements with class listContent and hide them
 	    //listContent = document.getElementsByClassName("listContent");
 	    for (i = 0; i < lp.children.length; i++) {
 				lp.children[i].style.display='none';
 	    }
 
-			//Onclick remove the class currentList from our tasks
-			for (i = 0; i < td.children.length; i++) {
+		//Onclick remove the class currentList from our tasks
+		for (i = 0; i < td.children.length; i++) {
 				td.children[i].classList.remove('currentList');
 	    }
 
-			//sets element with id list_id to display block
-			document.getElementById(list_id).style.display='block';
+		//sets element with id list_id to display block
+		document.getElementById(list_id).style.display='block';
 
 	    //Show the current tab, and add an "active" class called currentList to the button that opened the tab
 	    event.currentTarget.classList.add("currentList");
-		}
+	}
 	</script>
 
 
