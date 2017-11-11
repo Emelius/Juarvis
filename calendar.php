@@ -21,6 +21,7 @@
 
       //if user have clicked on a day, set active day and ym to the clicked day in a strotime format
       //always set today to todays date
+      //date is a function used to format date and time 
       $today = date('Y-m-d', time());
       $active_day = date("Y-m-d", strtotime($_GET['active_day']));
       $ym = date("Y-m", strtotime($_GET['active_day']));
@@ -82,10 +83,12 @@
     $stmt->bind_result($task_id, $taskname, $edate);
     $stmt->execute();
 
-    //Set timezone
+    //Set timezone to Sweden
     date_default_timezone_set("Europe/Stockholm");
 
     //Check format
+    //timestamp specifies a timestamp and the default is the current date and time
+    //strtotime is a function used to convert a human readable string to a Unix time
     $timestamp = strtotime($ym, "-01");
     if ($timestamp === false) {
       $timestamp = time();
@@ -95,6 +98,8 @@
     $html_title = date('Y/m', $timestamp);
 
     //Create prev & next month link mktime(hour, minute, second, month, day, year)
+    //mktime() function returns the Unix timestamp for a date. 
+    //The Unix timestamp contains the number of seconds between the Unix Epoch (January 1 1970 00:00:00 GMT) and the time specified.
     $prev = date('Y-m', mktime(0,0,0, date('m',$timestamp)-1, 1, date('Y',$timestamp)));
     $next = date('Y-m', mktime(0,0,0, date('m',$timestamp)+1, 1, date('Y',$timestamp)));
 
