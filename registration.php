@@ -6,11 +6,12 @@
 <?php
 if (isset($_POST) && !empty($_POST)) {
 
-    # Get data from form
+   	//declare variables
     $newusername = "";
     $newpassword = "";
     $newemail = "";
-
+	
+	//Get data from form
     $newusername = trim($_POST['username']);
     $newpassword = trim($_POST['password']);
     $newemail = trim($_POST['email']);
@@ -18,7 +19,7 @@ if (isset($_POST) && !empty($_POST)) {
 	//hash the new password
     $newpassword = sha1($newpassword);
 
-	//if username, password, email are not filled in print error message
+	//if either username, password or email is not filled in print error message
     if (!$newusername || !$newpassword || !$newemail) {
 			echo "<script type='text/javascript'> alert('You must specify both username, email and password.'); </script>";
 	}
