@@ -2,6 +2,7 @@
 <!doctype html>
 <?php
     include("config.php");
+    //Turn on output buffering
     ob_start();
 
     //Database connection
@@ -13,6 +14,8 @@
 
     //sets $username = to the username thats used to login from session
     $username = $_SESSION['username'];
+
+    //declare variables
     $taskname ='nothing';
     $edate ='no date';
 
@@ -77,7 +80,7 @@
     // }
     // alert();
 
-    //the query that asks for taskname and edate from db where the depending of whichc user is logged in and which date you have clicked on in the calendar.
+    //the query that asks for taskname and edate from db where the depending on which user is logged in and which date you have clicked on in the calendar.
     $sql ="SELECT task_id, taskname, edate FROM tasks JOIN lists on tasks.list_id = lists.list_id JOIN users on lists.user_id = users.user_id WHERE users.username = '$username' AND tasks.edate = '$active_day' ";
     $stmt = $db ->prepare($sql);
     $stmt->bind_result($task_id, $taskname, $edate);
@@ -198,6 +201,7 @@
 ?>
   </ul>
   <?php
+    //task deleteion in calendar
     if (isset($_POST['deletetask'])) {
 
       //hidden id from the echo:d form is used to determine which task should be deleted
