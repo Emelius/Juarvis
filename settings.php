@@ -44,13 +44,13 @@
 		$confirmpassword = trim($_POST['confirmpassword']);
 
 		//safety
-		
+
 		//returns a string with backslashes in front of predefined characters ',",\,NULL
 		$newusername = addslashes($newusername);
 		$newpassword = addslashes($newpassword);
 		$newemail = addslashes($newemail);
 		$confirmpassword = addslashes($confirmpassword);
-		
+
 		//converts characters to HTML entities
 		$newusername = htmlentities($newusername);
 		$newpassword = htmlentities($newpassword);
@@ -76,7 +76,7 @@
 			header("Refresh:0");
 			exit();
 		}
-		
+
 		//runs if hashed confirm password is the same as current password
 		if (!empty($confirmpassword) && sha1($confirmpassword) == $currentpassword) {
 
